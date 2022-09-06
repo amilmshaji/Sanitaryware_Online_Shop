@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ab3151b1-1377-437b-9d5e-631409a26206" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/Sanitaryware_Shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/Sanitaryware_Shop.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/register.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2EOtjrPdFkAddhJyFLeiy943Cod" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab3151b1-1377-437b-9d5e-631409a26206" name="Changes" comment="" />
+      <created>1662478597256</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662478597256</updated>
+    </task>
+    <servers />
+  </component>
+</project>
