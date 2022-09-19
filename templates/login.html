@@ -3,20 +3,20 @@
 {% block content %}
 
     <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2>Tracking Order</h2>
-                            <p>Home <span>-</span> Tracking Order</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--    <section class="breadcrumb breadcrumb_bg">-->
+<!--        <div class="container">-->
+<!--            <div class="row justify-content-center">-->
+<!--                <div class="col-lg-8">-->
+<!--                    <div class="breadcrumb_iner">-->
+<!--                        <div class="breadcrumb_iner_item">-->
+<!--                            <h2>Tracking Order</h2>-->
+<!--                            <p>Home <span>-</span> Tracking Order</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
     <!-- breadcrumb start-->
 
     <!--================login_part Area =================-->
@@ -38,9 +38,9 @@
                         <div class="login_part_form_iner">
                             <h3>Welcome Back ! <br>
                                 Please Sign in now</h3>
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                            <form class="row contact_form" action="{% url 'login' %}" method="post" novalidate="novalidate">
                                 {% csrf_token %}
-                                <div class="col-md-12 form-group p_star">
+                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="email" name="email" value=""
                                         placeholder="Email">
                                 </div>

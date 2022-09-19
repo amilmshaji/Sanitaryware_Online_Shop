@@ -58,34 +58,46 @@
 
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="{% url 'login' %}"> login</a>
-                                        <a class="dropdown-item" href="#">tracking</a>
-                                        <a class="dropdown-item" href="{% url 'checkout' %}">product checkout</a>
-                                        <a class="dropdown-item" href="{% url 'cart' %}">shopping cart</a>
-                                        <a class="dropdown-item" href="#">confirmation</a>
-                                        <a class="dropdown-item" href="#">elements</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="#"> blog</a>
-                                        <a class="dropdown-item" href="#">Single blog</a>
-                                    </div>
-                                </li>
+<!--                                <li class="nav-item dropdown">-->
+<!--                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"-->
+<!--                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                        pages-->
+<!--                                    </a>-->
+<!--                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">-->
+<!--                                        <a class="dropdown-item" href="{% url 'login' %}"> login</a>-->
+<!--                                        <a class="dropdown-item" href="#">tracking</a>-->
+<!--                                        <a class="dropdown-item" href="{% url 'checkout' %}">product checkout</a>-->
+<!--                                        <a class="dropdown-item" href="{% url 'cart' %}">shopping cart</a>-->
+<!--                                        <a class="dropdown-item" href="#">confirmation</a>-->
+<!--                                        <a class="dropdown-item" href="#">elements</a>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item dropdown">-->
+<!--                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_2"-->
+<!--                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                        blog-->
+<!--                                    </a>-->
+<!--                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">-->
+<!--                                        <a class="dropdown-item" href="#"> blog</a>-->
+<!--                                        <a class="dropdown-item" href="#">Single blog</a>-->
+<!--                                    </div>-->
+<!--                                </li>-->
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Contact</a>
                                 </li>
+                                {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Hello {{user.fname}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+                                </li>
+                                {% else %}
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
@@ -124,74 +136,74 @@
 
     <!--::footer_part start::-->
     <footer class="footer_part">
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-sm-6 col-lg-2">
-                    <div class="single_footer_part">
-                        <h4>Top Products</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Managed Website</a></li>
-                            <li><a href="">Manage Reputation</a></li>
-                            <li><a href="">Power Tools</a></li>
-                            <li><a href="">Marketing Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-2">
-                    <div class="single_footer_part">
-                        <h4>Quick Links</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Jobs</a></li>
-                            <li><a href="">Brand Assets</a></li>
-                            <li><a href="">Investor Relations</a></li>
-                            <li><a href="">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-2">
-                    <div class="single_footer_part">
-                        <h4>Features</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Jobs</a></li>
-                            <li><a href="">Brand Assets</a></li>
-                            <li><a href="">Investor Relations</a></li>
-                            <li><a href="">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-2">
-                    <div class="single_footer_part">
-                        <h4>Resources</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">Guides</a></li>
-                            <li><a href="">Research</a></li>
-                            <li><a href="">Experts</a></li>
-                            <li><a href="">Agencies</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="single_footer_part">
-                        <h4>Newsletter</h4>
-                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
-                        </p>
-                        <div id="mc_embed_signup">
-                            <form target="_blank"
-                                action="#"
-                                method="get" class="subscribe_form relative mail_part">
-                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = ' Email Address '">
-                                <button type="submit" name="submit" id="newsletter-submit"
-                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                <div class="mt-10 info"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--        <div class="container">-->
+<!--            <div class="row justify-content-around">-->
+<!--                <div class="col-sm-6 col-lg-2">-->
+<!--                    <div class="single_footer_part">-->
+<!--                        <h4>Top Products</h4>-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li><a href="">Managed Website</a></li>-->
+<!--                            <li><a href="">Manage Reputation</a></li>-->
+<!--                            <li><a href="">Power Tools</a></li>-->
+<!--                            <li><a href="">Marketing Service</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 col-lg-2">-->
+<!--                    <div class="single_footer_part">-->
+<!--                        <h4>Quick Links</h4>-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li><a href="">Jobs</a></li>-->
+<!--                            <li><a href="">Brand Assets</a></li>-->
+<!--                            <li><a href="">Investor Relations</a></li>-->
+<!--                            <li><a href="">Terms of Service</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 col-lg-2">-->
+<!--                    <div class="single_footer_part">-->
+<!--                        <h4>Features</h4>-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li><a href="">Jobs</a></li>-->
+<!--                            <li><a href="">Brand Assets</a></li>-->
+<!--                            <li><a href="">Investor Relations</a></li>-->
+<!--                            <li><a href="">Terms of Service</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 col-lg-2">-->
+<!--                    <div class="single_footer_part">-->
+<!--                        <h4>Resources</h4>-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li><a href="">Guides</a></li>-->
+<!--                            <li><a href="">Research</a></li>-->
+<!--                            <li><a href="">Experts</a></li>-->
+<!--                            <li><a href="">Agencies</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 col-lg-4">-->
+<!--                    <div class="single_footer_part">-->
+<!--                        <h4>Newsletter</h4>-->
+<!--                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping-->
+<!--                        </p>-->
+<!--                        <div id="mc_embed_signup">-->
+<!--                            <form target="_blank"-->
+<!--                                action="#"-->
+<!--                                method="get" class="subscribe_form relative mail_part">-->
+<!--                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"-->
+<!--                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"-->
+<!--                                    onblur="this.placeholder = ' Email Address '">-->
+<!--                                <button type="submit" name="submit" id="newsletter-submit"-->
+<!--                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>-->
+<!--                                <div class="mt-10 info"></div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-        </div>
+<!--        </div>-->
         <div class="copyright_part">
             <div class="container">
                 <div class="row">

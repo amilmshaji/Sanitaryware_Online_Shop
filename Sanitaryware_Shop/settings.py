@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'home_app',
+    'shop',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Sanitaryware_Shop.wsgi.application'
 
+AUTH_USER_MODEL='home_app.Account'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -79,6 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'store',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
     }
 }
 
@@ -122,7 +128,7 @@ STATIC_URL = 'static/'
 
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-f ield
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

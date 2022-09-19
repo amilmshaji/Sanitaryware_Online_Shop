@@ -3,23 +3,23 @@
 {% block content %}
 
     <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2>Tracking Order</h2>
-                            <p>Home <span>-</span> Tracking Order</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--    <section class="breadcrumb breadcrumb_bg">-->
+<!--        <div class="container">-->
+<!--            <div class="row justify-content-center">-->
+<!--                <div class="col-lg-8">-->
+<!--                    <div class="breadcrumb_iner">-->
+<!--                        <div class="breadcrumb_iner_item">-->
+<!--                            <h2>Tracking Order</h2>-->
+<!--                            <p>Home <span>-</span> Tracking Order</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
     <!-- breadcrumb start-->
 
-    <!--================login_part Area =================-->
+    <!--================registraion_part Area =================-->
     <section class="login_part padding_top">
         <div class="container">
             <div class="row align-items-center">
@@ -33,54 +33,133 @@
                         </div>
                     </div>
                 </div>
+                <script>
+            function validateform()
+            {
+                var a=document.getElementById('fname').value.trim();
+                var b=document.getElementById('lname').value.trim();
+
+                var c=document.getElementById('email').value.trim();
+                var d=document.getElementById('username').value.trim();
+
+                var g=document.getElementById('tel').value.trim();
+                var h=document.getElementById('password').value.trim();
+                var i=document.getElementById('cpassword').value.trim();
+                if(a=="")
+                {
+                    document.getElementById('fn').innerHTML="**please enter first name";
+                    return false;
+                }
+                if(b=="")
+                {
+                    document.getElementById('ln').innerHTML="**please enter last name";
+                    return false;
+                }
+                if(c.indexOf('@')<=0){
+                    document.getElementById('el').innerHTML="**Invalid  Email Address";
+                    return false;
+                }
+                if ((c.charAt(c.length-4)!='.') && (c.charAt(c.length-3)!='.')) {
+                    document.getElementById('el').innerHTML="**Invalid  Email Address";
+                    return false;
+                }
+                 if(d=="")
+               {
+                document.getElementById('ue').innerHTML="**Please Enter username";
+                return false;
+               }
+                if(g==""){
+                  document.getElementById('ph').innerHTML="**Enter 10 digit valid number";
+                  return false;
+                }
+                if(g.length>10||g.length<10){
+                  document.getElementById('ph').innerHTML="**Enter 10 digit valid number";
+                  return false;
+                }
+                 if(h=="")
+               {
+                document.getElementById('pwd').innerHTML="**Please Enter Password";
+                return false;
+               }
+                if(i=="")
+               {
+                document.getElementById('cpwd').innerHTML="**Please Enter Password";
+                return false;
+               }
+               if(i!=h)
+               {
+                document.getElementById('cpwd').innerHTML="**Incorrect password";
+                return false;
+               }
+
+                else
+                {
+                    return true;
+                }
+            }
+
+            function onclear(){
+                document.getElementById('fn').innerHTML="";
+                document.getElementById('ln').innerHTML="";
+                document.getElementById('el').innerHTML="";
+                document.getElementById('ph').innerHTML="";
+                document.getElementById('ue').innerHTML="";
+                document.getElementById('pwd').innerHTML="";
+                document.getElementById('cpwd').innerHTML="";
+               }
+                </script>
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_form">
                         <div class="login_part_form_iner">
-                            <h3>Welcome Back ! <br>
-                                Please Sign in now</h3>
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                            <h3>Hello ! <br>
+                                Please Sign up now</h3>
+                            <form class="row contact_form" action="{% url 'register' %}" method="post"  onsubmit="return validateform();">
 								{% csrf_token %}
+                                {% include 'alerts.html' %}
 								 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="fname" name="fname" value=""
+<!--                                     <label class="gl-label" for="fname">FIRST NAME *</label>-->
+
+                                    <input type="text" class="form-control" id="fname" name="fname" value="" onclick=" return onclear()"
                                         placeholder="First Name">
+                                     <span id="fn" style="color: red;"></span><br>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="lname" name="lname" value=""
-                                        placeholder="Last Name">
+<!--                                    <label class="gl-label" for="lname">LAST NAME *</label>-->
+                                    <input type="text" class="form-control" id="lname" name="lname" value="" onclick=" return onclear()"
+                                        placeholder="Last Name"><span id="ln" style="color: red;"></span><br>
+                                </div>
+                                 <div class="col-md-12 form-group p_star">
+<!--                                    <label class="gl-label" for="lname">LAST NAME *</label>-->
+                                    <input type="text" class="form-control" id="username" name="username" value="" onclick=" return onclear()"
+                                        placeholder="Username"><span id="ue" style="color: red;"></span><br>
                                 </div>
 								<div class="col-md-12 form-group p_star">
-                                    <input type="email" class="form-control" id="email" name="email" value=""
-                                        placeholder="Email">
+<!--                                <label class="gl-label" for="email">Enter your Email *</label>-->
+                                    <input type="email" class="form-control" id="email" name="email" value="" onclick=" return onclear()"
+                                        placeholder="Email"><span id="el" style="color: red;"></span><br>
                                 </div>
+
 								<div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="city" name="city" value=""
-                                        placeholder="City">
-                                </div>
-								<div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="district" name="district" value=""
-                                        placeholder="District">
-                                </div>
-								<div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="state" name="state" value=""
-                                        placeholder="State">
-                                </div>
-								<div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="tel" name="tel" value=""
-                                        placeholder="phone number">
+                                    <input type="text" class="form-control" id="tel" name="tel" value="" onclick=" return onclear()" pattern="[0-9]{10}"
+                                        placeholder="phone number"><span id="ph" style="color: red;"></span><br>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password" value="" onclick=" return onclear()"
+                                        placeholder="Password"><span id="pwd" style="color: red;"></span><br>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="cpassword" name="cpassword" value="" onclick=" return onclear()"
+                                        placeholder="confirm Password"><span id="cpwd" style="color: red;"></span><br>
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <div class="creat_account d-flex align-items-center">
-                                        <input type="checkbox" id="f-option" name="selector">
-                                        <label for="f-option">Remember me</label>
-                                    </div>
+<!--                                    <div class="creat_account d-flex align-items-center">-->
+<!--                                        <input type="checkbox" id="f-option" name="selector">-->
+<!--                                        <label for="f-option">Remember me</label>-->
+<!--                                    </div>-->
                                     <button type="submit" value="submit" class="btn_3">
-                                        log in
+                                        Register
                                     </button>
-                                    <a class="lost_pass" href="#">forget password?</a>
+<!--                                    <a class="lost_pass" href="#">forget password?</a>-->
                                 </div>
                             </form>
                         </div>
@@ -91,86 +170,5 @@
         </div>
     </section>
     <!--================registration_part end =================-->
-<!--    <form class="form-detail" action="#" method="post">-->
-<!--        		{% csrf_token %}-->
-<!--				<h2>Register Account Form</h2>-->
-<!--				<div class="form-row">-->
-<!--					<label for="mun_name">Enter Municipality Name</label>-->
-<!--					<input type="text" name="mun_name" id="mun_name" class="input-text" placeholder="Your Name" required>-->
-<!--					<i class="fas fa-user"></i>-->
-<!--				</div>-->
 
-<!--					<div class="form-row">-->
-<!--					<label for="username">Enter the Username</label>-->
-<!--					<input type="text" name="username" id="username" class="input-text" placeholder="Your Name" required>-->
-<!--					<i class="fas fa-user"></i>-->
-<!--				</div>-->
-
-<!--					<div class="form-row">-->
-<!--					<label for="username">Enter the Full Name</label>-->
-<!--					<input type="text" name="name" id="name" class="input-text" placeholder="Your Full Name" required>-->
-<!--					<i class="fas fa-user"></i>-->
-<!--				</div>-->
-
-<!--				<div class="form-row">-->
-<!--					<label for="email">Your Email</label>-->
-<!--					<input type="email" name="email" id="email" class="input-text" placeholder="Your Email" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">-->
-<!--					<i class="fas fa-envelope"></i>-->
-<!--				</div>-->
-
-
-<!--				<div class="form-row">-->
-<!--					<label for="role">Enter the Role</label>-->
-<!--					 <select name="role" id="role">-->
-<!--            		<option value="">Select Role</option>-->
-<!--            		<option value="muncipality">muncipality</option>-->
-<!--           			 <option value="worker">worker</option>-->
-<!--					 </select>-->
-<!--					<i class="fas fa-user"></i><br>-->
-<!--				</div><br><br>-->
-
-<!--				<div class="form-row">-->
-<!--					<label for="district">Enter the District</label>-->
-<!--					 <select name="district" id="district">-->
-<!--           			 <option value="" selected disabled>Select your current district</option>-->
-<!--           			 <option value="Trivandrum">Trivandrum</option>-->
-<!--           			 <option value="Kollam">Kollam</option>-->
-<!--            		<option value="Pathanamthitta">Pathanamthitta</option>-->
-<!--           			 <option value="Alappuzha">Alappuzha</option>-->
-<!--           			 <option value="Kottayam">Kottayam</option>-->
-<!--           			 <option value="Idukki">Idukki</option>-->
-<!--            		<option value="Ernakulam">Ernakulam</option>-->
-<!--           			 <option value="Thrissur">Thrissur</option>-->
-<!--            		<option value="Palakkad">Palakkad</option>-->
-<!--            		<option value="Malappuram">Malappuram</option>-->
-<!--            		<option value="Kozhikode">Kozhikode</option>-->
-<!--            		<option value="Wayanad">Wayanad</option>-->
-<!--            		<option value="Kannur">Kannur</option>-->
-<!--            		<option value="Kasaragod">Kasaragod</option>-->
-<!--       				 </select>-->
-<!--					<i class="fa fa-globe"></i><br>-->
-<!--				</div><br><br>-->
-
-<!--				<div class="form-row">-->
-<!--					<label for="state">Enter the state</label>-->
-<!--					<input type="text" name="state" id="state" class="input-text" placeholder="10 digits" required>-->
-<!--					<i class="fa fa-phone-square"></i>-->
-<!--				</div>-->
-
-<!--				<div class="form-row">-->
-<!--					<label for="username">Enter the Phone Number</label>-->
-<!--					<input type="text" name="tel" id="tel" class="input-text" placeholder="10 digits" required>-->
-<!--					<i class="fa fa-phone-square"></i>-->
-<!--				</div>-->
-
-<!--				<div class="form-row">-->
-<!--					<label for="password">Password</label>-->
-<!--					<input type="password" name="password" id="password" class="input-text" placeholder="Your Password" required>-->
-<!--					<i class="fas fa-lock"></i>-->
-<!--				</div>-->
-
-<!--				<div class="form-row-last">-->
-<!--					<input type="submit" name="register" class="register" value="Register">-->
-<!--				</div>-->
-<!--			</form>-->
 {% endblock %}
