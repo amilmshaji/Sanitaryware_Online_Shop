@@ -2,173 +2,122 @@
 {% load static %}
 {% block content %}
 
-    <!-- breadcrumb start-->
-<!--    <section class="breadcrumb breadcrumb_bg">-->
-<!--        <div class="container">-->
-<!--            <div class="row justify-content-center">-->
-<!--                <div class="col-lg-8">-->
-<!--                    <div class="breadcrumb_iner">-->
-<!--                        <div class="breadcrumb_iner_item">-->
-<!--                            <h2>Tracking Order</h2>-->
-<!--                            <p>Home <span>-</span> Tracking Order</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-    <!-- breadcrumb start-->
 
-    <!--================registraion_part Area =================-->
-    <section class="login_part padding_top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                            <h2>Aready have an account?</h2>
-                            <p>There are advances being made in science and technology
-                                everyday, and a good example of this is the</p>
-                            <a href="#" class="btn_3">Login Here!</a>
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="signup.html">Signup</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <script>
-            function validateform()
-            {
-                var a=document.getElementById('fname').value.trim();
-                var b=document.getElementById('lname').value.trim();
-
-                var c=document.getElementById('email').value.trim();
-                var d=document.getElementById('username').value.trim();
-
-                var g=document.getElementById('tel').value.trim();
-                var h=document.getElementById('password').value.trim();
-                var i=document.getElementById('cpassword').value.trim();
-                if(a=="")
-                {
-                    document.getElementById('fn').innerHTML="**please enter first name";
-                    return false;
-                }
-                if(b=="")
-                {
-                    document.getElementById('ln').innerHTML="**please enter last name";
-                    return false;
-                }
-                if(c.indexOf('@')<=0){
-                    document.getElementById('el').innerHTML="**Invalid  Email Address";
-                    return false;
-                }
-                if ((c.charAt(c.length-4)!='.') && (c.charAt(c.length-3)!='.')) {
-                    document.getElementById('el').innerHTML="**Invalid  Email Address";
-                    return false;
-                }
-                 if(d=="")
-               {
-                document.getElementById('ue').innerHTML="**Please Enter username";
-                return false;
-               }
-                if(g==""){
-                  document.getElementById('ph').innerHTML="**Enter 10 digit valid number";
-                  return false;
-                }
-                if(g.length>10||g.length<10){
-                  document.getElementById('ph').innerHTML="**Enter 10 digit valid number";
-                  return false;
-                }
-                 if(h=="")
-               {
-                document.getElementById('pwd').innerHTML="**Please Enter Password";
-                return false;
-               }
-                if(i=="")
-               {
-                document.getElementById('cpwd').innerHTML="**Please Enter Password";
-                return false;
-               }
-               if(i!=h)
-               {
-                document.getElementById('cpwd').innerHTML="**Incorrect password";
-                return false;
-               }
-
-                else
-                {
-                    return true;
-                }
-            }
-
-            function onclear(){
-                document.getElementById('fn').innerHTML="";
-                document.getElementById('ln').innerHTML="";
-                document.getElementById('el').innerHTML="";
-                document.getElementById('ph').innerHTML="";
-                document.getElementById('ue').innerHTML="";
-                document.getElementById('pwd').innerHTML="";
-                document.getElementById('cpwd').innerHTML="";
-               }
-                </script>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3>Hello ! <br>
-                                Please Sign up now</h3>
-                            <form class="row contact_form" action="{% url 'register' %}" method="post"  onsubmit="return validateform();">
-								{% csrf_token %}
-                                {% include 'alerts.html' %}
-								 <div class="col-md-12 form-group p_star">
-<!--                                     <label class="gl-label" for="fname">FIRST NAME *</label>-->
-
-                                    <input type="text" class="form-control" id="fname" name="fname" value="" onclick=" return onclear()"
-                                        placeholder="First Name">
-                                     <span id="fn" style="color: red;"></span><br>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-<!--                                    <label class="gl-label" for="lname">LAST NAME *</label>-->
-                                    <input type="text" class="form-control" id="lname" name="lname" value="" onclick=" return onclear()"
-                                        placeholder="Last Name"><span id="ln" style="color: red;"></span><br>
-                                </div>
-<!--                                 <div class="col-md-12 form-group p_star">-->
-<!--&lt;!&ndash;                                    <label class="gl-label" for="lname">LAST NAME *</label>&ndash;&gt;-->
-<!--                                    <input type="text" class="form-control" id="username" name="username" value="" onclick=" return onclear()"-->
-<!--                                        placeholder="Username"><span id="ue" style="color: red;"></span><br>-->
-<!--                                </div>-->
-								<div class="col-md-12 form-group p_star">
-<!--                                <label class="gl-label" for="email">Enter your Email *</label>-->
-                                    <input type="email" class="form-control" id="email" name="email" value="" onclick=" return onclear()"
-                                        placeholder="Email"><span id="el" style="color: red;"></span><br>
-                                </div>
-
-								<div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="tel" name="tel" value="" onclick=" return onclear()" pattern="[0-9]{10}"
-                                        placeholder="phone number"><span id="ph" style="color: red;"></span><br>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value="" onclick=" return onclear()"
-                                        placeholder="Password"><span id="pwd" style="color: red;"></span><br>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="cpassword" name="cpassword" value="" onclick=" return onclear()"
-                                        placeholder="confirm Password"><span id="cpwd" style="color: red;"></span><br>
-                                </div>
-                                <div class="col-md-12 form-group">
-<!--                                    <div class="creat_account d-flex align-items-center">-->
-<!--                                        <input type="checkbox" id="f-option" name="selector">-->
-<!--                                        <label for="f-option">Remember me</label>-->
-<!--                                    </div>-->
-                                    <button type="submit" value="submit" class="btn_3">
-                                        Register
-                                    </button>
-<!--                                    <a class="lost_pass" href="#">forget password?</a>-->
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </section>
-    <!--================registration_part end =================-->
+            <!--====== End - Section 1 ======-->
 
+
+            <!--====== Section 2 ======-->
+            <div class="u-s-p-b-60">
+
+                <!--====== Section Intro ======-->
+                <div class="section__intro u-s-m-b-60">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section__text-wrap">
+                                    <h1 class="section__heading u-c-secondary">CREATE AN ACCOUNT</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Intro ======-->
+
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="row row--center">
+                            <div class="col-lg-6 col-md-8 u-s-m-b-30">
+                                <div class="l-f-o">
+                                    <div class="l-f-o__pad-box">
+                                        <h1 class="gl-h1">PERSONAL INFORMATION</h1>
+                                        <form class="l-f-o__form" action="{% url 'register' %}" method="post">
+                                            {% csrf_token %}
+<!--                                            <div class="gl-s-api">-->
+<!--                                                <div class="u-s-m-b-15">-->
+
+<!--                                                    <button class="gl-s-api_btn gl-s-api_btn&#45;&#45;fb" type="button"><i class="fab fa-facebook-f"></i>-->
+
+<!--                                                        <span>Signup with Facebook</span></button></div>-->
+<!--                                                <div class="u-s-m-b-30">-->
+
+<!--                                                    <button class="gl-s-api_btn gl-s-api_btn&#45;&#45;gplus" type="button"><i class="fab fa-google"></i>-->
+
+<!--                                                        <span>Signup with Google</span></button></div>-->
+<!--                                            </div>-->
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="fname">FIRST NAME *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="fname" id="fname" placeholder="First Name">
+                                            </div>
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="lname">LAST NAME *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="lname" id="lname" placeholder="Last Name">
+                                            </div>
+
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="email">E-MAIL *</label>
+
+                                                <input class="input-text input-text--primary-style" type="email" name="email" id="email" placeholder="Enter E-mail"></div>
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="phone_number">PHONE NUMBER *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="tel" id="phone_number" placeholder="Enter 10 digits"></div>
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="password">PASSWORD *</label>
+
+                                                <input class="input-text input-text--primary-style" type="password" name="password" id="password" placeholder="Enter Password"></div>
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="cpassword">CONFIRM PASSWORD *</label>
+
+                                                <input class="input-text input-text--primary-style" type="password" name="cpassword" id="cpassword" placeholder="Enter Password"></div>
+                                            <div class="u-s-m-b-15">
+
+                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
+
+                                            <a class="gl-link" href="#">Return to Store</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 2 ======-->
+        </div>
+        <!--====== End - App Content ======-->
 {% endblock %}
