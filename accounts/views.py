@@ -42,7 +42,7 @@ def login(request):
             messages.success(request, 'you are logged in')
             # store user details in session
             request.session['email']=email
-            return redirect('home')
+            return redirect('shop_app:home')
         else:
             messages.error(request, 'invalid login credentials')
             return redirect('register')

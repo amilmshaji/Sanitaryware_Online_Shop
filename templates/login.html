@@ -1,69 +1,121 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+        <!--====== App Content ======-->
+        <div class="app-content">
 
-    <!-- breadcrumb start-->
-<!--    <section class="breadcrumb breadcrumb_bg">-->
-<!--        <div class="container">-->
-<!--            <div class="row justify-content-center">-->
-<!--                <div class="col-lg-8">-->
-<!--                    <div class="breadcrumb_iner">-->
-<!--                        <div class="breadcrumb_iner_item">-->
-<!--                            <h2>Tracking Order</h2>-->
-<!--                            <p>Home <span>-</span> Tracking Order</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-    <!-- breadcrumb start-->
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
 
-    <!--================login_part Area =================-->
-    <section class="login_part padding_top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                            <h2>New to our Shop?</h2>
-                            <p>There are advances being made in science and technology
-                                everyday, and a good example of this is the</p>
-                            <a href="{% url 'register' %}" class="btn_3">Create an Account</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3>Welcome Back ! <br>
-                                Please Sign in now</h3>
-                            <form class="row contact_form" action="{% url 'login' %}" method="post" novalidate="novalidate">
-                                {% csrf_token %}
-                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="email" name="email" value=""
-                                        placeholder="Email">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <div class="creat_account d-flex align-items-center">
-                                        <input type="checkbox" id="f-option" name="selector">
-                                        <label for="f-option">Remember me</label>
-                                    </div>
-                                    <button type="submit" value="submit" class="btn_3">
-                                        log in
-                                    </button>
-                                    <a class="lost_pass" href="#">forget password?</a>
-                                </div>
-                            </form>
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="signin.html">Signin</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--====== End - Section 1 ======-->
+
+
+            <!--====== Section 2 ======-->
+            <div class="u-s-p-b-60">
+
+                <!--====== Section Intro ======-->
+                <div class="section__intro u-s-m-b-60">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section__text-wrap">
+                                    <h1 class="section__heading u-c-secondary">ALREADY REGISTERED?</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Intro ======-->
+
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="row row--center">
+                            <div class="col-lg-6 col-md-8 u-s-m-b-30">
+                                <div class="l-f-o">
+                                    <div class="l-f-o__pad-box">
+                                        <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
+
+                                        <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
+                                        <div class="u-s-m-b-15">
+
+                                            <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
+                                        <h1 class="gl-h1">SIGNIN</h1>
+
+                                        <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
+                                        <form class="l-f-o__form" action="{% url 'login' %}" method="post">
+                                            {% csrf_token %}
+<!--                                            <div class="gl-s-api">-->
+<!--                                                <div class="u-s-m-b-15">-->
+
+<!--                                                    <button class="gl-s-api_btn gl-s-api_btn&#45;&#45;fb" type="button"><i class="fab fa-facebook-f"></i>-->
+
+<!--                                                        <span>Signin with Facebook</span></button></div>-->
+<!--                                                <div class="u-s-m-b-15">-->
+
+<!--                                                    <button class="gl-s-api_btn gl-s-api_btn&#45;&#45;gplus" type="button"><i class="fab fa-google"></i>-->
+
+<!--                                                        <span>Signin with Google</span></button></div>-->
+<!--                                            </div>-->
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="email">E-MAIL *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="email" id="email" placeholder="Enter E-mail"></div>
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="password">PASSWORD *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="password" id="password" placeholder="Enter Password"></div>
+                                            <div class="gl-inline">
+                                                <div class="u-s-m-b-30">
+
+                                                    <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
+                                                <div class="u-s-m-b-30">
+
+                                                    <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                            </div>
+                                            <div class="u-s-m-b-30">
+
+                                                <!--====== Check Box ======-->
+                                                <div class="check-box">
+
+                                                    <input type="checkbox" id="remember-me">
+                                                    <div class="check-box_state check-box_state--primary">
+
+                                                        <label class="check-box__label" for="remember-me">Remember Me</label></div>
+                                                </div>
+                                                <!--====== End - Check Box ======-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 2 ======-->
         </div>
-    </section>
-    <!--================login_part end =================-->
+        <!--====== End - App Content ======-->
 {% endblock %}
