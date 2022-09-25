@@ -2,15 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab3151b1-1377-437b-9d5e-631409a26206" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/Sanitaryware_Shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/Sanitaryware_Shop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../home_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../home_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../home_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../home_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../home_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../accounts/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/category/w6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/category/w6_viB5UeQ.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/photos/categories/0a7cc59f-b2b0-4201-9c4a-d91eca5c03a3___PSU_CG_2230.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/photos/categories/sw2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/photos/categories/sw4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/photos/categories/w6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/photos/product/dooa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/product/wb1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../media/product/wb8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/context_processors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shop_app/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/img/sankart_logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../shop_app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../home_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +55,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

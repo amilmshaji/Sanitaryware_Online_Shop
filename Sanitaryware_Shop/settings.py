@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'home_app',
+    'accounts',
+    'shop_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Sanitaryware_Shop.wsgi.application'
 
-AUTH_USER_MODEL='home_app.Account'
+AUTH_USER_MODEL='accounts.Account'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

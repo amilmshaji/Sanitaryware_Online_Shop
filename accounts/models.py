@@ -74,27 +74,3 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, add_label):
         return True
 
-from django.db import models
-#
-# # Create your models here.
-# from django.db import models
-#
-# #Customer Registration Table
-# class reg_user(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     fname = models.CharField(max_length=100, blank=True, null=True)
-#     lname = models.CharField(max_length=100, blank=True, null=True)
-#     email = models.EmailField(max_length=100, unique=True)
-#     phone_number = models.BigIntegerField(default=0)
-#     username = models.CharField(max_length=100, unique=True)
-#
-#
-#
-#     # required
-#     date_joined = models.DateTimeField(auto_now_add=True)
-#     is_active = models.BooleanField(default=True)
-
-# #Login Table
-# class log_user(models.Model):
-#      email= models.CharField(max_length=200,primary_key=True,unique=True)
-#      password = models.CharField(max_length=200)
