@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="{% static 'images/favicon.png' %}" rel="shortcut icon">
-    <title>AnyRent</title>
+    <link href="{% static 'images/sankart_logo.png' %}" rel="shortcut icon">
+    <title>SanKart</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
@@ -26,7 +25,7 @@
     <div class="preloader is-active">
         <div class="preloader__wrap">
 
-            <img class="preloader__img" src="{% static 'images/preloader.png' %}" alt=""></div>
+           <a href="#"><img class="preloader__img" src="{% static 'images/preloader.png' %}" alt=""></a></div>
     </div>
 
     <!--====== Main App ======-->
@@ -46,7 +45,7 @@
 
                         <a class="main-logo" href="#">
 
-                            <img src="{% static 'images/logo/logo-1.png' %}" alt=""></a>
+                            <img src="{% static 'images/sankart_logo.png' %}" width="100" height="60" alt=""></a>
 
                         <!--====== End - Main Logo ======-->
 
@@ -175,7 +174,7 @@
                                         <a href="tel:+0900901904"><i class="fas fa-phone-volume"></i></a></li>
                                     <li data-tooltip="tooltip" data-placement="left" title="Mail">
 
-                                        <a href="mailto:contact@domain.com"><i class="far fa-envelope"></i></a></li>
+                                        <a href="mailto:msamilmanadiyil2560@gmail.com"><i class="far fa-envelope"></i></a></li>
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
@@ -215,7 +214,7 @@
                                         <!--====== Mega Menu ======-->
 
                                         <span class="js-menu-toggle"></span>
-                                        <div class="mega-menu">
+                                   {% comment %}      <div class="mega-menu">
                                             <div class="mega-menu-wrap">
                                                 <div class="mega-menu-list">
                                                     <ul>
@@ -921,7 +920,7 @@
                                                 </div>
                                                 <!--====== End - No Sub Categories ======-->
                                             </div>
-                                        </div>
+                                        </div> {% endcomment %}
                                         <!--====== End - Mega Menu ======-->
                                     </li>
                                 </ul>
@@ -946,252 +945,40 @@
                                 <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                                     <li>
 
-                                        <a href="shop-side-version-2.html">NEW ARRIVALS</a></li>
+                                        <a href="{% url 'home' %}">HOME</a></li>
                                     <li class="has-dropdown">
 
-                                        <a>PAGES<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+                                        <a>NEW ARRIVELS<i class="fas fa-angle-down u-s-m-l-6"></i></a>
 
-                                        <!--====== Dropdown ======-->
 
-                                        <span class="js-menu-toggle"></span>
-                                        <ul style="width:170px">
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a>Home<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:118px">
-                                                    <li>
-
-                                                        <a href="index.html">Home 1</a></li>
-                                                    <li>
-
-                                                        <a href="index-2.html">Home 2</a></li>
-                                                    <li>
-
-                                                        <a href="index-3.html">Home 3</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a>Account<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:200px">
-                                                    <li>
-
-                                                        <a href="signin.html">Signin / Already Registered</a></li>
-                                                    <li>
-
-                                                        <a href="signup.html">Signup / Register</a></li>
-                                                    <li>
-
-                                                        <a href="lost-password.html">Lost Password</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a href="dashboard.html">Dashboard<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:200px">
-                                                    <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                        <a href="dashboard.html">Manage My Account<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                        <!--====== Dropdown ======-->
-
-                                                        <span class="js-menu-toggle"></span>
-                                                        <ul style="width:180px">
-                                                            <li>
-
-                                                                <a href="dash-edit-profile.html">Edit Profile</a></li>
-                                                            <li>
-
-                                                                <a href="dash-address-book.html">Edit Address Book</a></li>
-                                                            <li>
-
-                                                                <a href="dash-manage-order.html">Manage Order</a></li>
-                                                        </ul>
-                                                        <!--====== End - Dropdown ======-->
-                                                    </li>
-                                                    <li>
-
-                                                        <a href="dash-my-profile.html">My Profile</a></li>
-                                                    <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                        <a href="dash-address-book.html">Address Book<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                        <!--====== Dropdown ======-->
-
-                                                        <span class="js-menu-toggle"></span>
-                                                        <ul style="width:180px">
-                                                            <li>
-
-                                                                <a href="dash-address-make-default.html">Address Make Default</a></li>
-                                                            <li>
-
-                                                                <a href="dash-address-add.html">Add New Address</a></li>
-                                                            <li>
-
-                                                                <a href="dash-address-edit.html">Edit Address Book</a></li>
-                                                        </ul>
-                                                        <!--====== End - Dropdown ======-->
-                                                    </li>
-                                                    <li>
-
-                                                        <a href="dash-track-order.html">Track Order</a></li>
-                                                    <li>
-
-                                                        <a href="dash-my-order.html">My Orders</a></li>
-                                                    <li>
-
-                                                        <a href="dash-payment-option.html">My Payment Options</a></li>
-                                                    <li>
-
-                                                        <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a>Empty<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:200px">
-                                                    <li>
-
-                                                        <a href="empty-search.html">Empty Search</a></li>
-                                                    <li>
-
-                                                        <a href="empty-cart.html">Empty Cart</a></li>
-                                                    <li>
-
-                                                        <a href="empty-wishlist.html">Empty Wishlist</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a>Product Details<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:200px">
-                                                    <li>
-
-                                                        <a href="product-detail.html">Product Details</a></li>
-                                                    <li>
-
-                                                        <a href="product-detail-variable.html">Product Details Variable</a></li>
-                                                    <li>
-
-                                                        <a href="product-detail-affiliate.html">Product Details Affiliate</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a>Shop Grid Layout<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:200px">
-                                                    <li>
-
-                                                        <a href="shop-grid-left.html">Shop Grid Left Sidebar</a></li>
-                                                    <li>
-
-                                                        <a href="shop-grid-right.html">Shop Grid Right Sidebar</a></li>
-                                                    <li>
-
-                                                        <a href="shop-grid-full.html">Shop Grid Full Width</a></li>
-                                                    <li>
-
-                                                        <a href="shop-side-version-2.html">Shop Side Version 2</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li class="has-dropdown has-dropdown--ul-left-100">
-
-                                                <a>Shop List Layout<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:200px">
-                                                    <li>
-
-                                                        <a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                                                    <li>
-
-                                                        <a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                                                    <li>
-
-                                                        <a href="shop-list-full.html">Shop List Full Width</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                            <li>
-
-                                                <a href="cart.html">Cart</a></li>
-                                            <li>
-
-                                                <a href="wishlist.html">Wishlist</a></li>
-                                            <li>
-
-                                                <a href="checkout.html">Checkout</a></li>
-                                            <li>
-
-                                                <a href="faq.html">FAQ</a></li>
-                                            <li>
-
-                                                <a href="about.html">About us</a></li>
-                                            <li>
-
-                                                <a href="contact.html">Contact</a></li>
-                                            <li>
-
-                                                <a href="404.html">404</a></li>
-                                        </ul>
-                                        <!--====== End - Dropdown ======-->
                                     </li>
+                                    <li>
+
+                                        <a href="{% url 'store' %}">SHOP NOW</a></li>
                                     <li class="has-dropdown">
 
                                         <a>BLOG<i class="fas fa-angle-down u-s-m-l-6"></i></a>
 
                                         <!--====== Dropdown ======-->
 
-                                        <span class="js-menu-toggle"></span>
-                                        <ul style="width:200px">
-                                            <li>
+<!--                                        <span class="js-menu-toggle"></span>-->
+<!--                                        <ul style="width:200px">-->
+<!--                                            <li>-->
 
-                                                <a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                            <li>
+<!--                                                <a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>-->
+<!--                                            <li>-->
 
-                                                <a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                            <li>
+<!--                                                <a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>-->
+<!--                                            <li>-->
 
-                                                <a href="blog-sidebar-none.html">Blog Sidebar None</a></li>
-                                            <li>
+<!--                                                <a href="blog-sidebar-none.html">Blog Sidebar None</a></li>-->
+<!--                                            <li>-->
 
-                                                <a href="blog-masonry.html">Blog Masonry</a></li>
-                                            <li>
+<!--                                                <a href="blog-masonry.html">Blog Masonry</a></li>-->
+<!--                                            <li>-->
 
-                                                <a href="blog-detail.html">Blog Details</a></li>
-                                        </ul>
+<!--                                                <a href="blog-detail.html">Blog Details</a></li>-->
+<!--                                        </ul>-->
                                         <!--====== End - Dropdown ======-->
                                     </li>
                                     <li>
@@ -1199,7 +986,7 @@
                                         <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
                                     <li>
 
-                                        <a href="shop-side-version-2.html">SELL PRODUCTS HERE</a></li>
+                                        <a href="shop-side-version-2.html">SERVICES</a></li>
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
@@ -1227,152 +1014,153 @@
                                         <a href="index.html"><i class="fas fa-home u-c-brand"></i></a></li>
                                     <li>
 
-                                        <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                        <a href="{% url 'wishlist' %}"><i class="far fa-heart"></i></a></li>
                                     <li class="has-dropdown">
 
-                                        <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                                        <a href="{% url 'cart' %}"><i class="fas fa-shopping-bag"></i>
 
-                                            <span class="total-item-round">2</span></a>
+<!--                                            <span class="total-item-round">2</span>-->
+                                        </a>
 
                                         <!--====== Dropdown ======-->
 
-                                        <span class="js-menu-toggle"></span>
-                                        <div class="mini-cart">
+<!--                                        <span class="js-menu-toggle"></span>-->
+<!--                                        <div class="mini-cart">-->
 
-                                            <!--====== Mini Product Container ======-->
-                                            <div class="mini-product-container gl-scroll u-s-m-b-15">
+<!--                                            &lt;!&ndash;====== Mini Product Container ======&ndash;&gt;-->
+<!--                                            <div class="mini-product-container gl-scroll u-s-m-b-15">-->
 
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
+<!--                                                &lt;!&ndash;====== Card for mini cart ======&ndash;&gt;-->
+<!--                                                <div class="card-mini-product">-->
+<!--                                                    <div class="mini-product">-->
+<!--                                                        <div class="mini-product__image-wrapper">-->
 
-                                                            <a class="mini-product__link" href="product-detail.html">
+<!--                                                            <a class="mini-product__link" href="product-detail.html">-->
 
-                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
+<!--                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>-->
+<!--                                                        <div class="mini-product__info-wrapper">-->
 
-                                                            <span class="mini-product__category">
+<!--                                                            <span class="mini-product__category">-->
 
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
+<!--                                                                <a href="shop-side-version-2.html">Electronics</a></span>-->
 
-                                                            <span class="mini-product__name">
+<!--                                                            <span class="mini-product__name">-->
 
-                                                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
+<!--                                                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>-->
 
-                                                            <span class="mini-product__quantity">1 x</span>
+<!--                                                            <span class="mini-product__quantity">1 x</span>-->
 
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
+<!--                                                            <span class="mini-product__price">$8</span></div>-->
+<!--                                                    </div>-->
 
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
+<!--                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Card for mini cart ======&ndash;&gt;-->
 
 
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
+<!--                                                &lt;!&ndash;====== Card for mini cart ======&ndash;&gt;-->
+<!--                                                <div class="card-mini-product">-->
+<!--                                                    <div class="mini-product">-->
+<!--                                                        <div class="mini-product__image-wrapper">-->
 
-                                                            <a class="mini-product__link" href="product-detail.html">
+<!--                                                            <a class="mini-product__link" href="product-detail.html">-->
 
-                                                                <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
+<!--                                                                <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></a></div>-->
+<!--                                                        <div class="mini-product__info-wrapper">-->
 
-                                                            <span class="mini-product__category">
+<!--                                                            <span class="mini-product__category">-->
 
-                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
+<!--                                                                <a href="shop-side-version-2.html">Electronics</a></span>-->
 
-                                                            <span class="mini-product__name">
+<!--                                                            <span class="mini-product__name">-->
 
-                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
+<!--                                                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>-->
 
-                                                            <span class="mini-product__quantity">1 x</span>
+<!--                                                            <span class="mini-product__quantity">1 x</span>-->
 
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
+<!--                                                            <span class="mini-product__price">$8</span></div>-->
+<!--                                                    </div>-->
 
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-                                            </div>
-                                            <!--====== End - Mini Product Container ======-->
+<!--                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Card for mini cart ======&ndash;&gt;-->
 
 
-                                            <!--====== Mini Product Statistics ======-->
-                                            <div class="mini-product-stat">
-                                                <div class="mini-total">
+<!--                                                &lt;!&ndash;====== Card for mini cart ======&ndash;&gt;-->
+<!--                                                <div class="card-mini-product">-->
+<!--                                                    <div class="mini-product">-->
+<!--                                                        <div class="mini-product__image-wrapper">-->
 
-                                                    <span class="subtotal-text">SUBTOTAL</span>
+<!--                                                            <a class="mini-product__link" href="product-detail.html">-->
 
-                                                    <span class="subtotal-value">$16</span></div>
-                                                <div class="mini-action">
+<!--                                                                <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></a></div>-->
+<!--                                                        <div class="mini-product__info-wrapper">-->
 
-                                                    <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
+<!--                                                            <span class="mini-product__category">-->
 
-                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW CART</a></div>
-                                            </div>
-                                            <!--====== End - Mini Product Statistics ======-->
-                                        </div>
-                                        <!--====== End - Dropdown ======-->
-                                    </li>
+<!--                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>-->
+
+<!--                                                            <span class="mini-product__name">-->
+
+<!--                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>-->
+
+<!--                                                            <span class="mini-product__quantity">1 x</span>-->
+
+<!--                                                            <span class="mini-product__price">$8</span></div>-->
+<!--                                                    </div>-->
+
+<!--                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Card for mini cart ======&ndash;&gt;-->
+
+
+<!--                                                &lt;!&ndash;====== Card for mini cart ======&ndash;&gt;-->
+<!--                                                <div class="card-mini-product">-->
+<!--                                                    <div class="mini-product">-->
+<!--                                                        <div class="mini-product__image-wrapper">-->
+
+<!--                                                            <a class="mini-product__link" href="product-detail.html">-->
+
+<!--                                                                <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>-->
+<!--                                                        <div class="mini-product__info-wrapper">-->
+
+<!--                                                            <span class="mini-product__category">-->
+
+<!--                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>-->
+
+<!--                                                            <span class="mini-product__name">-->
+
+<!--                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>-->
+
+<!--                                                            <span class="mini-product__quantity">1 x</span>-->
+
+<!--                                                            <span class="mini-product__price">$8</span></div>-->
+<!--                                                    </div>-->
+
+<!--                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Card for mini cart ======&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;====== End - Mini Product Container ======&ndash;&gt;-->
+
+
+<!--                                            &lt;!&ndash;====== Mini Product Statistics ======&ndash;&gt;-->
+<!--                                            <div class="mini-product-stat">-->
+<!--                                                <div class="mini-total">-->
+
+<!--                                                    <span class="subtotal-text">SUBTOTAL</span>-->
+
+<!--                                                    <span class="subtotal-value">$16</span></div>-->
+<!--                                                <div class="mini-action">-->
+
+<!--                                                    <a class="mini-link btn&#45;&#45;e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>-->
+
+<!--                                                    <a class="mini-link btn&#45;&#45;e-transparent-secondary-b-2" href="cart.html">VIEW CART</a></div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;====== End - Mini Product Statistics ======&ndash;&gt;-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash;====== End - Dropdown ======&ndash;&gt;-->
+<!--                                    </li>-->
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
@@ -1552,190 +1340,190 @@
 
 
         <!--====== Quick Look Modal ======-->
-        <div class="modal fade" id="quick-look">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content modal--shadow">
+<!--        <div class="modal fade" id="quick-look">-->
+<!--            <div class="modal-dialog modal-dialog-centered">-->
+<!--                <div class="modal-content modal&#45;&#45;shadow">-->
 
-                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-5">
+<!--                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>-->
+<!--                    <div class="modal-body">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-5">-->
 
-                                <!--====== Product Breadcrumb ======-->
-                                <div class="pd-breadcrumb u-s-m-b-30">
-                                    <ul class="pd-breadcrumb__list">
-                                        <li class="has-separator">
+<!--                                &lt;!&ndash;====== Product Breadcrumb ======&ndash;&gt;-->
+<!--                                <div class="pd-breadcrumb u-s-m-b-30">-->
+<!--                                    <ul class="pd-breadcrumb__list">-->
+<!--                                        <li class="has-separator">-->
 
-                                            <a href="index.hml">Home</a></li>
-                                        <li class="has-separator">
+<!--                                            <a href="index.hml">Home</a></li>-->
+<!--                                        <li class="has-separator">-->
 
-                                            <a href="shop-side-version-2.html">Electronics</a></li>
-                                        <li class="has-separator">
+<!--                                            <a href="shop-side-version-2.html">Electronics</a></li>-->
+<!--                                        <li class="has-separator">-->
 
-                                            <a href="shop-side-version-2.html">DSLR Cameras</a></li>
-                                        <li class="is-marked">
+<!--                                            <a href="shop-side-version-2.html">DSLR Cameras</a></li>-->
+<!--                                        <li class="is-marked">-->
 
-                                            <a href="shop-side-version-2.html">Nikon Cameras</a></li>
-                                    </ul>
-                                </div>
-                                <!--====== End - Product Breadcrumb ======-->
+<!--                                            <a href="shop-side-version-2.html">Nikon Cameras</a></li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;====== End - Product Breadcrumb ======&ndash;&gt;-->
 
 
-                                <!--====== Product Detail ======-->
-                                <div class="pd u-s-m-b-30">
-                                    <div class="pd-wrap">
-                                        <div id="js-product-detail-modal">
-                                            <div>
+<!--                                &lt;!&ndash;====== Product Detail ======&ndash;&gt;-->
+<!--                                <div class="pd u-s-m-b-30">-->
+<!--                                    <div class="pd-wrap">-->
+<!--                                        <div id="js-product-detail-modal">-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="u-s-m-t-15">
-                                        <div id="js-product-detail-modal-thumbnail">
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-t-15">-->
+<!--                                        <div id="js-product-detail-modal-thumbnail">-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
-                                            <div>
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>-->
+<!--                                            <div>-->
 
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--====== End - Product Detail ======-->
-                            </div>
-                            <div class="col-lg-7">
+<!--                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;====== End - Product Detail ======&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-7">-->
 
-                                <!--====== Product Right Side Details ======-->
-                                <div class="pd-detail">
-                                    <div>
+<!--                                &lt;!&ndash;====== Product Right Side Details ======&ndash;&gt;-->
+<!--                                <div class="pd-detail">-->
+<!--                                    <div>-->
 
-                                        <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span></div>
-                                    <div>
-                                        <div class="pd-detail__inline">
+<!--                                        <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span></div>-->
+<!--                                    <div>-->
+<!--                                        <div class="pd-detail__inline">-->
 
-                                            <span class="pd-detail__price">$6.99</span>
+<!--                                            <span class="pd-detail__price">$6.99</span>-->
 
-                                            <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+<!--                                            <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
+<!--                                        <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>-->
 
-                                            <span class="pd-detail__review u-s-m-l-4">
+<!--                                            <span class="pd-detail__review u-s-m-l-4">-->
 
-                                                <a href="product-detail.html">23 Reviews</a></span></div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__inline">
+<!--                                                <a href="product-detail.html">23 Reviews</a></span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
+<!--                                        <div class="pd-detail__inline">-->
 
-                                            <span class="pd-detail__stock">200 in stock</span>
+<!--                                            <span class="pd-detail__stock">200 in stock</span>-->
 
-                                            <span class="pd-detail__left">Only 2 left</span></div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
+<!--                                            <span class="pd-detail__left">Only 2 left</span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
 
-                                        <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__inline">
+<!--                                        <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>-->
+<!--                                    <div class="u-s-m-b-15">-->
+<!--                                        <div class="pd-detail__inline">-->
 
-                                            <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
+<!--                                            <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>-->
 
-                                                <a href="signin.html">Add to Wishlist</a>
+<!--                                                <a href="signin.html">Add to Wishlist</a>-->
 
-                                                <span class="pd-detail__click-count">(222)</span></span></div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <div class="pd-detail__inline">
+<!--                                                <span class="pd-detail__click-count">(222)</span></span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
+<!--                                        <div class="pd-detail__inline">-->
 
-                                            <span class="pd-detail__click-wrap"><i class="far fa-envelope u-s-m-r-6"></i>
+<!--                                            <span class="pd-detail__click-wrap"><i class="far fa-envelope u-s-m-r-6"></i>-->
 
-                                                <a href="signin.html">Email me When the price drops</a>
+<!--                                                <a href="signin.html">Email me When the price drops</a>-->
 
-                                                <span class="pd-detail__click-count">(20)</span></span></div>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <ul class="pd-social-list">
-                                            <li>
+<!--                                                <span class="pd-detail__click-count">(20)</span></span></div>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
+<!--                                        <ul class="pd-social-list">-->
+<!--                                            <li>-->
 
-                                                <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li>
+<!--                                                <a class="s-fb&#45;&#45;color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>-->
+<!--                                            <li>-->
 
-                                                <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li>
+<!--                                                <a class="s-tw&#45;&#45;color-hover" href="#"><i class="fab fa-twitter"></i></a></li>-->
+<!--                                            <li>-->
 
-                                                <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a></li>
-                                            <li>
+<!--                                                <a class="s-insta&#45;&#45;color-hover" href="#"><i class="fab fa-instagram"></i></a></li>-->
+<!--                                            <li>-->
 
-                                                <a class="s-wa--color-hover" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                            <li>
+<!--                                                <a class="s-wa&#45;&#45;color-hover" href="#"><i class="fab fa-whatsapp"></i></a></li>-->
+<!--                                            <li>-->
 
-                                                <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="u-s-m-b-15">
-                                        <form class="pd-detail__form">
-                                            <div class="pd-detail-inline-2">
-                                                <div class="u-s-m-b-15">
+<!--                                                <a class="s-gplus&#45;&#45;color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
+<!--                                        <form class="pd-detail__form">-->
+<!--                                            <div class="pd-detail-inline-2">-->
+<!--                                                <div class="u-s-m-b-15">-->
 
-                                                    <!--====== Input Counter ======-->
-                                                    <div class="input-counter">
+<!--                                                    &lt;!&ndash;====== Input Counter ======&ndash;&gt;-->
+<!--                                                    <div class="input-counter">-->
 
-                                                        <span class="input-counter__minus fas fa-minus"></span>
+<!--                                                        <span class="input-counter__minus fas fa-minus"></span>-->
 
-                                                        <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+<!--                                                        <input class="input-counter__text input-counter&#45;&#45;text-primary-style" type="text" value="1" data-min="1" data-max="1000">-->
 
-                                                        <span class="input-counter__plus fas fa-plus"></span></div>
-                                                    <!--====== End - Input Counter ======-->
-                                                </div>
-                                                <div class="u-s-m-b-15">
+<!--                                                        <span class="input-counter__plus fas fa-plus"></span></div>-->
+<!--                                                    &lt;!&ndash;====== End - Input Counter ======&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                                <div class="u-s-m-b-15">-->
 
-                                                    <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="u-s-m-b-15">
+<!--                                                    <button class="btn btn&#45;&#45;e-brand-b-2" type="submit">Add to Cart</button></div>-->
+<!--                                            </div>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                    <div class="u-s-m-b-15">-->
 
-                                        <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
-                                        <ul class="pd-detail__policy-list">
-                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+<!--                                        <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>-->
+<!--                                        <ul class="pd-detail__policy-list">-->
+<!--                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>-->
 
-                                                <span>Buyer Protection.</span></li>
-                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+<!--                                                <span>Buyer Protection.</span></li>-->
+<!--                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>-->
 
-                                                <span>Full Refund if you don't receive your order.</span></li>
-                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+<!--                                                <span>Full Refund if you don't receive your order.</span></li>-->
+<!--                                            <li><i class="fas fa-check-circle u-s-m-r-8"></i>-->
 
-                                                <span>Returns accepted if product not as described.</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!--====== End - Product Right Side Details ======-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                                                <span>Returns accepted if product not as described.</span></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;====== End - Product Right Side Details ======&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <!--====== End - Quick Look Modal ======-->
 
 
@@ -1782,53 +1570,6 @@
                 </div>
             </div>
         </div>
-        <!--====== End - Add to Cart Modal ======-->
-
-
-<!--        &lt;!&ndash;====== Newsletter Subscribe Modal ======&ndash;&gt;-->
-<!--        <div class="modal fade new-l" id="newsletter-modal">-->
-<!--            <div class="modal-dialog modal-dialog-centered">-->
-<!--                <div class="modal-content modal&#45;&#45;shadow">-->
-
-<!--                    <button class="btn new-l__dismiss fas fa-times" type="button" data-dismiss="modal"></button>-->
-<!--                    <div class="modal-body">-->
-<!--                        <div class="row u-s-m-x-0">-->
-<!--                            <div class="col-lg-6 new-l__col-1 u-s-p-x-0">-->
-
-<!--                                <a class="new-l__img-wrap u-d-block" href="shop-side-version-2.html">-->
-
-<!--                                    <img class="u-img-fluid u-d-block" src="{% static 'images/newsletter/newsletter.jpg' %}" alt=""></a></div>-->
-<!--                            <div class="col-lg-6 new-l__col-2">-->
-<!--                                <div class="new-l__section u-s-m-t-30">-->
-<!--                                    <div class="u-s-m-b-8 new-l&#45;&#45;center">-->
-<!--                                        <h3 class="new-l__h3">Newsletter</h3>-->
-<!--                                    </div>-->
-<!--                                    <div class="u-s-m-b-30 new-l&#45;&#45;center">-->
-<!--                                        <p class="new-l__p1">Sign up for emails to get the scoop on new arrivals, special sales and more.</p>-->
-<!--                                    </div>-->
-<!--                                    <form class="new-l__form">-->
-<!--                                        <div class="u-s-m-b-15">-->
-
-<!--                                            <input class="news-l__input" type="text" placeholder="E-mail Address"></div>-->
-<!--                                        <div class="u-s-m-b-15">-->
-
-<!--                                            <button class="btn btn&#45;&#45;e-brand-b-2" type="submit">Sign up!</button></div>-->
-<!--                                    </form>-->
-<!--                                    <div class="u-s-m-b-15 new-l&#45;&#45;center">-->
-<!--                                        <p class="new-l__p2">By Signing up, you agree to receive Reshop offers,<br />promotions and other commercial messages. You may unsubscribe at any time.</p>-->
-<!--                                    </div>-->
-<!--                                    <div class="u-s-m-b-15 new-l&#45;&#45;center">-->
-
-<!--                                        <a class="new-l__link" data-dismiss="modal">No Thanks</a></div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--====== End - Newsletter Subscribe Modal ======-->
-        <!--====== End - Modal Section ======-->
     </div>
     <!--====== End - Main App ======-->
 

@@ -13,9 +13,6 @@ def Blog(request):
 def Checkout(request):
     return render(request,"checkout.html")
 
-def Cart(request):
-    return render(request,"cart.html")
-
 def wishlist(request):
     return render(request,"wishlist.html")
 
@@ -42,7 +39,7 @@ def login(request):
             messages.success(request, 'you are logged in')
             # store user details in session
             request.session['email']=email
-            return redirect('shop_app:home')
+            return redirect('home')
         else:
             messages.error(request, 'invalid login credentials')
             return redirect('register')
