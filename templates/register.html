@@ -17,10 +17,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="{% url 'home' %}">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="signup.html">Signup</a></li>
+                                        <a href="{% url 'register' %}">Signup</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -40,13 +40,132 @@
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
                                     <h1 class="section__heading u-c-secondary">CREATE AN ACCOUNT</h1>
+                                    {% include 'alerts2.html' %}
+                                    {{error}}
+
+<!--                          <script>-->
+<!--                              setTimeout(function(){-->
+<!--                                if ($('#message').length > 0){-->
+<!--                                  $('#message').remove();-->
+<!--                                  }-->
+<!--                                },4000)-->
+<!--                           </script>-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--====== End - Section Intro ======-->
+                <script>
+                    function validateform()
+                    {
+                        var a=document.getElementById('fname').value.trim();
+                        var b=document.getElementById('lname').value.trim();
 
+                        var c=document.getElementById('email').value.trim();
+                        var d=document.getElementById('password').value.trim();
+
+                        var e=document.getElementById('cpassword').value.trim();
+                                                var f=document.getElementById('tel').value.trim();
+
+
+
+
+                        var passpatern=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+                        if(a=="")
+                        {
+                            document.getElementById('fn').innerHTML="**Please Enter First Name";
+                            return false;
+                        }
+                        if (/[^a-zA-Z]/.test(a))
+                        {
+                            document.getElementById('fn').innerHTML="**Only Alphabets Allowed";
+                            return false;
+                        }
+
+                         if(b=="")
+                        {
+                            document.getElementById('ln').innerHTML="**Please Enter Last Name";
+                            return false;
+                        }
+                        if (/[^a-zA-Z]/.test(b))
+                        {
+                            document.getElementById('ln').innerHTML="**Only Alphabets Allowed";
+                            return false;
+                        }
+                        if(c=="")
+                        {
+                            document.getElementById('el').innerHTML="**Please Enter Email";
+                            return false;
+                        }
+                        if(c.indexOf('@')<=0){
+                            document.getElementById('el').innerHTML="**Invalid  Email Address";
+                            return false;
+                        }
+                        if ((c.charAt(c.length-4)!='.') && (c.charAt(c.length-3)!='.'))
+                        {
+                            document.getElementById('el').innerHTML="**Invalid  Email Address";
+                            return false;
+                        }
+
+                       if(f=="")
+                    {
+                        document.getElementById('ph').innerHTML="**Please Enter Phone Number";
+                        return false;
+                    }
+                    if(f.length>10||f.length<10){
+                      document.getElementById('ph').innerHTML="**`Enter 10 digit valid phone Number`";
+                      return false;
+                    }
+
+                       if(f=="0000000000")
+                    {
+                        document.getElementById('ph').innerHTML="**Enter 10 digit valid phone Number";
+                        return false;
+                    }
+
+                    if (!/^[0-9]+$/.test(f))
+                        {
+                            document.getElementById('ph').innerHTML="**Only Numbers Allowed";
+                            return false;
+                        }
+
+                    if(d=="")
+                {
+                    document.getElementById('pss').innerHTML="**please enter  Password";
+                    return false;
+                }
+                if(e=="")
+                {
+                    document.getElementById('cpss').innerHTML="**please enter Confirm Password";
+                    return false;
+                }
+
+                if(d!=e)
+                {
+                    document.getElementById('cpss').innerHTML="**Incorrect Password";
+                    return false;
+                }
+                        else
+                          {
+                    return true;
+                }
+                }
+                function onclear(){
+                     document.getElementById('fn').innerHTML="";
+                     document.getElementById('ln').innerHTML="";
+
+                     document.getElementById('el').innerHTML="";
+                     document.getElementById('ph').innerHTML="";
+
+                     document.getElementById('pss').innerHTML="";
+
+                     document.getElementById('cpss').innerHTML="";
+
+                     }
+
+</script>
 
                 <!--====== Section Content ======-->
                 <div class="section__content">
@@ -56,7 +175,7 @@
                                 <div class="l-f-o">
                                     <div class="l-f-o__pad-box">
                                         <h1 class="gl-h1">PERSONAL INFORMATION</h1>
-                                        <form class="l-f-o__form" action="{% url 'register' %}" method="post">
+                                        <form  class="l-f-o__form" action="{% url 'register' %}" method="post" onsubmit="return validateform();">
                                             {% csrf_token %}
 <!--                                            <div class="gl-s-api">-->
 <!--                                                <div class="u-s-m-b-15">-->
@@ -74,47 +193,166 @@
 
                                                 <label class="gl-label" for="fname">FIRST NAME *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="fname" id="fname" placeholder="First Name">
+                                                <input class="input-text input-text--primary-style" type="text" name="fname" id="fname" placeholder="First Name" onclick=" return onclear()">
+                                                <span id="fn" style="color: red;"></span>
+
+
                                             </div>
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="lname">LAST NAME *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="lname" id="lname" placeholder="Last Name">
+                                                <input class="input-text input-text--primary-style" type="text" name="lname" id="lname" placeholder="Last Name" onclick=" return onclear()">
+                                                <span id="ln" style="color: red;"></span>
+
                                             </div>
 
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="email">E-MAIL *</label>
 
-                                                <input class="input-text input-text--primary-style" type="email" name="email" id="email" placeholder="Enter E-mail"></div>
+                                                <input class="input-text input-text--primary-style" type="email" name="email" id="email" placeholder="Enter E-mail" onclick="return onclear()">
+                                                <span id="el" style="color: red;"></span>
+
+                                            </div>
                                             <div class="u-s-m-b-30">
 
-                                                <label class="gl-label" for="phone_number">PHONE NUMBER *</label>
+                                                <label class="gl-label" for="tel">PHONE NUMBER *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="tel" id="phone_number" placeholder="Enter 10 digits"></div>
+                                                <input class="input-text input-text--primary-style" type="text" name="tel" id="tel" placeholder="Enter 10 digits" onclick=" return onclear()">
+                                                <span id="ph" style="color: red;"></span>
+
+                                            </div>
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="password">PASSWORD *</label>
 
-                                                <input class="input-text input-text--primary-style" type="password" name="password" id="password" placeholder="Enter Password"></div>
+                                                <input class="input-text input-text--primary-style" type="password" name="password" id="password" placeholder="Enter Password" onclick=" return onclear()">
+                                                                                                <span id="pss" style="color: red;"></span>
+
+                                                <style>
+                                                 /* The message box is shown when the user clicks on the password field */
+                                                    #message {
+                                                    display:none;
+                                                    background:#fff;
+                                                    color: #000;
+                                                    position: relative;
+                                                    padding: 20px;
+                                                    margin-top: 10px;
+                                                    }
+                                                                        #message p {
+                                                    padding: 1px 35px;
+                                                    font-size: 14px;
+                                                    }
+                                                    /* Add a green text color and a checkmark when the requirements are right */
+                                                    .valid {
+                                                    color: green;
+                                                    }
+
+                                                    .valid:before {
+                                                    position: relative;
+                                                    left: -25px;
+                                                    content: "✔";
+                                                    }
+
+                                                    /* Add a red text color and an "x" when the requirements are wrong */
+                                                    .invalid {
+                                                    color: red;
+                                                    }
+
+                                                    .invalid:before {
+                                                    position: relative;
+                                                    left: -25px;
+                                                    content: "✖";
+                                                    }
+                                                    </style>
+                                                <div id="message">
+<!--                                                    <h4 style="color:rgb(249, 164, 61) ;">Password must contain the following:</h4>-->
+                                                        <p id="letter" class="invalid">A lowercase letter</p>
+                                                        <p id="capital" class="invalid">A capital (uppercase) letter</p>
+                                                        <p id="number" class="invalid">A number</p>
+                                                        <p id="length" class="invalid">Minimum 8 characters</b></p>
+                                                     </div>
+                                                <script>
+                                        var myInput = document.getElementById("password");
+                                        var letter = document.getElementById("letter");
+                                        var capital = document.getElementById("capital");
+                                        var number = document.getElementById("number");
+                                        var length = document.getElementById("length");
+                                        myInput.onfocus = function() {
+                                        document.getElementById("message").style.display = "block";
+                                        }
+                                        myInput.onblur = function() {
+                                        document.getElementById("message").style.display = "none";
+                                        }
+                                        // When the user starts to type something inside the password field
+                                        myInput.onkeyup = function() {
+                                        // Validate lowercase letters
+                                        var lowerCaseLetters = /[a-z]/g;
+                                        if(myInput.value.match(lowerCaseLetters)) {
+                                            letter.classList.remove("invalid");
+                                            letter.classList.add("valid");
+                                        } else {
+                                            letter.classList.remove("valid");
+                                            letter.classList.add("invalid");
+                                        }
+
+                                        // Validate capital letters
+                                        var upperCaseLetters = /[A-Z]/g;
+                                        if(myInput.value.match(upperCaseLetters)) {
+                                            capital.classList.remove("invalid");
+                                            capital.classList.add("valid");
+                                        } else {
+                                            capital.classList.remove("valid");
+                                            capital.classList.add("invalid");
+                                        }
+
+                                        // Validate numbers
+                                        var numbers = /[0-9]/g;
+                                        if(myInput.value.match(numbers)) {
+                                            number.classList.remove("invalid");
+                                            number.classList.add("valid");
+                                        } else {
+                                            number.classList.remove("valid");
+                                            number.classList.add("invalid");
+                                        }
+
+                                        // Validate length
+                                        if(myInput.value.length >= 8) {
+                                            length.classList.remove("invalid");
+                                            length.classList.add("valid");
+                                        } else {
+                                            length.classList.remove("valid");
+                                            length.classList.add("invalid");
+                                        }
+                                        }
+                                    </script>
+
+                                            </div>
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="cpassword">CONFIRM PASSWORD *</label>
 
-                                                <input class="input-text input-text--primary-style" type="password" name="cpassword" id="cpassword" placeholder="Enter Password"></div>
+                                                <input class="input-text input-text--primary-style" type="password" name="cpassword" id="cpassword" placeholder="Enter Password" onclick=" return onclear()">
+                                                <span id="cpss" style="color: red;"></span>
+
+
+                                            </div>
                                             <div class="u-s-m-b-15">
 
                                                 <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
 
-                                            <a class="gl-link" href="#">Return to Store</a>
+                                            <a class="gl-link" href="{% url 'store' %}">Return to Store</a>
                                         </form>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!--====== End - Section Content ======-->
             </div>
             <!--====== End - Section 2 ======-->

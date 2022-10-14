@@ -1,28 +1,18 @@
-
-
-
-def Contact(request):
-    return render(request,"contact.html")
-
-def Category(request):
-    return render(request,"category.html")
-
-def Blog(request):
-    return render(request,"blog.html")
-
-def Checkout(request):
-    return render(request,"checkout.html")
-
-def wishlist(request):
-    return render(request,"wishlist.html")
-
-
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib import messages, auth
 from django.shortcuts import render, redirect
 from .models import Account
 from django.contrib.auth import authenticate
+
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import EmailMessage
+from django.core.mail import send_mail
+
 
 # Create your views here.
 
@@ -37,12 +27,11 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'you are logged in')
-            # store user details in session
             request.session['email']=email
             return redirect('home')
         else:
             messages.error(request, 'invalid login credentials')
-            return redirect('register')
+            return redirect('login')
     return render(request, 'login.html')
 
 def register(request):
@@ -52,22 +41,114 @@ def register(request):
         fname=request.POST['fname']
         lname=request.POST['lname']
         phone_number=request.POST['tel']
-        print(email,password,fname,lname,phone_number)
         if Account.objects.filter(email=email).exists():
             messages.error(request, 'email already exists')
             return redirect('register')
-        # elif Account.objects.filter(username=username).exists():
-        #     messages.error(request, 'username already exists')
-        #     return redirect('register')
         else:
             user=Account.objects.create_user(email=email, password=password, fname=fname, lname=lname,  phone_number=phone_number)
             user.save()
-            messages.success(request, 'you are registered')
-            return redirect('/login')
+            messages.success(request, 'Thank you for registering with us.')
+            messages.success(request, 'Please verify your email for login!')
+
+
+            current_site = get_current_site(request)
+            message = render_to_string('account_verification_email.html', {
+                'user': user,
+                'domain': current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            })
+
+            send_mail(
+                'Please activate your account',
+                message,
+                'msamilmanadiyil2560@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
+            return redirect('/login/?command=verification&email=' + email)
+        # return redirect('/login')
     return render(request, 'register.html')
 
 
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Account._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, 'Congratulations! Your account is activated.')
+        return redirect('login')
+    else:
+        messages.error(request, 'Invalid activation link')
+        return redirect('register')
+
+
+def forgotPassword(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        if Account.objects.filter(email=email).exists():
+            user = Account.objects.get(email__exact=email)
+
+            # Reset password email
+
+            current_site = get_current_site(request)
+            message = render_to_string('accounts/lost-password.html', {
+                'user': user,
+                'domain': current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            })
+
+            send_mail(
+                'Please activate your account',
+                message,
+                'msamilmanadiyil2560@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
+            messages.success(request, 'Password reset email has been sent to your email address.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Account does not exist!')
+            return redirect('forgotPassword')
+    return render(request, 'accounts/lost-password.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@login_required(login_url='login')
+def dashboard(request):
+    # orders = Order.objects.order_by(
+    #     '-created_at').filter(user_id=request.user.id, is_ordered=True)
+    # order_count = orders.count()
+    userprofile=Account.objects.get(id=request.user.id)
+    context = {
+        # 'orders_count': order_count,
+        'userprofile':userprofile,
+    }
+    return render(request, 'dashboard/dash-my-profile.html', context)
+
 

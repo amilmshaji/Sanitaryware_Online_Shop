@@ -25,6 +25,7 @@
                     </div>
                 </div>
             </div>
+
             <!--====== End - Section 1 ======-->
 
 
@@ -38,6 +39,16 @@
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
                                     <h1 class="section__heading u-c-secondary">ALREADY REGISTERED?</h1>
+                                                {% include 'alerts.html' %}
+
+              <script>
+                  setTimeout(function(){
+                    if ($('#message').length > 0){
+                      $('#message').remove();
+                      }
+                    },4000)
+
+              </script>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +69,7 @@
                                         <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
                                         <div class="u-s-m-b-15">
 
-                                            <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
+                                            <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="{% url 'register' %}">CREATE AN ACCOUNT</a></div>
                                         <h1 class="gl-h1">SIGNIN</h1>
 
                                         <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
@@ -85,14 +96,14 @@
 
                                                 <label class="gl-label" for="password">PASSWORD *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="password" id="password" placeholder="Enter Password"></div>
+                                                <input class="input-text input-text--primary-style" type="password" name="password" id="password" placeholder="Enter Password"></div>
                                             <div class="gl-inline">
                                                 <div class="u-s-m-b-30">
 
                                                     <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
                                                 <div class="u-s-m-b-30">
 
-                                                    <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                                    <a class="gl-link" href="{% url 'forgotPassword' %}">Lost Your Password?</a></div>
                                             </div>
                                             <div class="u-s-m-b-30">
 

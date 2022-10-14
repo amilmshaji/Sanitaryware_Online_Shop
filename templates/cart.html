@@ -19,10 +19,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="{% url 'home' %}">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="cart.html">Cart</a></li>
+                                        <a href="{% url 'cart' %}">Cart</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
 
                                         <span class="empty__text-1">No items found on your cart.</span>
 
-                                        <a class="empty__redirect-link btn--e-brand" href="shop-side-version-2.html">CONTINUE SHOPPING</a></div>
+                                        <a class="empty__redirect-link btn--e-brand" href="{% url 'store' %}">CONTINUE SHOPPING</a></div>
                                 </div>
                             </div>
                         </div>
@@ -94,11 +94,11 @@
 
                                                             <span class="table-p__name">
 
-                                                                <a href="product-detail.html">{{cart_item.product.name}}</a></span>
+                                                                <a href="#">{{cart_item.product.product_name}}</a></span>
 
                                                             <span class="table-p__category">
 
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
+                                                                <a href="#">{{cart_item.product.category}}</a></span>
                                                             <ul class="table-p__variant-list">
                                                                 <li>
 
@@ -119,18 +119,23 @@
                                                         <!--====== Input Counter ======-->
                                                         <div class="input-counter">
 
-                                                            <span class="input-counter__minus fas fa-minus"></span>
 
-                                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+                                                             <a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}">
+                                                            <span class="input-counter__minus fas fa-minus"></span></a>
 
-                                                            <span class="input-counter__plus fas fa-plus"></span></div>
+                                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="{{cart_item.quantity}}" data-min="1" data-max="1000">
+
+
+                                                            <a href="{% url 'add_cart' cart_item.product.id %}">
+
+                                                            <span class="input-counter__plus fas fa-plus"></span></a></div>
                                                         <!--====== End - Input Counter ======-->
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="table-p__del-wrap">
 
-                                                        <a class="far fa-trash-alt table-p__delete-link" href="#"></a></div>
+                                                        <a class="far fa-trash-alt table-p__delete-link" href="{% url 'remove_cart_item' cart_item.product.id cart_item.id%}"></a></div>
                                                 </td>
                                             </tr>
                                             <!--====== End - Row ======-->
@@ -143,18 +148,18 @@
                                 <div class="route-box">
                                     <div class="route-box__g1">
 
-                                        <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                                        <a class="route-box__link" href="{% url 'store' %}"><i class="fas fa-long-arrow-alt-left"></i>
 
                                             <span>CONTINUE SHOPPING</span></a></div>
-                                    <div class="route-box__g2">
+<!--                                    <div class="route-box__g2">-->
 
-                                        <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>
+<!--                                        <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>-->
 
-                                            <span>CLEAR CART</span></a>
+<!--                                            <span>CLEAR CART</span></a>-->
 
-                                        <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>
+<!--                                        <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>-->
 
-                                            <span>UPDATE CART</span></a></div>
+<!--                                            <span>UPDATE CART</span></a></div>-->
                                 </div>
                             </div>
                         </div>
@@ -173,90 +178,91 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
-                                <form class="f-cart">
+<!--                                <form class="f-cart" action="{% url 'checkout' %} ">-->
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                            <div class="f-cart__pad-box">
-                                                <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>
+<!--                                        <div class="col-lg-4 col-md-6 u-s-m-b-30">-->
+<!--                                            <div class="f-cart__pad-box">-->
+<!--                                                <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>-->
 
-                                                <span class="gl-text u-s-m-b-30">Enter your destination to get a shipping estimate.</span>
-                                                <div class="u-s-m-b-30">
+<!--                                                <span class="gl-text u-s-m-b-30">Enter your destination to get a shipping estimate.</span>-->
+<!--                                                <div class="u-s-m-b-30">-->
 
-                                                    <!--====== Select Box ======-->
+<!--                                                    &lt;!&ndash;====== Select Box ======&ndash;&gt;-->
 
-                                                    <label class="gl-label" for="shipping-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="shipping-country">
-                                                        <option selected value="">Choose Country</option>
-                                                        <option value="uae">United Arab Emirate (UAE)</option>
-                                                        <option value="uk">United Kingdom (UK)</option>
-                                                        <option value="us">United States (US)</option>
-                                                    </select>
-                                                    <!--====== End - Select Box ======-->
-                                                </div>
-                                                <div class="u-s-m-b-30">
+<!--                                                    <label class="gl-label" for="shipping-country">COUNTRY *</label><select class="select-box select-box&#45;&#45;primary-style" id="shipping-country">-->
+<!--                                                        <option selected value="">Choose Country</option>-->
+<!--                                                        <option value="uae">United Arab Emirate (UAE)</option>-->
+<!--                                                        <option value="uk">United Kingdom (UK)</option>-->
+<!--                                                        <option value="us">United States (US)</option>-->
+<!--                                                    </select>-->
+<!--                                                    &lt;!&ndash;====== End - Select Box ======&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                                <div class="u-s-m-b-30">-->
 
-                                                    <!--====== Select Box ======-->
+<!--                                                    &lt;!&ndash;====== Select Box ======&ndash;&gt;-->
 
-                                                    <label class="gl-label" for="shipping-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="shipping-state">
-                                                        <option selected value="">Choose State/Province</option>
-                                                        <option value="al">Alabama</option>
-                                                        <option value="al">Alaska</option>
-                                                        <option value="ny">New York</option>
-                                                    </select>
-                                                    <!--====== End - Select Box ======-->
-                                                </div>
-                                                <div class="u-s-m-b-30">
+<!--                                                    <label class="gl-label" for="shipping-state">STATE/PROVINCE *</label><select class="select-box select-box&#45;&#45;primary-style" id="shipping-state">-->
+<!--                                                        <option selected value="">Choose State/Province</option>-->
+<!--                                                        <option value="al">Alabama</option>-->
+<!--                                                        <option value="al">Alaska</option>-->
+<!--                                                        <option value="ny">New York</option>-->
+<!--                                                    </select>-->
+<!--                                                    &lt;!&ndash;====== End - Select Box ======&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                                <div class="u-s-m-b-30">-->
 
-                                                    <label class="gl-label" for="shipping-zip">ZIP/POSTAL CODE *</label>
+<!--                                                    <label class="gl-label" for="shipping-zip">ZIP/POSTAL CODE *</label>-->
 
-                                                    <input class="input-text input-text--primary-style" type="text" id="shipping-zip" placeholder="Zip/Postal Code"></div>
-                                                <div class="u-s-m-b-30">
+<!--                                                    <input class="input-text input-text&#45;&#45;primary-style" type="text" id="shipping-zip" placeholder="Zip/Postal Code"></div>-->
+<!--                                                <div class="u-s-m-b-30">-->
 
-                                                    <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">CALCULATE SHIPPING</a></div>
+<!--                                                    <a class="f-cart__ship-link btn&#45;&#45;e-transparent-brand-b-2" href="cart.html">CALCULATE SHIPPING</a></div>-->
 
-                                                <span class="gl-text">Note: There are some countries where free shipping is available otherwise our flat rate charges or country delivery charges will be apply.</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                            <div class="f-cart__pad-box">
-                                                <h1 class="gl-h1">NOTE</h1>
+<!--                                                <span class="gl-text">Note: There are some countries where free shipping is available otherwise our flat rate charges or country delivery charges will be apply.</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-lg-4 col-md-6 u-s-m-b-30">-->
+<!--                                            <div class="f-cart__pad-box">-->
+<!--                                                <h1 class="gl-h1">NOTE</h1>-->
 
-                                                <span class="gl-text u-s-m-b-30">Add Special Note About Your Product</span>
-                                                <div>
+<!--                                                <span class="gl-text u-s-m-b-30">Add Special Note About Your Product</span>-->
+<!--                                                <div>-->
 
-                                                    <label for="f-cart-note"></label><textarea class="text-area text-area--primary-style" id="f-cart-note"></textarea></div>
-                                            </div>
-                                        </div>
+<!--                                                    <label for="f-cart-note"></label><textarea class="text-area text-area&#45;&#45;primary-style" id="f-cart-note"></textarea></div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                             <div class="f-cart__pad-box">
                                                 <div class="u-s-m-b-30">
                                                     <table class="f-cart__table">
                                                         <tbody>
-                                                            <tr>
-                                                                <td>SHIPPING</td>
-                                                                <td>$4.00</td>
-                                                            </tr>
+<!--                                                            <tr>-->
+<!--                                                                <td>SHIPPING</td>-->
+<!--                                                                <td>₹400</td>-->
+<!--                                                            </tr>-->
                                                             <tr>
                                                                 <td>TAX</td>
-                                                                <td>$0.00</td>
+                                                                <td>₹{{tax}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>SUBTOTAL</td>
-                                                                <td>$379.00</td>
+                                                                <td>₹{{total}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>GRAND TOTAL</td>
-                                                                <td>$379.00</td>
+                                                                <td>₹{{grand_total}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div>
+                                                    <a class="empty__redirect-link btn--e-brand" href="{% url 'checkout' %}">PROCEED TO CHECKOUT</a></div>
 
-                                                    <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+<!--                                                    <button class="btn btn&#45;&#45;e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>-->
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+<!--                                </form>-->
                             </div>
                         </div>
                     </div>

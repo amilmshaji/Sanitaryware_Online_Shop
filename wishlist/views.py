@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from shop_app.models import Product, Variation
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
+#
+# # Create your views here.
 
 
 def _wishlist_id(request):
@@ -15,7 +15,7 @@ def _wishlist_id(request):
         wishlist = request.session.create()
     return wishlist
 
-
+@login_required(login_url='login')
 def add_wishlist(request, product_id):
     current_user = request.user
     product = Product.objects.get(id=product_id)
@@ -134,40 +134,6 @@ def add_wishlist(request, product_id):
             wishlist_item.save()
         return redirect('wishlist')
 
-#
-# def remove_cart(request, product_id, cart_item_id):
-#     product = get_object_or_404(Product, id=product_id)
-#     try:
-#         if request.user.is_authenticated:
-#             cart_item = CartItem.objects.get(
-#                 product=product, user=request.user, id=cart_item_id)
-#         else:
-#             cart = Cart.objects.get(cart_id=_cart_id(request))
-#             cart_item = CartItem.objects.get(
-#                 product=product, cart=cart, id=cart_item_id)
-#         if cart_item.quantity > 1:
-#             cart_item.quantity -= 1
-#             cart_item.save()
-#         else:
-#             cart_item.delete()
-#     except:
-#         pass
-#     return redirect('cart')
-#
-#
-# def remove_cart_item(request, product_id, cart_item_id):
-#     product = get_object_or_404(Product, id=product_id)
-#     if request.user.is_authenticated:
-#         cart_item = CartItem.objects.get(
-#             product=product, user=request.user, id=cart_item_id)
-#     else:
-#         cart = Cart.objects.get(cart_id=_cart_id(request))
-#         cart_item = CartItem.objects.get(
-#             product=product, cart=cart, id=cart_item_id)
-#     cart_item.delete()
-#     return redirect('cart')
-
-
 def wishlist(request, total=0, quantity=0, wishlist_item=None, wishlist_items=None):
     try:
         tax = 0
@@ -196,3 +162,16 @@ def wishlist(request, total=0, quantity=0, wishlist_item=None, wishlist_items=No
     }
 
     return render(request, 'wishlist.html', context)
+
+
+def remove_wishlist_item(request, product_id, wishlist_item_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.user.is_authenticated:
+        wishlist_item = WishlistItem.objects.get(
+            product=product, user=request.user, id=wishlist_item_id)
+    else:
+        wishlist = Wishlist.objects.get(wishlist_id=_wishlist_id(request))
+        wishlist_item = WishlistItem.objects.get(
+            product=product, wishlist=wishlist, id=wishlist_item_id)
+    wishlist_item.delete()
+    return redirect('wishlist')

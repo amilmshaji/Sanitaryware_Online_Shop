@@ -26,8 +26,8 @@
                     </div>
                 </div>
             </div>
-            <!--====== End - Section 1 ======-->
-             {% if not wislist_items %}
+<!--            ====== End - Section 1 ======-->
+             {% if not wishlist_items %}
              <div class="u-s-p-y-60">
 
                 <!--====== Section Content ======-->
@@ -42,7 +42,7 @@
 
                                         <span class="empty__text-1">No items found on your wishlist.</span>
 
-                                        <a class="empty__redirect-link btn--e-brand" href="shop-side-version-2.html">CONTINUE SHOPPING</a></div>
+                                        <a class="empty__redirect-link btn--e-brand" href="{% url 'store' %}">CONTINUE SHOPPING</a></div>
                                 </div>
                             </div>
                         </div>
@@ -88,41 +88,46 @@
 
                                                 <span class="w-r__name">
 
-                                                    <a href="product-detail.html">{{wishlist_item.product.name}}</a></span>
+                                                    <a href="product-detail.html">{{wishlist_item.product.product_name}}</a></span>
 
                                                 <span class="w-r__category">
 
-                                                    <a href="shop-side-version-2.html">Electronics</a></span>
+                                                    <a href="shop-side-version-2.html">{{wishlist_item.product.category_name}}</a></span>
 
                                                 <span class="w-r__price">₹{{wishlist_item.product.price}}
 
-                                                    <span class="w-r__discount">$160.00</span></span></div>
+<!--                                                    <span class="w-r__discount">$160.00</span>-->
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="w-r__wrap-2">
 
-                                            <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
+                                            <a class="w-r__link btn--e-brand-b-2" href="{% url 'add_cart' wishlist_item.product.id %}" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
 
-                                            <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-detail.html">VIEW</a>
+                                            <a class="w-r__link btn--e-transparent-platinum-b-2" href="{{wishlist_item.product.get_url}}">VIEW</a>
 
-                                            <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
+                                            <a class="w-r__link btn--e-transparent-platinum-b-2" href="{% url 'remove_wishlist_item' wishlist_item.product.id wishlist_item.id%}">REMOVE</a></div>
                                     </div>
                                 </div>
                                 <!--====== End - Wishlist Product ======-->
                                 {% endfor %}
 
+
                             </div>
+
                             <div class="col-lg-12">
                                 <div class="route-box">
                                     <div class="route-box__g">
 
-                                        <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
+                                        <a class="route-box__link" href="{% url 'store' %}"><i class="fas fa-long-arrow-alt-left"></i>
 
                                             <span>CONTINUE SHOPPING</span></a></div>
                                     <div class="route-box__g">
 
-                                        <a class="route-box__link" href="wishlist.html"><i class="fas fa-trash"></i>
+<!--                                        <a class="route-box__link" href="wishlist.html"><i class="fas fa-trash"></i>-->
 
-                                            <span>CLEAR WISHLIST</span></a></div>
+<!--                                            <span>CLEAR WISHLIST</span></a>-->
+                                    </div>
                                 </div>
                             </div>
                         </div>

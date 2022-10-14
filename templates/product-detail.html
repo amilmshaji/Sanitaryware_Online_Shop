@@ -20,13 +20,13 @@
                                         <a href="index.hml">Home</a></li>
                                     <li class="has-separator">
 
-                                        <a href="shop-side-version-2.html">Electronics</a></li>
+                                        <a href="shop-side-version-2.html">{{single_product.category}}</a></li>
                                     <li class="has-separator">
 
-                                        <a href="shop-side-version-2.html">DSLR Cameras</a></li>
+<!--                                        <a href="shop-side-version-2.html">DSLR Cameras</a></li>-->
                                     <li class="is-marked">
 
-                                        <a href="shop-side-version-2.html">Nikon Cameras</a></li>
+                                        <a href="shop-side-version-2.html">{{single_product.product_name}}</a></li>
                                 </ul>
                             </div>
                             <!--====== End - Product Breadcrumb ======-->
@@ -91,7 +91,7 @@
 
                                         <span class="pd-detail__price">₹{{single_product.price}}</span>
 
-                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
+                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">₹28.97</del></div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
@@ -115,7 +115,7 @@
 
                                         <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
 
-                                            <a href="signin.html">Add to Wishlist</a>
+                                            <a href="{% url 'add_wishlist' single_product.id %}">Add to Wishlist</a>
 
                                             <span class="pd-detail__click-count">(222)</span></span></div>
                                 </div>
@@ -148,18 +148,20 @@
                                     </ul>
                                 </div>
                                 <div class="u-s-m-b-15">
-                                    <form class="pd-detail__form">
+                                    <form class="pd-detail__form"  action="{% url 'add_cart' single_product.id %}" method="POST">
+                                        {% csrf_token %}
+
                                         <div class="pd-detail-inline-2">
                                             <div class="u-s-m-b-15">
 
                                                 <!--====== Input Counter ======-->
-                                                <div class="input-counter">
+<!--                                                <div class="input-counter">-->
 
-                                                    <span class="input-counter__minus fas fa-minus"></span>
+<!--                                                    <span class="input-counter__minus fas fa-minus"></span>-->
 
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+<!--                                                    <input class="input-counter__text input-counter&#45;&#45;text-primary-style" type="text" value="1" data-min="1" data-max="1000">-->
 
-                                                    <span class="input-counter__plus fas fa-plus"></span></div>
+<!--                                                    <span class="input-counter__plus fas fa-plus"></span></div>-->
                                                 <!--====== End - Input Counter ======-->
                                             </div>
                                             <div class="u-s-m-b-15">

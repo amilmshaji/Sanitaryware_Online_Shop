@@ -43,7 +43,7 @@
 
                         <!--====== Main Logo ======-->
 
-                        <a class="main-logo" href="#">
+                        <a class="main-logo" href="{% url 'home' %}">
 
                             <img src="{% static 'images/sankart_logo.png' %}" width="100" height="60" alt=""></a>
 
@@ -51,11 +51,11 @@
 
 
                         <!--====== Search Form ======-->
-                        <form class="main-form">
+                        <form class="main-form" action="{% url 'search' %}" method="get">
 
                             <label for="main-search"></label>
 
-                            <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search">
+                            <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" name="keyword" placeholder="Search" required>
 
                             <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
                         <!--====== End - Search Form ======-->
@@ -81,13 +81,13 @@
 
                                         <span class="js-menu-toggle"></span>
                                         <ul style="width:120px">
+
+                                            {% if user.is_authenticated %}
                                             <li>
 
-                                                <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                                <a href="{% url 'dashboard' %}"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                     <span>Account</span></a></li>
-                                            {% if user.is_authenticated %}
-
                                             <li>
 
                                                 <a href="#"><i class="fas fa-lock-open u-s-m-r-6"></i>
@@ -946,18 +946,18 @@
                                     <li>
 
                                         <a href="{% url 'home' %}">HOME</a></li>
-                                    <li class="has-dropdown">
+<!--                                    <li class="has-dropdown">-->
 
-                                        <a>NEW ARRIVELS<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+<!--                                        <a>NEW ARRIVELS<i class="fas n u-s-m-l-6"></i></a>-->
 
 
-                                    </li>
+<!--                                    </li>-->
                                     <li>
 
                                         <a href="{% url 'store' %}">SHOP NOW</a></li>
-                                    <li class="has-dropdown">
+<!--                                    <li class="has-dropdown">-->
 
-                                        <a>BLOG<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+<!--                                        <a>BLOG<i class="fas u-s-m-l-6"></i></a>-->
 
                                         <!--====== Dropdown ======-->
 
@@ -983,10 +983,10 @@
                                     </li>
                                     <li>
 
-                                        <a href="shop-side-version-2.html">VALUE OF THE DAY</a></li>
+                                        <a href="#">VALUE OF THE DAY</a></li>
                                     <li>
 
-                                        <a href="shop-side-version-2.html">SERVICES</a></li>
+                                        <a href="#">SERVICES</a></li>
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
@@ -1011,7 +1011,7 @@
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                                     <li>
 
-                                        <a href="index.html"><i class="fas fa-home u-c-brand"></i></a></li>
+                                        <a href="{% url 'home' %}"><i class="fas fa-home u-c-brand"></i></a></li>
                                     <li>
 
                                         <a href="{% url 'wishlist' %}"><i class="far fa-heart"></i></a></li>
@@ -1189,13 +1189,13 @@
                                 <span class="outer-footer__content-title">Contact Us</span>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-home"></i>
 
-                                    <span>4247 Ashford Drive Virginia VA-20006 USA</span></div>
+                                    <span>4247 Kanjirapally,Kottayam</span></div>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
 
                                     <span>(+0) 900 901 904</span></div>
                                 <div class="outer-footer__text-wrap"><i class="far fa-envelope"></i>
 
-                                    <span>contact@domain.com</span></div>
+                                    <span>msamilmanadiyil2560@gmail.com</span></div>
                                 <div class="outer-footer__social">
                                     <ul>
                                         <li>
@@ -1227,7 +1227,7 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="cart.html">Cart</a></li>
+                                                    <a href="{% url 'cart' %}">Cart</a></li>
                                                 <li>
 
                                                     <a href="dashboard.html">Account</a></li>
@@ -1282,7 +1282,7 @@
                                             <input type="radio" id="male" name="gender">
                                             <div class="radio-box__state radio-box__state--primary">
 
-                                                <label class="radio-box__label" for="male">Male</label></div>
+                                                <label class="radio-box__label" for ="male">Male</label></div>
                                         </div>
                                         <div class="radio-box newsletter__radio">
 
@@ -1528,48 +1528,48 @@
 
 
         <!--====== Add to Cart Modal ======-->
-        <div class="modal fade" id="add-to-cart">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content modal-radius modal-shadow">
+<!--        <div class="modal fade" id="add-to-cart">-->
+<!--            <div class="modal-dialog modal-dialog-centered">-->
+<!--                <div class="modal-content modal-radius modal-shadow">-->
 
-                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="success u-s-m-b-30">
-                                    <div class="success__text-wrap"><i class="fas fa-check"></i>
+<!--                    <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>-->
+<!--                    <div class="modal-body">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-lg-6 col-md-12">-->
+<!--                                <div class="success u-s-m-b-30">-->
+<!--                                    <div class="success__text-wrap"><i class="fas fa-check"></i>-->
 
-                                        <span>Item is added successfully!</span></div>
-                                    <div class="success__img-wrap">
+<!--                                        <span>Item is added successfully!</span></div>-->
+<!--                                    <div class="success__img-wrap">-->
 
-                                        <img class="u-img-fluid" src="{% static 'images/product/electronic/product1.jpg' %}" alt=""></div>
-                                    <div class="success__info-wrap">
+<!--                                        <img class="u-img-fluid" src="{{wishlist_item.product.images.url}}" alt=""></div>-->
+<!--                                    <div class="success__info-wrap">-->
 
-                                        <span class="success__name">Beats Bomb Wireless Headphone</span>
+<!--                                        <span class="success__name">{{cart_item.product.product_name}}</span>-->
 
-                                        <span class="success__quantity">Quantity: 1</span>
+<!--                                        <span class="success__quantity">Quantity: 1</span>-->
 
-                                        <span class="success__price">$170.00</span></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="s-option">
+<!--                                        <span class="success__price">{{product.price}}</span></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-6 col-md-12">-->
+<!--                                <div class="s-option">-->
 
-                                    <span class="s-option__text">1 item (s) in your cart</span>
-                                    <div class="s-option__link-box">
+<!--                                    <span class="s-option__text">1 item (s) in your cart</span>-->
+<!--                                    <div class="s-option__link-box">-->
 
-                                        <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
+<!--                                        <a class="s-option__link btn&#45;&#45;e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>-->
 
-                                        <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
+<!--                                        <a class="s-option__link btn&#45;&#45;e-white-brand-shadow" href="cart.html">VIEW CART</a>-->
 
-                                        <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO CHECKOUT</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                                        <a class="s-option__link btn&#45;&#45;e-brand-shadow" href="checkout.html">PROCEED TO CHECKOUT</a></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
     <!--====== End - Main App ======-->
 

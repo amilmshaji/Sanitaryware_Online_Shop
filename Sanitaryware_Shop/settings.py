@@ -69,6 +69,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.counter',
+                'wishlist.context_processors.counter',
+
             ],
         },
     },
@@ -140,3 +142,15 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 MEDIA_URL = '/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'msamilmanadiyil2560@gmail.com'
+DEFAULT_FROM_EMAIL = 'msamilmanadiyil2560@gmail.com'
+SERVER_EMAIL = 'msamilmanadiyil2560@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Ajce@2023'
+EMAIL_HOST_PASSWORD = 'yqnjleuobemnpbwn'
+
+EMAIL_USE_TLS = True

@@ -15,7 +15,7 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
-
+@login_required(login_url='login')
 def add_cart(request, product_id):
     current_user = request.user
     product = Product.objects.get(id=product_id)
