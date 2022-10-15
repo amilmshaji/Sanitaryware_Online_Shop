@@ -30,7 +30,7 @@ class Product(models.Model):
     description = models.TextField(max_length=500, blank=True)
     price = models.IntegerField()
     images = models.ImageField(upload_to='photos/product')
-    stock = models.IntegerField()
+    stock = models.IntegerField() 
     is_available = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
 

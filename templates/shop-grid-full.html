@@ -1,0 +1,140 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="shop-p">
+                                <div class="shop-p__toolbar u-s-m-b-30">
+
+                                    <div class="shop-p__tool-style">
+                                        <div class="tool-style__group u-s-m-b-8">
+
+                                            <span class="js-shop-filter-target" data-side="#side-filter">Filters</span>
+
+                                            <span class="js-shop-grid-target is-active">Grid</span>
+
+                                            <span class="js-shop-list-target">List</span></div>
+<!--                                        <form>-->
+<!--                                            <div class="tool-style__form-wrap">-->
+<!--                                                <div class="u-s-m-b-8"><select class="select-box select-box&#45;&#45;transparent-b-2">-->
+<!--                                                        <option>Show: 8</option>-->
+<!--                                                        <option selected>Show: 12</option>-->
+<!--                                                        <option>Show: 16</option>-->
+<!--                                                        <option>Show: 28</option>-->
+<!--                                                    </select></div>-->
+<!--                                                <div class="u-s-m-b-8"><select class="select-box select-box&#45;&#45;transparent-b-2">-->
+<!--                                                        <option selected>Sort By: Newest Items</option>-->
+<!--                                                        <option>Sort By: Latest Items</option>-->
+<!--                                                        <option>Sort By: Best Selling</option>-->
+<!--                                                        <option>Sort By: Best Rating</option>-->
+<!--                                                        <option>Sort By: Lowest Price</option>-->
+<!--                                                        <option>Sort By: Highest Price</option>-->
+<!--                                                    </select></div>-->
+<!--                                            </div>-->
+<!--                                        </form>-->
+                                    </div>
+                                </div>
+                                <div class="shop-p__collection">
+                                    <div class="row is-grid-active">
+                                        {% for product in products %}
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="product-m">
+                                                <div class="product-m__thumb">
+
+                                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{product.get_url}}">
+
+                                                        <img class="aspect__img" src="{{product.images.url}}" style="width:600 height:600;" alt=""></a>
+<!--                                                    <div class="product-m__quick-look">-->
+
+<!--                                                        <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>-->
+                                                    <div class="product-m__add-cart">
+
+                                                        <a class="btn--e-brand" href="{% url 'add_cart' product.id %}" data-modal="modal">Add to Cart</a></div>
+                                                </div>
+                                                <div class="product-m__content">
+                                                    <div class="product-m__category">
+
+                                                        <a href="#">{{product.category}}</a></div>
+                                                    <div class="product-m__name">
+
+                                                        <a href="{{product.get_url}}">{{product.product_name}}</a></div>
+                                                    <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+
+                                                        <span class="product-m__review">(23)</span></div>
+                                                    <div class="product-m__price">₹{{product.price}}</div>
+                                                    <div class="product-m__hover">
+                                                        <div class="product-m__preview-description">
+
+                                                            <span>{{product.description}}</span></div>
+                                                        <div class="product-m__wishlist">
+
+                                                            <a class="far fa-heart" href="{% url 'add_wishlist' product.id %}" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                </div>
+                                <div class="u-s-p-y-60">
+
+                                    <!--====== Pagination ======-->
+<!--                                    <ul class="shop-p__pagination">-->
+<!--                                        <li class="is-active">-->
+
+<!--                                            <a href="shop-grid-full.html">1</a></li>-->
+<!--                                        <li>-->
+
+<!--                                            <a href="shop-grid-full.html">2</a></li>-->
+<!--                                        <li>-->
+
+<!--                                            <a href="shop-grid-full.html">3</a></li>-->
+<!--                                        <li>-->
+
+<!--                                            <a href="shop-grid-full.html">4</a></li>-->
+<!--                                        <li>-->
+
+<!--                                            <a class="fas fa-angle-right" href="shop-grid-full.html"></a></li>-->
+<!--                                    </ul>-->
+                                                  {% if products.has_other_pages %}
+
+                                    <ul class="shop-p__pagination">
+                                         {% for i in products.paginator.page_range  %}
+
+                                            {% if products.number == i %}
+                                            <li class="is-active">
+
+                                                <a href="#">{{i}}</a></li>
+                                            {% else %}
+                                        <li>
+
+                                            <a href="?page={{i}}">{{i}}</a></li>
+                                        <li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                    <!--====== End - Pagination ======-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
+        </div>
+        <!--====== End - App Content ======-->
+
+{% endblock %}

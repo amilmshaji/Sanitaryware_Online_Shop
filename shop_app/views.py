@@ -56,7 +56,7 @@ def store(request, category_slug=None):
     else:
 
         products = Product.objects.all().filter(is_available=True).order_by('id')
-        paginator = Paginator(products, 3)
+        paginator = Paginator(products, 9)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
@@ -65,7 +65,7 @@ def store(request, category_slug=None):
         'products': paged_products,
         'product_count': product_count,
     }
-    return render(request, 'shop.html', context)
+    return render(request, 'shop-grid-full.html', context)
 
 
 def product_detail(request,  category_slug, product_slug):
