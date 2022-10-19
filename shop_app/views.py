@@ -29,7 +29,7 @@ def Home(request,category_slug=None):
     else:
 
         products = Product.objects.all().filter(is_available=True,is_featured=True).order_by('id')
-        paginator = Paginator(products, 3)
+        paginator = Paginator(products, 4)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
@@ -56,7 +56,7 @@ def store(request, category_slug=None):
     else:
 
         products = Product.objects.all().filter(is_available=True).order_by('id')
-        paginator = Paginator(products, 9)
+        paginator = Paginator(products, 8)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
