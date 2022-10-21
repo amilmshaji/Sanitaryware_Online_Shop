@@ -1,6 +1,8 @@
 from django.core import paginator
 from django.core.checks import messages
 from django.http.response import HttpResponse
+
+from .forms import ReviewForm
 from .models import Category
 from django.shortcuts import get_object_or_404, redirect, render
 from . models import Product, ReviewRating, Productgallery
@@ -8,9 +10,7 @@ from cart.models import CartItem, Cart
 from cart.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
-# from .forms import ReviewForm
 from django.contrib import messages
-# from orders.models import OrderProduct
 
 
 # Create your views here.
@@ -100,7 +100,7 @@ def product_detail(request,  category_slug, product_slug):
         'reviews': reviews,
         'product_gallery':product_gallery,
     }
-    return render(request, 'product-detail.html', context)
+    return render(request, 'product-detail-variable.html', context)
 
 
 def search(request):
@@ -142,3 +142,7 @@ def submit_review(request, product_id):
                 messages.success(
                     request, 'Thank You ! Your Review Has Been Submitted')
                 return redirect(url)
+
+def p(request):
+    return render(request, 'p.html')
+
