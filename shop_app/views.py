@@ -1,6 +1,8 @@
 from django.core import paginator
 from django.core.checks import messages
 from django.http.response import HttpResponse
+
+from .forms import ReviewForm
 from .models import Category
 from django.shortcuts import get_object_or_404, redirect, render
 from . models import Product, ReviewRating, Productgallery
@@ -8,9 +10,7 @@ from cart.models import CartItem, Cart
 from cart.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
-# from .forms import ReviewForm
 from django.contrib import messages
-# from orders.models import OrderProduct
 
 
 # Create your views here.
@@ -29,7 +29,7 @@ def Home(request,category_slug=None):
     else:
 
         products = Product.objects.all().filter(is_available=True,is_featured=True).order_by('id')
-        paginator = Paginator(products, 3)
+        paginator = Paginator(products, 4)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
@@ -56,7 +56,7 @@ def store(request, category_slug=None):
     else:
 
         products = Product.objects.all().filter(is_available=True).order_by('id')
-        paginator = Paginator(products, 9)
+        paginator = Paginator(products, 8)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
@@ -100,7 +100,7 @@ def product_detail(request,  category_slug, product_slug):
         'reviews': reviews,
         'product_gallery':product_gallery,
     }
-    return render(request, 'product-detail.html', context)
+    return render(request, 'product-detail-variable.html', context)
 
 
 def search(request):
@@ -117,29 +117,32 @@ def search(request):
     return render(request, 'shop.html', context)
 
 
-# def submit_review(request, product_id):
-#     url = request.META.get('HTTP_REFERER')
-#     if request.method == 'POST':
-#         try:
-#
-#             reviews = ReviewRating.objects.get(
-#                 user__id=request.user.id, product__id=product_id)
-#             form = ReviewForm(request.POST, instance=reviews)
-#             form.save()
-#             messages.success(request, 'Thank you ! Your Review is Updated')
-#             return redirect(url)
-#         except ReviewRating.DoesNotExist:
-#             form = ReviewForm(request.POST)
-#             if form.is_valid():
-#                 data = ReviewRating()
-#                 data.subject = form.cleaned_data['subject']
-#                 data.rating = form.cleaned_data['rating']
-#                 data.review = form.cleaned_data['review']
-#                 data.ip = request.META.get('REMOTE_ADDR')
-#                 data.product_id = product_id
-#                 data.user_id = request.user.id
-#                 data.save()
-#                 messages.success(
-#                     request, 'Thank You ! Your Review Has Been Submitted')
-#                 return redirect(url)
+def submit_review(request, product_id):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        try:
+
+            reviews = ReviewRating.objects.get(
+                user__id=request.user.id, product__id=product_id)
+            form = ReviewForm(request.POST, instance=reviews)
+            form.save()
+            messages.success(request, 'Thank you ! Your Review is Updated')
+            return redirect(url)
+        except ReviewRating.DoesNotExist:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                data = ReviewRating()
+                data.subject = form.cleaned_data['subject']
+                data.rating = form.cleaned_data['rating']
+                data.review = form.cleaned_data['review']
+                data.ip = request.META.get('REMOTE_ADDR')
+                data.product_id = product_id
+                data.user_id = request.user.id
+                data.save()
+                messages.success(
+                    request, 'Thank You ! Your Review Has Been Submitted')
+                return redirect(url)
+
+def p(request):
+    return render(request, 'p.html')
 

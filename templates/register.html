@@ -62,19 +62,33 @@
 					var f=document.getElementById("fname").value;
 					var l=document.getElementById("lname").value;
 					var s=/^[a-zA-Z]+$/;
+						   if(f=="")
+                {
+                    document.getElementById('fn').style.display = "block";
+
+                    document.getElementById('fn').innerHTML="**Please Enter  First Name";
+                    return false;
+                }
 					if(f!="" && s.test(f)==false){
 
 						document.getElementById('fn').style.display = "block";
-						document.getElementById('fn').innerHTML = "Invalid Fname";
+						document.getElementById('fn').innerHTML = "Invalid First Name";
 						return false;
 					}
 					else{
 						document.getElementById('fn').style.display = "none";
 					}
+					 if(l=="")
+                {
+                    document.getElementById('ln').style.display = "block";
+
+                    document.getElementById('ln').innerHTML="**Please Enter  Last Name";
+                    return false;
+                }
 					if(l!="" && s.test(l)==false){
 
 						document.getElementById('ln').style.display = "block";
-						document.getElementById('ln').innerHTML = "Invalid Lname";
+						document.getElementById('ln').innerHTML = "Invalid Last Name";
 						return false;
 					}
 					else{
@@ -83,6 +97,13 @@
 
 					var a=document.getElementById("email").value;
 					var st=/^[\w\+\'\.-]+@[\w\'\.-]+\.[a-zA-Z]{2,}$/;
+					if(a=="")
+                {
+                    document.getElementById('el').style.display = "block";
+
+                    document.getElementById('el').innerHTML="**Please Enter  Email";
+                    return false;
+                }
 					if(a!="" && st.test(a)==false){
 
 						document.getElementById('el').style.display = "block";
@@ -95,6 +116,13 @@
 
 					var ph = document.getElementById("tel").value;
 					var expr = /^[6-9]\d{9}$/;
+                    if(ph=="")
+                {
+                    document.getElementById('pe').style.display = "block";
+
+                    document.getElementById('pe').innerHTML="**Please Enter  Phone Number";
+                    return false;
+                }
 					if(ph!="" && expr.test(ph)==false){
 						document.getElementById('pe').style.display = "block";
 						document.getElementById('pe').innerHTML = "Invalid Phone number";
@@ -110,7 +138,7 @@
                 {
                     document.getElementById('pss').style.display = "block";
 
-                    document.getElementById('pss').innerHTML="**please enter  Password";
+<!--                    document.getElementById('pss').innerHTML="**please enter  Password";-->
                     return false;
                 }
                 else{
@@ -150,13 +178,13 @@
                                 <div class="l-f-o">
                                     <div class="l-f-o__pad-box">
                                         <h1 class="gl-h1">PERSONAL INFORMATION</h1>
-                                        <form class="l-f-o__form" action="{% url 'register' %}" method="post" onsubmit="return validateform();">
+                                        <form class="l-f-o__form" action="{% url 'register' %}" method="post" onsubmit="return validate();">
                                             {% csrf_token %}
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="fname">FIRST NAME *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="fname" id="fname" placeholder="First Name" onblur="return validate()" onKeyUp="return validate()" required pattern="[A-Za-z_]+">
+                                                <input class="input-text input-text--primary-style" type="text" name="fname" id="fname" placeholder="First Name" onblur="return validate()" onKeyUp="return validate()" >
                                                 <span id="fn" style="color: red;"></span>
 
 
@@ -165,7 +193,7 @@
 
                                                 <label class="gl-label" for="lname">LAST NAME *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="lname" id="lname" placeholder="Last Name" onblur="return validate()" onKeyUp="return validate()" required pattern="[A-Za-z_]+">
+                                                <input class="input-text input-text--primary-style" type="text" name="lname" id="lname" placeholder="Last Name" onblur="return validate()" onKeyUp="return validate()" >
                                                 <span id="ln" style="color: red;"></span>
 
                                             </div>
@@ -174,7 +202,7 @@
 
                                                 <label class="gl-label" for="email">E-MAIL *</label>
 
-                                                <input class="input-text input-text--primary-style" type="email" name="email" id="email" placeholder="Enter E-mail"  onblur="return validate()" onKeyUp="return validate()"  required >
+                                                <input class="input-text input-text--primary-style" type="email" name="email" id="email" placeholder="Enter E-mail"  onblur="return validate()" onKeyUp="return validate()"  >
                                                 <span id="el" style="color: red;"></span>
 
                                             </div>
@@ -182,7 +210,7 @@
 
                                                 <label class="gl-label" for="tel">PHONE NUMBER *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" name="tel" id="tel" placeholder="Enter 10 digits" onblur="return validate()" onKeyUp="return validate()"  minlength="10" maxlength="10" required>
+                                                <input class="input-text input-text--primary-style" type="text" name="tel" id="tel" placeholder="Enter 10 digits" onblur="return validate()" onKeyUp="return validate()"  minlength="10" maxlength="10">
                                                 <span id="pe" style="color: red;"></span>
 
                                             </div>
@@ -190,8 +218,8 @@
 
                                                 <label class="gl-label" for="password">PASSWORD *</label>
 
-                                                <input class="input-text input-text--primary-style" type="password" name="password" id="password" placeholder="Enter Password" onclick=" return onclear()">
-                                                                                                <span id="pss" style="color: red;"></span>
+                                                <input class="input-text input-text--primary-style" type="password" name="password" id="password" placeholder="Enter Password" >
+                                                <span id="pss" style="color: red;"></span>
 
                                                 <style>
                                                  /* The message box is shown when the user clicks on the password field */
@@ -296,7 +324,7 @@
 
                                                 <label class="gl-label" for="cpassword">CONFIRM PASSWORD *</label>
 
-                                                <input class="input-text input-text--primary-style" type="password" name="cpassword" id="cpassword" placeholder="Enter Password" onblur="return validate()" onKeyUp="return validate()" required>
+                                                <input class="input-text input-text--primary-style" type="password" name="cpassword" id="cpassword" placeholder="Enter Password" onblur="return validate()" onKeyUp="return validate()">
                                                 <span id="cpss" style="color: red;"></span>
 
 
