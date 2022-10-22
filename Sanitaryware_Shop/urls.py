@@ -6,13 +6,18 @@ from django.urls import path
 from django.urls.conf import include
 from django.conf import settings
 
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
 
 urlpatterns = [
+    # path('jet/', include('jet.urls', 'jet')),
+    # path('jet/', include('jet.urls')),
+    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    # path('baton/', include('baton.urls')),
+
     path('admin/', admin.site.urls),
     path('',include('accounts.urls')),
     path('',include('shop_app.urls')),
-    path('', include('dashboard.urls')),
+    path('', include('User_Dashboard.urls')),
 
     path('cart/', include('cart.urls')),
     path('wishlist/', include('wishlist.urls')),

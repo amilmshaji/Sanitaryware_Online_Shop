@@ -101,7 +101,7 @@ class ReviewRating(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.subject
+        return str(self.product)
 
 
 class Productgallery(models.Model):

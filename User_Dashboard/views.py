@@ -31,4 +31,3 @@ def editprofile(request):
         'userprofile':userprofile,
     }
     return render(request, 'dashboard/dash-edit-profile.html', context)
-
