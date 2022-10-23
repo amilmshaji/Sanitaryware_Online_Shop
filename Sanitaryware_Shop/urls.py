@@ -9,9 +9,8 @@ from django.conf import settings
 # admin.site.unregister(Group)
 
 urlpatterns = [
-    # path('jet/', include('jet.urls', 'jet')),
-    # path('jet/', include('jet.urls')),
-    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    # path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    # path('securelogin/', admin.site.urls),
     # path('baton/', include('baton.urls')),
 
     path('admin/', admin.site.urls),
