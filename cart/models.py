@@ -1,4 +1,4 @@
-# from carts.views import cart
+ # from carts.views import cart
 from django.db import models
 from shop_app.models import Product, Variation
 from accounts.models import Account

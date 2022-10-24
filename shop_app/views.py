@@ -65,7 +65,7 @@ def store(request, category_slug=None):
         'products': paged_products,
         'product_count': product_count,
     }
-    return render(request, 'shop-grid-full.html', context)
+    return render(request, 'shop.html', context)
 
 
 def product_detail(request,  category_slug, product_slug):

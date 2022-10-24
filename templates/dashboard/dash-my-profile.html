@@ -17,10 +17,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="#">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-my-profile.html">My Account</a></li>
+                                        <a href="#">My Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">Full Name</h2>
 
-                                                    <span class="dash__text">{{user.fname}} {{user.lname}}</span>
+                                                    <span class="dash__text">Hello {{user.fname}} {{user.lname}}</span>
                                                 </div>
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
@@ -91,10 +91,10 @@
 <!--                                                        <a data-modal="modal" data-modal-id="#dash-newsletter">Subscribe Newsletter</a></div>-->
                                                     <div class="u-s-m-b-16">
 
-                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="{% url 'editprofile' %}">Edit Profile</a></div>
+                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="{% url 'edit_profile' %}">Edit Profile</a></div>
                                                     <div>
 
-                                                        <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>
+                                                        <a class="dash__custom-link btn--e-brand-b-2" href="{% url 'changePassword' %}">Change Password</a></div>
                                                 </div>
                                             </div>
                                         </div>

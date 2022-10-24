@@ -5,6 +5,8 @@ from django.contrib.auth.models import PermissionsMixin
 
 
 # Create your models here.
+from django.urls import reverse
+
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, fname, lname, email,phone_number, password=None):
@@ -59,7 +61,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
     is_admin = models.BooleanField(default=False)
 
     is_active = models.BooleanField(default=False)
-    is_superadmin = models.BooleanField(default=Flse)
+    is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['fname', 'lname',  'phone_number',]
@@ -75,6 +77,8 @@ class Account(AbstractBaseUser,PermissionsMixin):
 
     def has_module_perms(self, add_label):
         return True
+    # def get_url(self):
+    #     return reverse('profile', args=[self.fname])
 
 
 class UserProfile(models.Model):
@@ -87,7 +91,7 @@ class UserProfile(models.Model):
     country = models.CharField(blank=True, max_length=20)
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.fname
 
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
