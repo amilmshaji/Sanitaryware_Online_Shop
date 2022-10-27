@@ -47,10 +47,10 @@ class MyAccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser,PermissionsMixin):
     id = models.AutoField(primary_key=True)
-    fname = models.CharField(max_length=100, blank=True, null=True)
-    lname = models.CharField(max_length=100, blank=True, null=True)
-    email = models.EmailField(max_length=100, unique=True)
-    phone_number = models.BigIntegerField(default=0)
+    fname = models.CharField(max_length=100, blank=True, null=True, editable=False)
+    lname = models.CharField(max_length=100, blank=True, null=True, editable=False)
+    email = models.EmailField(max_length=100, unique=True, editable=False)
+    phone_number = models.BigIntegerField(default=0, editable=False)
 
 
 
