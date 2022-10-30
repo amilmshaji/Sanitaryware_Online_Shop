@@ -28,7 +28,10 @@ def login(request):
             auth.login(request, user)
             messages.success(request, 'you are logged in')
             request.session['email']=email
-            return redirect('home')
+            if user.is_admin:
+                return redirect('admin/')
+            else:
+                return redirect('home')
         else:
             messages.error(request, 'invalid login credentials')
             return redirect('login')

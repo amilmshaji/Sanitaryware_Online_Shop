@@ -28,16 +28,28 @@ class ProductGalleryInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
+        'thumbnail_preview',
         'product_name',
         'price',
         'stock',
         'category',
         'created_date',
-        'modified_date',
         'is_available',
+        'is_featured',
+
     )
+
+    list_editable = ['price','stock','is_available','is_featured',]
+
+
     prepopulated_fields = {'slug': ('product_name',)}
     inlines=[ProductGalleryInline]
+
+    def thumbnail_preview(self, obj):
+        return obj.thumbnail_preview
+
+    thumbnail_preview.short_description = 'Image Preview'
+    thumbnail_preview.allow_tags = True
 
 
 class VariationAdmin(admin.ModelAdmin):
@@ -60,6 +72,5 @@ class VariationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Variation, VariationAdmin)
+# admin.site.register(Variation, VariationAdmin)
 admin.site.register(ReviewRating)
-admin.site.register(Productgallery)

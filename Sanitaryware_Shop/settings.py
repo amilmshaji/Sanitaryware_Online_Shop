@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'shop_app',
-    # 'jazzmin',
+    'jazzmin',
     'cart',
     'wishlist',
     'User_Dashboard',

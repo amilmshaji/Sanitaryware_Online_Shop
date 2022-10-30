@@ -1,7 +1,6 @@
 from django.db import models
-from django.db.models.aggregates import Count
-from django.db.models.deletion import CASCADE
-from django.db.models.fields import CharField
+from django.utils.html import mark_safe
+
 from django.urls.base import reverse
 from accounts.models import Account
 from django.db.models import Aggregate, Avg, Count
@@ -43,6 +42,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    @property
+    def thumbnail_preview(self):
+        if self.images:
+            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.images.url))
+        return ""
 
     def averageReview(self):
         reviews = ReviewRating.objects.filter(

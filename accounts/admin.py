@@ -27,9 +27,13 @@ export_users.short_description = 'Download Customer Details'
 
 
 class AccountAdmin(UserAdmin):
+    exclude =('password','Groups')
+
     list_display = (
         'email', 'fname', 'lname', 'last_login', 'is_active', 'date_joined'
     )
+    list_editable = ['is_active']
+
     list_display_links = (
         'email', 'fname', 'lname',
     )
@@ -42,5 +46,6 @@ class AccountAdmin(UserAdmin):
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
+
 
 admin.site.register(Account, AccountAdmin)

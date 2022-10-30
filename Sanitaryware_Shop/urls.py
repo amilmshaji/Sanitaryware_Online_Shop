@@ -6,14 +6,14 @@ from django.urls import path
 from django.urls.conf import include
 from django.conf import settings
 
-# admin.site.unregister(Group)
+admin.site.unregister(Group)
 
 urlpatterns = [
     # path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     # path('securelogin/', admin.site.urls),
     # path('baton/', include('baton.urls')),
 
-    path('admin/', admin.site.urls),
+    path('login/admin/', admin.site.urls,name='admin'),
     path('',include('accounts.urls')),
     path('',include('shop_app.urls')),
     path('', include('User_Dashboard.urls')),
