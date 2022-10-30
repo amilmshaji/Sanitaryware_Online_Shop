@@ -144,5 +144,7 @@ def submit_review(request, product_id):
                 return redirect(url)
 
 def p(request):
+
+
     return render(request, 'p.html')
 
