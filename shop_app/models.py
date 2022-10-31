@@ -13,6 +13,12 @@ class Category(models.Model):
     description = models.TextField(max_length=255, blank=True)
     cat_image = models.ImageField(upload_to='photos/categories', blank=True)
 
+    @property
+    def thumbnail_preview(self):
+        if self.cat_image:
+            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.cat_image.url))
+        return ""
+
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categories'
@@ -95,13 +101,12 @@ class Variation(models.Model):
 
 
 class ReviewRating(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=100, blank=True)
-    review = models.TextField(max_length=500, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,editable=False)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE,editable=False)
+    review = models.TextField(max_length=500, blank=True,)
     rating = models.FloatField()
-    ip = models.CharField(max_length=20, blank=True)
-    status = models.BooleanField(default=True)
+    ip = models.CharField(max_length=20, blank=True,editable=False)
+    status = models.BooleanField(default=True,editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

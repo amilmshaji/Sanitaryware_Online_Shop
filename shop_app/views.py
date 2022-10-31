@@ -132,7 +132,6 @@ def submit_review(request, product_id):
             form = ReviewForm(request.POST)
             if form.is_valid():
                 data = ReviewRating()
-                data.subject = form.cleaned_data['subject']
                 data.rating = form.cleaned_data['rating']
                 data.review = form.cleaned_data['review']
                 data.ip = request.META.get('REMOTE_ADDR')

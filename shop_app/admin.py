@@ -13,8 +13,15 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug': ('category_name',)
     }
     list_display = (
-        'category_name', 'slug',
+        'category_name','thumbnail_preview',
+
     )
+
+    def thumbnail_preview(self, obj):
+        return obj.thumbnail_preview
+
+    thumbnail_preview.short_description = 'Image Preview'
+    thumbnail_preview.allow_tags = True
 
 
 admin.site.register(Category, CategoryAdmin)
@@ -36,6 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
         'created_date',
         'is_available',
         'is_featured',
+
 
     )
 
@@ -73,4 +81,18 @@ class VariationAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 # admin.site.register(Variation, VariationAdmin)
-admin.site.register(ReviewRating)
+
+
+
+class RatingAdmin(admin.ModelAdmin):
+    list_display = (
+        'product',
+        'user',
+        'review',
+        'created_at',
+
+
+    )
+
+
+admin.site.register(ReviewRating, RatingAdmin)

@@ -21,13 +21,13 @@
                                         <a href="index.hml">Home</a></li>
                                     <li class="has-separator">
 
-                                        <a href="shop-side-version-2.html">Electronics</a></li>
-                                    <li class="has-separator">
+                                        <a href="#">{{ single_product.category }}</a></li>
+<!--                                    <li class="has-separator">-->
 
-                                        <a href="shop-side-version-2.html">DSLR Cameras</a></li>
-                                    <li class="is-marked">
+<!--                                        <a href="shop-side-version-2.html">DSLR Cameras</a></li>-->
+<!--                                    <li class="is-marked">-->
 
-                                        <a href="shop-side-version-2.html">Nikon Cameras</a></li>
+<!--                                        <a href="shop-side-version-2.html">Nikon Cameras</a></li>-->
                                 </ul>
                             </div>
                             <!--====== End - Product Breadcrumb ======-->
@@ -97,7 +97,9 @@
 
                                         <span class="pd-detail__price">₹{{single_product.price}}</span>
 
-                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
+<!--                                        <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del>-->
+
+                                    </div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__rating gl-rating-style">
@@ -120,9 +122,10 @@
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
-                                        <span class="pd-detail__stock">200 in stock</span>
+<!--                                        <span class="pd-detail__stock">200 in stock</span>-->
 
-                                        <span class="pd-detail__left">Only 2 left</span></div>
+<!--                                        <span class="pd-detail__left">Only 2 left</span>-->
+                                    </div>
                                 </div>
                                 <div class="u-s-m-b-15">
 
@@ -132,37 +135,41 @@
 
                                         <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
 
-                                            <a href="signin.html">Add to Wishlist</a>
+                                            <a href="#">Add to Wishlist</a>
 
-                                            <span class="pd-detail__click-count">(222)</span></span></div>
+<!--                                            <span class="pd-detail__click-count">(222)</span>-->
+                                        </span>
+
+                                    </div>
                                 </div>
                                 <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
                                         <span class="pd-detail__click-wrap"><i class="far fa-envelope u-s-m-r-6"></i>
 
-                                            <a href="signin.html">Email me When the price drops</a>
+<!--                                            <a href="signin.html">Email me When the price drops</a>-->
 
-                                            <span class="pd-detail__click-count">(20)</span></span></div>
+<!--                                            <span class="pd-detail__click-count">(20)</span>-->
+                                        </span></div>
                                 </div>
                                 <div class="u-s-m-b-15">
-                                    <ul class="pd-social-list">
-                                        <li>
+<!--                                    <ul class="pd-social-list">-->
+<!--                                        <li>-->
 
-                                            <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li>
+<!--                                            <a class="s-fb&#45;&#45;color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>-->
+<!--                                        <li>-->
 
-                                            <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li>
+<!--                                            <a class="s-tw&#45;&#45;color-hover" href="#"><i class="fab fa-twitter"></i></a></li>-->
+<!--                                        <li>-->
 
-                                            <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li>
+<!--                                            <a class="s-insta&#45;&#45;color-hover" href="#"><i class="fab fa-instagram"></i></a></li>-->
+<!--                                        <li>-->
 
-                                            <a class="s-wa--color-hover" href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                        <li>
+<!--                                            <a class="s-wa&#45;&#45;color-hover" href="#"><i class="fab fa-whatsapp"></i></a></li>-->
+<!--                                        <li>-->
 
-                                            <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                    </ul>
+<!--                                            <a class="s-gplus&#45;&#45;color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>-->
+<!--                                    </ul>-->
                                 </div>
 
 
@@ -329,7 +336,7 @@
 
                                             <a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
 
-                                                <span>(23)</span></a></li>
+                                                <span>({{single_product.countReview}})</span></a></li>
                                     </ul>
                                 </div>
                                 <div class="tab-content">
@@ -430,9 +437,22 @@
                                             <div class="u-s-m-b-30">
                                                 <div class="pd-tab__rev-score">
                                                     <div class="u-s-m-b-8">
-                                                        <h2>23 Reviews - 4.6 (Overall)</h2>
+                                                        <h2>{{single_product.countReview}} Reviews - {{single_product.averageReview}} (Overall)</h2>
                                                     </div>
-                                                    <div class="gl-rating-style-2 u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                                    <div class="gl-rating-style-2 u-s-m-b-8">
+
+                                                         <i class="fa fa-star{% if single_product.averageReview < 0.5 %}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageReview < 1.5 %}-o{% elif single_product.averageReview >= 1.5 and single_product.averageReview < 2 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageReview < 2.5 %}-o{% elif single_product.averageReview >= 2.5 and single_product.averageReview < 3 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageReview < 3.5 %}-o{% elif single_product.averageReview >= 3.5 and single_product.averageReview < 4 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+
+                                                    </div>
                                                     <div class="u-s-m-b-8">
                                                         <h4>We want to hear from you!</h4>
                                                     </div>
@@ -444,49 +464,46 @@
                                                 <form class="pd-tab__rev-f1">
                                                     <div class="rev-f1__group">
                                                         <div class="u-s-m-b-15">
-                                                            <h2>23 Review(s) for Man Ruched Floral Applique Tee</h2>
+                                                            <h2>{{single_product.countReview}} Review(s) for {{single_product.product_name}}</h2>
                                                         </div>
                                                         <div class="u-s-m-b-15">
 
-                                                            <label for="sort-review"></label><select class="select-box select-box--primary-style" id="sort-review">
-                                                                <option selected>Sort by: Best Rating</option>
-                                                                <option>Sort by: Worst Rating</option>
-                                                            </select></div>
+<!--                                                            <label for="sort-review"></label><select class="select-box select-box&#45;&#45;primary-style" id="sort-review">-->
+<!--                                                                <option selected>Sort by: Best Rating</option>-->
+<!--                                                                <option>Sort by: Worst Rating</option>-->
+<!--                                                            </select>-->
+                                                        </div>
                                                     </div>
                                                     <div class="rev-f1__review">
+
+                                                        {% for review in reviews %}
                                                         <div class="review-o u-s-m-b-15">
                                                             <div class="review-o__info u-s-m-b-8">
 
-                                                                <span class="review-o__name">John Doe</span>
+                                                                <span class="review-o__name">{{review.user.fname}}</span>
 
-                                                                <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                                                <span class="review-o__date">{{review.updated_at}}</span></div>
+                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8">
 
-                                                                <span>(4)</span></div>
-                                                            <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                                 <i class="fa fa-star{% if review.rating < 0.5 %}-o{% elif review.rating >= 0.5 and review.rating < 1 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating < 1.5 %}-o{% elif review.rating >= 1.5 and review.rating < 2 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating < 2.5 %}-o{% elif review.rating >= 2.5 and review.rating < 3 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating < 3.5 %}-o{% elif review.rating >= 3.5 and review.rating < 4 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating < 4.5 %}-o{% elif review.rating >= 4.5 and review.rating < 5 %}-half-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                                                <span>({{review.rating}})</span>
+                                                            </div>
+                                                            <p class="review-o__text">
+                                                                {{review.review}}
+                                                            </p>
                                                         </div>
-                                                        <div class="review-o u-s-m-b-15">
-                                                            <div class="review-o__info u-s-m-b-8">
+                                                        {% endfor %}
 
-                                                                <span class="review-o__name">John Doe</span>
 
-                                                                <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                                <span>(4)</span></div>
-                                                            <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                        </div>
-                                                        <div class="review-o u-s-m-b-15">
-                                                            <div class="review-o__info u-s-m-b-8">
-
-                                                                <span class="review-o__name">John Doe</span>
-
-                                                                <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                            <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                                <span>(4)</span></div>
-                                                            <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                        </div>
                                                     </div>
                                                 </form>
                                             </div>
@@ -670,11 +687,11 @@
                                                             <label class="gl-label" for="reviewer-text">YOUR REVIEW *</label>
                                                             <textarea class="text-area text-area--primary-style" id="reviewer-text"  name="review"></textarea></div>
                                                         <div>
-                                                            <p class="u-s-m-b-30">
+<!--                                                            <p class="u-s-m-b-30">-->
 
-                                                                <label class="gl-label" for="reviewer-name" >Review Title:</label>
+<!--                                                                <label class="gl-label" for="reviewer-name" >Review Title:</label>-->
 
-                                                                <input class="input-text input-text--primary-style" type="text"  name="subject" id="reviewer-name"></p>
+<!--                                                                <input class="input-text input-text&#45;&#45;primary-style" type="text"  name="subject" id="reviewer-name"></p>-->
 <!--                                                            <p class="u-s-m-b-30">-->
 
 <!--                                                                <label class="gl-label" for="reviewer-email">EMAIL *</label>-->
@@ -700,277 +717,10 @@
             <div class="u-s-p-b-90">
 
                 <!--====== Section Intro ======-->
-                <div class="section__intro u-s-m-b-46">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="section__text-wrap">
-                                    <h1 class="section__heading u-c-secondary u-s-m-b-12">CUSTOMER ALSO VIEWED</h1>
-
-                                    <span class="section__span u-c-grey">PRODUCTS THAT CUSTOMER VIEWED</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!--====== End - Section Intro ======-->
 
 
                 <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="container">
-                        <div class="slider-fouc">
-                            <div class="owl-carousel product-slider" data-item="4">
-                                <div class="u-s-m-b-30">
-                                    <div class="product-o product-o--hover-on">
-                                        <div class="product-o__wrap">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                <img class="aspect__img" src="images/product/electronic/product1.jpg" alt=""></a>
-                                            <div class="product-o__action-wrap">
-                                                <ul class="product-o__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <span class="product-o__category">
-
-                                            <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                        <span class="product-o__name">
-
-                                            <a href="product-detail.html">Beats Bomb Wireless Headphone</a></span>
-                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                            <span class="product-o__review">(20)</span></div>
-
-                                        <span class="product-o__price">$125.00
-
-                                            <span class="product-o__discount">$160.00</span></span>
-                                    </div>
-                                </div>
-                                <div class="u-s-m-b-30">
-                                    <div class="product-o product-o--hover-on">
-                                        <div class="product-o__wrap">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                <img class="aspect__img" src="images/product/electronic/product2.jpg" alt=""></a>
-                                            <div class="product-o__action-wrap">
-                                                <ul class="product-o__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <span class="product-o__category">
-
-                                            <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                        <span class="product-o__name">
-
-                                            <a href="product-detail.html">Red Wireless Headphone</a></span>
-                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                            <span class="product-o__review">(20)</span></div>
-
-                                        <span class="product-o__price">$125.00
-
-                                            <span class="product-o__discount">$160.00</span></span>
-                                    </div>
-                                </div>
-                                <div class="u-s-m-b-30">
-                                    <div class="product-o product-o--hover-on">
-                                        <div class="product-o__wrap">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                <img class="aspect__img" src="images/product/electronic/product3.jpg" alt=""></a>
-                                            <div class="product-o__action-wrap">
-                                                <ul class="product-o__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <span class="product-o__category">
-
-                                            <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                        <span class="product-o__name">
-
-                                            <a href="product-detail.html">Yellow Wireless Headphone</a></span>
-                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                            <span class="product-o__review">(20)</span></div>
-
-                                        <span class="product-o__price">$125.00
-
-                                            <span class="product-o__discount">$160.00</span></span>
-                                    </div>
-                                </div>
-                                <div class="u-s-m-b-30">
-                                    <div class="product-o product-o--hover-on">
-                                        <div class="product-o__wrap">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                <img class="aspect__img" src="images/product/electronic/product23.jpg" alt=""></a>
-                                            <div class="product-o__action-wrap">
-                                                <ul class="product-o__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <span class="product-o__category">
-
-                                            <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                        <span class="product-o__name">
-
-                                            <a href="product-detail.html">Razor Gear Ultra Slim 8GB Ram</a></span>
-                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                            <span class="product-o__review">(20)</span></div>
-
-                                        <span class="product-o__price">$125.00
-
-                                            <span class="product-o__discount">$160.00</span></span>
-                                    </div>
-                                </div>
-                                <div class="u-s-m-b-30">
-                                    <div class="product-o product-o--hover-on">
-                                        <div class="product-o__wrap">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                <img class="aspect__img" src="images/product/electronic/product26.jpg" alt=""></a>
-                                            <div class="product-o__action-wrap">
-                                                <ul class="product-o__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <span class="product-o__category">
-
-                                            <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                        <span class="product-o__name">
-
-                                            <a href="product-detail.html">Razor Gear Ultra Slim 12GB Ram</a></span>
-                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                            <span class="product-o__review">(20)</span></div>
-
-                                        <span class="product-o__price">$125.00
-
-                                            <span class="product-o__discount">$160.00</span></span>
-                                    </div>
-                                </div>
-                                <div class="u-s-m-b-30">
-                                    <div class="product-o product-o--hover-on">
-                                        <div class="product-o__wrap">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                <img class="aspect__img" src="images/product/electronic/product30.jpg" alt=""></a>
-                                            <div class="product-o__action-wrap">
-                                                <ul class="product-o__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Email me When the price drops"><i class="fas fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <span class="product-o__category">
-
-                                            <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                        <span class="product-o__name">
-
-                                            <a href="product-detail.html">Razor Gear Ultra Slim 16GB Ram</a></span>
-                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                            <span class="product-o__review">(20)</span></div>
-
-                                        <span class="product-o__price">$125.00
-
-                                            <span class="product-o__discount">$160.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!--====== End - Section Content ======-->
             </div>
             <!--====== End - Section 1 ======-->
