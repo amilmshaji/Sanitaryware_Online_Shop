@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% include 'alerts.html' %}
+
+              <script>
+                  setTimeout(function(){
+                    if ($('#message').length > 0){
+                      $('#message').remove();
+                      }
+                    },4000)
+
+              </script>
 
 
 
@@ -18,8 +28,8 @@
                                 <ul class="pd-breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.hml">Home</a></li>
-                                    <li class="has-separator">
+                                        <a href="#">Home</a></li>
+                                    <li class="is-marked">
 
                                         <a href="#">{{ single_product.category }}</a></li>
 <!--                                    <li class="has-separator">-->
@@ -206,9 +216,9 @@
 
 
 
-<!--                                <div class="u-s-m-b-15">-->
-<!--                                    <form class="pd-detail__form" action="{% url 'add_cart' single_product.id %}" method="POST">-->
-<!--                                        {% csrf_token %}-->
+                                <div class="u-s-m-b-15">
+                                    <form class="pd-detail__form" action="{% url 'add_cart' single_product.id %}" method="POST">
+                                        {% csrf_token %}
 
 <!--                                        <div class="u-s-m-b-15">-->
 
@@ -277,10 +287,10 @@
 <!--                                                    <label class="size__radio-label" for="xxl">XXL</label></div>-->
 <!--                                            </div>-->
 <!--                                        </div>-->
-<!--                                        <div class="pd-detail-inline-2">-->
-<!--                                            <div class="u-s-m-b-15">-->
+                                        <div class="pd-detail-inline-2">
+                                            <div class="u-s-m-b-15">
 
-<!--                                                &lt;!&ndash;====== Input Counter ======&ndash;&gt;-->
+                                                <!--====== Input Counter ======-->
 <!--                                                <div class="input-counter">-->
 
 <!--                                                    <span class="input-counter__minus fas fa-minus"></span>-->
@@ -288,29 +298,29 @@
 <!--                                                    <input class="input-counter__text input-counter&#45;&#45;text-primary-style" type="text" value="1" data-min="1" data-max="1000">-->
 
 <!--                                                    <span class="input-counter__plus fas fa-plus"></span></div>-->
-<!--                                                &lt;!&ndash;====== End - Input Counter ======&ndash;&gt;-->
-<!--                                            </div>-->
-<!--                                            <div class="u-s-m-b-15">-->
+                                                <!--====== End - Input Counter ======-->
+                                            </div>
+                                            <div class="u-s-m-b-15">
 
-<!--                                                <button class="btn btn&#45;&#45;e-brand-b-2" type="submit">Add to Cart</button></div>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                                <div class="u-s-m-b-15">-->
+                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="u-s-m-b-15">
 
-<!--                                    <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>-->
-<!--                                    <ul class="pd-detail__policy-list">-->
-<!--                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>-->
+                                    <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
+                                    <ul class="pd-detail__policy-list">
+                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>
 
-<!--                                            <span>Buyer Protection.</span></li>-->
-<!--                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>-->
+                                            <span>Buyer Protection.</span></li>
+                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>
 
-<!--                                            <span>Full Refund if you don't receive your order.</span></li>-->
-<!--                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>-->
+                                            <span>Full Refund if you don't receive your order.</span></li>
+                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>
 
-<!--                                            <span>Returns accepted if product not as described.</span></li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
+                                            <span>Returns accepted if product not as described.</span></li>
+                                    </ul>
+                                </div>
                             </div>
                             <!--====== End - Product Right Side Details ======-->
                         </div>

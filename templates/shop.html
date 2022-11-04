@@ -2,16 +2,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% include 'alerts.html' %}
+
+              <script>
+                  setTimeout(function(){
+                    if ($('#message').length > 0){
+                      $('#message').remove();
+                      }
+                    },4000)
+
+              </script>
 
         <!--====== App Content ======-->
         <div class="app-content">
 
             <!--====== Section 1 ======-->
             <div class="u-s-p-y-90">
+
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="shop-p">
+
                                 <div class="shop-p__toolbar u-s-m-b-30">
 
                                     <div class="shop-p__tool-style">

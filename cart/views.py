@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from . models import Cart, CartItem
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from shop_app.models import Product, Variation
 from django.core.exceptions import ObjectDoesNotExist
@@ -52,8 +53,12 @@ def add_cart(request, product_id):
                 index = ex_var_list.index(product_variation)
                 item_id = id[index]
                 item = CartItem.objects.get(product=product, id=item_id)
-                item.quantity += 1
-                item.save()
+                if item.product.stock > item.quantity:
+                    item.quantity += 1
+                    item.save()
+                else:
+                    messages.success(request, 'No more stock to add!')
+
             else:
                 item = CartItem.objects.create(
                     product=product, quantity=1, user=current_user)
@@ -72,7 +77,9 @@ def add_cart(request, product_id):
                 cart_item.variations.add(*product_variation)
 
             cart_item.save()
-        return redirect('cart')
+        # return HttpResponseRedirect("")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        # return redirect('cart')
     else:
         product_variation = []
         if request.method == 'POST':
@@ -132,7 +139,8 @@ def add_cart(request, product_id):
                 cart_item.variations.add(*product_variation)
 
             cart_item.save()
-        return redirect('cart')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        # return redirect('cart')
 
 
 def remove_cart(request, product_id, cart_item_id):
@@ -182,8 +190,8 @@ def cart(request, total=0, quantity=0, cart_item=None, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price*cart_item.quantity)
             quantity += cart_item.quantity
-        tax = (2*total)/100
-        grand_total = total+tax
+        # tax = (2*total)/100
+        # grand_total = total
     except ObjectDoesNotExist:
         pass
 
@@ -191,8 +199,8 @@ def cart(request, total=0, quantity=0, cart_item=None, cart_items=None):
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
-        'tax': tax,
-        'grand_total': grand_total,
+        # 'tax': tax,
+        # 'grand_total': grand_total,
     }
 
     return render(request, 'cart.html', context)

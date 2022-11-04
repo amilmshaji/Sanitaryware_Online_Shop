@@ -40,8 +40,8 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    created_date = models.DateTimeField(auto_now_add=True)
-    modified_date = models.DateTimeField(auto_now=True)
+    created_date = models.DateField(auto_now_add=True)
+    modified_date = models.DateField(auto_now=True)
 
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
@@ -107,8 +107,8 @@ class ReviewRating(models.Model):
     rating = models.FloatField()
     ip = models.CharField(max_length=20, blank=True,editable=False)
     status = models.BooleanField(default=True,editable=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return str(self.product)

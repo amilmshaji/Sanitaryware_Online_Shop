@@ -40,7 +40,6 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'stock',
         'category',
-        'created_date',
         'is_available',
         'is_featured',
 

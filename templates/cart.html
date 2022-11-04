@@ -65,6 +65,16 @@
                             <div class="col-lg-12">
                                 <div class="section__text-wrap">
                                     <h1 class="section__heading u-c-secondary">SHOPPING CART</h1>
+                                                                                                  {% include 'alerts.html' %}
+
+              <script>
+                  setTimeout(function(){
+                    if ($('#message').length > 0){
+                      $('#message').remove();
+                      }
+                    },4000)
+
+              </script>
                                 </div>
                             </div>
                         </div>
@@ -100,12 +110,12 @@
 
                                                                 <a href="#">{{cart_item.product.category}}</a></span>
                                                             <ul class="table-p__variant-list">
-                                                                <li>
+<!--                                                                <li>-->
 
-                                                                    <span>Size: 22</span></li>
-                                                                <li>
+<!--                                                                    <span>Size: 22</span></li>-->
+<!--                                                                <li>-->
 
-                                                                    <span>Color: Red</span></li>
+<!--                                                                    <span>Color: Red</span></li>-->
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -151,6 +161,7 @@
                                         <a class="route-box__link" href="{% url 'store' %}"><i class="fas fa-long-arrow-alt-left"></i>
 
                                             <span>CONTINUE SHOPPING</span></a></div>
+
 <!--                                    <div class="route-box__g2">-->
 
 <!--                                        <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>-->
@@ -160,6 +171,7 @@
 <!--                                        <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>-->
 
 <!--                                            <span>UPDATE CART</span></a></div>-->
+
                                 </div>
                             </div>
                         </div>
@@ -172,6 +184,7 @@
 
             <!--====== Section 3 ======-->
             <div class="u-s-p-b-60">
+
 
                 <!--====== Section Content ======-->
                 <div class="section__content">
@@ -240,23 +253,23 @@
 <!--                                                                <td>SHIPPING</td>-->
 <!--                                                                <td>₹400</td>-->
 <!--                                                            </tr>-->
-                                                            <tr>
-                                                                <td>TAX</td>
-                                                                <td>₹{{tax}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>SUBTOTAL</td>
-                                                                <td>₹{{total}}</td>
-                                                            </tr>
+<!--                                                            <tr>-->
+<!--                                                                <td>TAX</td>-->
+<!--                                                                <td>₹{{tax}}</td>-->
+<!--                                                            </tr>-->
+<!--                                                            <tr>-->
+<!--                                                                <td>SUBTOTAL</td>-->
+<!--                                                                <td>₹{{total}}</td>-->
+<!--                                                            </tr>-->
                                                             <tr>
                                                                 <td>GRAND TOTAL</td>
-                                                                <td>₹{{grand_total}}</td>
+                                                                <td>₹{{total}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <a class="empty__redirect-link btn--e-brand" href="{% url 'checkout' %}">PROCEED TO CHECKOUT</a></div>
+                                                    <a class="empty__redirect-link btn--e-brand" href="#">PROCEED TO CHECKOUT</a></div>
 
 <!--                                                    <button class="btn btn&#45;&#45;e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>-->
                                             </div>
