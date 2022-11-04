@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core import paginator
 from django.core.checks import messages
 from django.http.response import HttpResponse
@@ -116,7 +117,7 @@ def search(request):
     }
     return render(request, 'shop.html', context)
 
-
+@login_required(login_url='login')
 def submit_review(request, product_id):
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
