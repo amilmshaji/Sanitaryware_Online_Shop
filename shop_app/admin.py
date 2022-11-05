@@ -85,13 +85,25 @@ admin.site.register(Product, ProductAdmin)
 
 class RatingAdmin(admin.ModelAdmin):
     list_display = (
-        'product',
         'user',
+        'product',
         'review',
         'created_at',
 
 
     )
+    # This will help you to disbale add functionality
+    def has_add_permission(self, request):
+        return False
 
+        # This will help you to disable delete functionaliyt
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+        # This will help you to disable change functionality
+
+    def has_change_permission(self, request, obj=None):
+        return False
 
 admin.site.register(ReviewRating, RatingAdmin)

@@ -26,14 +26,14 @@ def login(request):
         user=authenticate(email=email, password=password)
         if user is not None:
             auth.login(request, user)
-            messages.success(request, 'you are logged in')
+            messages.success(request, 'you are logged in.....!')
             request.session['email']=email
             if user.is_admin:
                 return redirect('admin/')
             else:
                 return redirect('home')
         else:
-            messages.error(request, 'invalid login credentials')
+            messages.error(request, 'Invalid login credentials')
             return redirect('login')
     return render(request, 'login.html')
 

@@ -300,9 +300,20 @@
 <!--                                                    <span class="input-counter__plus fas fa-plus"></span></div>-->
                                                 <!--====== End - Input Counter ======-->
                                             </div>
+                                             {% if single_product.stock <= 0 %}
                                             <div class="u-s-m-b-15">
 
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
+                                                <a class="btn btn--e-brand-b-2" >Out Of Stock</a>
+
+                                            </div>
+                                            {% else %}
+                                            <div class="u-s-m-b-15">
+
+                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
+
+                                            </div>
+                                            {% endif %}
+
                                         </div>
                                     </form>
                                 </div>

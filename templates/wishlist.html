@@ -111,8 +111,12 @@
                                             </div>
                                         </div>
                                         <div class="w-r__wrap-2">
-
+                                            {% if wishlist_item.stock <= 0 %}
+                                            <a class="w-r__link btn--e-brand-b-2" href="#">OUT OF STOCK</a>
+                                            {% else %}
                                             <a class="w-r__link btn--e-brand-b-2" href="{% url 'add_cart' wishlist_item.product.id %}" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
+                                            {% endif %}
+
 
                                             <a class="w-r__link btn--e-transparent-platinum-b-2" href="{{wishlist_item.product.get_url}}" >VIEW</a>
 
