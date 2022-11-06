@@ -4,7 +4,7 @@ from django.core.checks import messages
 from django.http.response import HttpResponse, HttpResponseRedirect
 
 from .forms import ReviewForm
-from .models import Category
+from .models import Category, Other_Product
 from django.shortcuts import get_object_or_404, redirect, render
 from . models import Product, ReviewRating, Productgallery
 from cart.models import CartItem, Cart
@@ -17,7 +17,7 @@ from django.contrib import messages
 # with the mouse
 
 # Import the library pygame
-import pygame
+import pygame as pg
 from pygame.locals import *
 
 
@@ -150,27 +150,70 @@ def submit_review(request, product_id):
                     request, 'Thank You ! Your Review Has Been Submitted')
                 return redirect(url)
 
-def p(request):
+
+def view(request):
+    url = request.META.get('HTTP_REFERER')
+    # current_user = request.user
+    if request.method=="POST":
+        # type = request.POST.get('type')
+        # rent = request.POST.get('rent')
+        # ad_title = request.POST.get('ad_title')
+        # add_info = request.POST.get('add_info')
+        images=request.FILES['images']
+        other=Other_Product(images=images,user=request.user)
+        other.save()
+        messages.success(request, 'Your product is kept for rent!')
+
+        return redirect(url)
+    return render(request, 'product-detail-variable.html')
+
+
+
+
+
+def p(request, product_id):
+    h_products = Other_Product.objects.filter(user=request.user)
+    product = Productgallery.objects.get(id=product_id)
+    print(h_products)
+    for i in h_products:
+        user=i.user
+        images=i.images
+    for j in product:
+        prod=i.image
+
+    print(prod)
+    print(images)
+    print(user)
+
     # Take colors input
     YELLOW = (255, 255, 0)
     BLUE = (0, 0, 255)
 
+
     # Construct the GUI game
-    pygame.init()
+    pg.init()
 
     # Set dimensions of game GUI
-    w, h = 600, 600
-    screen = pygame.display.set_mode((w, h))
+    w, h = 1200, 600
+    screen = pg.display.set_mode((w, h))
+
+    # Set the size for the image
+    DEFAULT_IMAGE_SIZE = (200, 200)
 
     # Take image as input
-    img = pygame.image.load('a3.png')
-    img1 = pygame.image.load('m10.jpg')
+    img = pg.image.load('a3.png')
 
+    # Scale the image to your needed size
+    img = pg.transform.scale(img, DEFAULT_IMAGE_SIZE)
+
+    img1 = pg.image.load(images)
     img.convert()
     img1.convert()
+    img2 = pg.transform.scale(img1, (1200, 600))
 
 
     # Draw rectangle around the image
+
     rect = img.get_rect()
     rect.center = w // 2, h // 2
 
@@ -182,7 +225,7 @@ def p(request):
     # is in running state
     while running:
 
-        for event in pygame.event.get():
+        for event in pg.event.get():
 
             # Close if the user quits the
             # game
@@ -210,17 +253,17 @@ def p(request):
         # Set screen color and image on screen
         screen.fill(YELLOW)
         # screen.blit(img1, rect)
-        screen.blit(img1, (0, 0))
+        screen.blit(img2, (0, 0))
 
         screen.blit(img, rect)
 
         # Construct the border to the image
-        pygame.draw.rect(screen, BLUE, rect, 2)
+        pg.draw.rect(screen, BLUE, rect, 2)
 
         # Update the GUI pygame
-        pygame.display.update()
+        pg.display.update()
 
     # Quit the GUI game
-    pygame.quit()
+    pg.quit()
     return render(request, 'p.html')
 

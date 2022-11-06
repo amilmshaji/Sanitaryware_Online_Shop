@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from .models import Product, Variation, ReviewRating, Productgallery
+from .models import Product, Variation, ReviewRating, Productgallery, Other_Product
 import admin_thumbnails
 
 from .models import Category
@@ -107,3 +107,9 @@ class RatingAdmin(admin.ModelAdmin):
         return False
 
 admin.site.register(ReviewRating, RatingAdmin)
+
+admin.site.register(Other_Product)
+
+
+
+

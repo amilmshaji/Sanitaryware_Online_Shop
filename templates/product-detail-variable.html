@@ -332,6 +332,12 @@
                                             <span>Returns accepted if product not as described.</span></li>
                                     </ul>
                                 </div>
+
+
+
+
+
+
                             </div>
                             <!--====== End - Product Right Side Details ======-->
                         </div>
@@ -350,9 +356,9 @@
 <!--                                        <li class="nav-item">-->
 
 <!--                                            <a class="nav-link" data-toggle="tab" href="#pd-desc">DESCRIPTION</a></li>-->
-<!--                                        <li class="nav-item">-->
+                                        <li class="nav-item">
 
-<!--                                            <a class="nav-link" data-toggle="tab" href="#pd-tag">TAGS</a></li>-->
+                                            <a class="nav-link" data-toggle="tab" href="#pd-tag">TAGS</a></li>
                                         <li class="nav-item">
 
                                             <a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
@@ -439,17 +445,27 @@
                                         <div class="pd-tab__tag">
                                             <h2 class="u-s-m-b-15">ADD YOUR TAGS</h2>
                                             <div class="u-s-m-b-15">
-                                                <form>
+                                                <form method="post" action="{% url 'view' %}"  enctype="multipart/form-data" onsubmit="return validate();">
+                                                    {% csrf_token %}
+                                                    <label class="gl-label" for="images">Image *</label>
 
-                                                    <input class="input-text input-text--primary-style" type="text">
+
+                                                    <input class="input-text input-text--primary-style" type="file" type="file" name="images" id="images" placeholder="Image">
 
                                                     <button class="btn btn--e-brand-b-2" type="submit">ADD TAGS</button></form>
+                                               <a href="{% url 'p' single_product.id %}">
+                                                   <button class="btn btn--e-brand-b-2" type="submit" >DISPLAY</button></a>
+
+                                                </form>
+
                                             </div>
 
                                             <span class="gl-text">Use spaces to separate tags. Use single quotes (') for phrases.</span>
                                         </div>
                                     </div>
                                     <!--====== End - Tab 2 ======-->
+
+
 
 
                                     <!--====== Tab 3 ======-->

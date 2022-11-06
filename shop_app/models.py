@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.html import mark_safe
 
+
+
 from django.urls.base import reverse
 from accounts.models import Account
 from django.db.models import Aggregate, Avg, Count
@@ -124,3 +126,13 @@ class Productgallery(models.Model):
     class Meta:
         verbose_name='Product Gallery'
         verbose_name_plural='Product gallery'
+
+
+from django_resized import ResizedImageField
+
+
+
+class Other_Product(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True,editable=False,unique=True)
+
+    images = ResizedImageField(upload_to='view/photos',)
