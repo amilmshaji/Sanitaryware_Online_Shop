@@ -24,8 +24,6 @@ def editprofile(request):
     # order_count = orders.count()
     userprofile=Account.objects.get(id=request.user.id)
 
-
-
     if request.method == 'POST':
         fname = request.POST.get("fname")
         lname = request.POST.get("lname")

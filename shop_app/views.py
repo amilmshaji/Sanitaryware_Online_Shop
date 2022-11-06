@@ -172,16 +172,15 @@ def view(request):
 
 
 def p(request, product_id):
+    url = request.META.get('HTTP_REFERER')
     h_products = Other_Product.objects.filter(user=request.user)
-    product = Productgallery.objects.get(id=product_id)
+    product = Product.objects.get(id=product_id)
     print(h_products)
     for i in h_products:
         user=i.user
         images=i.images
-    for j in product:
-        prod=i.image
 
-    print(prod)
+    print(product.display)
     print(images)
     print(user)
 
@@ -201,7 +200,7 @@ def p(request, product_id):
     DEFAULT_IMAGE_SIZE = (200, 200)
 
     # Take image as input
-    img = pg.image.load('a3.png')
+    img = pg.image.load(product.display)
 
     # Scale the image to your needed size
     img = pg.transform.scale(img, DEFAULT_IMAGE_SIZE)
@@ -265,5 +264,5 @@ def p(request, product_id):
 
     # Quit the GUI game
     pg.quit()
-    return render(request, 'p.html')
+    return redirect(url)
 
