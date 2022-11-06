@@ -17,8 +17,6 @@ from django.core.mail import send_mail
 # Create your views here.
 
 
-
-
 def login(request):
     if request.method == 'POST':
         email=request.POST['email']
