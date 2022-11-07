@@ -153,16 +153,11 @@ def submit_review(request, product_id):
 
 def view(request):
     url = request.META.get('HTTP_REFERER')
-    # current_user = request.user
     if request.method=="POST":
-        # type = request.POST.get('type')
-        # rent = request.POST.get('rent')
-        # ad_title = request.POST.get('ad_title')
-        # add_info = request.POST.get('add_info')
         images=request.FILES['images']
         other=Other_Product(images=images,user=request.user)
         other.save()
-        messages.success(request, 'Your product is kept for rent!')
+        messages.success(request, 'Your bathroom image is kept for display!')
 
         return redirect(url)
     return render(request, 'product-detail-variable.html')
@@ -180,9 +175,7 @@ def p(request, product_id):
         user=i.user
         images=i.images
 
-    print(product.display)
-    print(images)
-    print(user)
+
 
     # Take colors input
     YELLOW = (255, 255, 0)
@@ -191,13 +184,16 @@ def p(request, product_id):
 
     # Construct the GUI game
     pg.init()
+    pg.display.set_caption('Your Bathroom Design')
 
     # Set dimensions of game GUI
     w, h = 1200, 600
     screen = pg.display.set_mode((w, h))
+    WIDTH = 200
+    HEIGHT = 200
 
     # Set the size for the image
-    DEFAULT_IMAGE_SIZE = (200, 200)
+    DEFAULT_IMAGE_SIZE = (WIDTH, HEIGHT)
 
     # Take image as input
     img = pg.image.load(product.display)
@@ -209,6 +205,11 @@ def p(request, product_id):
     img.convert()
     img1.convert()
     img2 = pg.transform.scale(img1, (1200, 600))
+
+
+    # start_button = pg.draw.rect(screen, (0, 0, 240), (150, 90, 100, 50));
+    # continue_button = pg.draw.rect(screen, (0, 244, 0), (150, 160, 100, 50));
+    # quit_button = pg.draw.rect(screen, (244, 0, 0), (150, 230, 100, 50));
 
 
     # Draw rectangle around the image
@@ -223,6 +224,17 @@ def p(request, product_id):
     # Setting what happens when game
     # is in running state
     while running:
+        # events = pg.event.get()
+
+        #zoom out function
+
+        # button_down = pg.mouse.get_pressed()
+        # if button_down == (1, 0, 0):
+        #     print("Clicked")
+        #     WIDTH = WIDTH + 10
+        #     HEIGHT = HEIGHT + 10
+        #     img = pg.transform.scale(img, (WIDTH, HEIGHT))
+
 
         for event in pg.event.get():
 

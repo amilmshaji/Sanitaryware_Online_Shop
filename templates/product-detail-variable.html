@@ -443,16 +443,18 @@
                                     <!--====== Tab 2 ======-->
                                     <div class="tab-pane" id="pd-tag">
                                         <div class="pd-tab__tag">
-                                            <h2 class="u-s-m-b-15">ADD YOUR TAGS</h2>
+                                            <h2 class="u-s-m-b-15">Create Your own bathroom design</h2>
+
+<!--                                            <h2 class="u-s-m-b-15">ADD YOUR BATHROOM IMAGE</h2>-->
                                             <div class="u-s-m-b-15">
                                                 <form method="post" action="{% url 'view' %}"  enctype="multipart/form-data" onsubmit="return validate();">
                                                     {% csrf_token %}
-                                                    <label class="gl-label" for="images">Image *</label>
+                                                    <label class="gl-label" for="images">Add your bathroom image</label>
 
 
                                                     <input class="input-text input-text--primary-style" type="file" type="file" name="images" id="images" placeholder="Image">
 
-                                                    <button class="btn btn--e-brand-b-2" type="submit">ADD TAGS</button></form>
+                                                    <button class="btn btn--e-brand-b-2" type="submit">ADD IMAGE</button></form>
                                                <a href="{% url 'p' single_product.id %}">
                                                    <button class="btn btn--e-brand-b-2" type="submit" >DISPLAY</button></a>
 
