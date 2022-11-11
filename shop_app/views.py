@@ -324,9 +324,6 @@ def p(request, product_id):
         # else:
         #     pg.draw.rect(screen, color_dark, [w1, h1, 140, 40])
 
-
-
-
         # pg.draw.rect(screen, BLUE, rect, 2)  # Construct the border to the image
 
 
