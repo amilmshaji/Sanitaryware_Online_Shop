@@ -207,18 +207,15 @@ def p(request, product_id):
     img1.convert()
     img2 = pg.transform.scale(img1, (1200, 600))
 
+    # Draw rectangle around the image
 
+    rect = img.get_rect()
+    rect.center = w // 2, h // 2
 
+    # Set running and moving values
+    running = True
+    moving = False
 
-    #for button showing need to be customised
-    # white color
-    color = (255, 255, 255)
-
-    # light shade of the button
-    color_light = (170, 170, 170)
-
-    # dark shade of the button
-    color_dark = (100, 100, 100)
 
     # stores the width of the
     # screen into a variable
@@ -228,30 +225,9 @@ def p(request, product_id):
     # screen into a variable
     height = screen.get_height()
 
-    # defining a font
-    smallfont = pg.font.SysFont('Corbel', 35)
-
-    # rendering a text written in
-    # this font
-    text = smallfont.render('quit', True, color)
 
 
 
-
-
-    # start_button = pg.draw.rect(screen, (0, 0, 240), (150, 90, 100, 50));
-    # continue_button = pg.draw.rect(screen, (0, 244, 0), (150, 160, 100, 50));
-    # quit_button = pg.draw.rect(screen, (244, 0, 0), (150, 230, 100, 50));
-
-
-    # Draw rectangle around the image
-
-    rect = img.get_rect()
-    rect.center = w // 2, h // 2
-
-    # Set running and moving values
-    running = True
-    moving = False
 
     # Setting what happens when game
     # is in running state
@@ -293,13 +269,30 @@ def p(request, product_id):
             elif event.type == MOUSEMOTION and moving:
                 rect.move_ip(event.rel)
 
-        # Set screen color and image on screen
-        screen.fill(YELLOW)
-        # screen.blit(img1, rect)
-        screen.blit(img2, (0, 0))
 
+            if event.type == pg.MOUSEBUTTONDOWN:  #if condition for buttons
+
+                mouse = pg.mouse.get_pos()
+                w1=1056
+                h1=230
+                h2=160
+                if w1 <= mouse[0] <= w1 + 140 and h1 <= mouse[1] <= h1 + 40:    # if the mouse is clicked on the button the game is terminated
+                    pg.quit()
+                    return redirect(url)
+
+                elif w1 <= mouse[0] <= w1 + 140 and h2 <= mouse[1] <= h1 + 40:
+                    pg.quit()
+                    return redirect(url)
+
+
+        screen.fill(YELLOW)           # Set screen color and image on screen
+        screen.blit(img2, (0, 0))
         screen.blit(img, rect)
-        pg.draw.rect(screen, color_light, [width / 2, height / 2, 140, 40])
+
+
+        start_button = pg.draw.rect(screen, (0, 0, 240), (1050, 90, 100, 50));
+        continue_button = pg.draw.rect(screen, (0, 244, 0), (1050, 160, 100, 50));
+        quit_button = pg.draw.rect(screen, (244, 0, 0), (1050, 230, 100, 50));
 
 
         # Construct the border to the image
