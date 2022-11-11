@@ -192,6 +192,7 @@ def p(request, product_id):
     WIDTH = 200
     HEIGHT = 200
 
+
     # Set the size for the image
     DEFAULT_IMAGE_SIZE = (WIDTH, HEIGHT)
 
@@ -205,6 +206,37 @@ def p(request, product_id):
     img.convert()
     img1.convert()
     img2 = pg.transform.scale(img1, (1200, 600))
+
+
+
+
+    #for button showing need to be customised
+    # white color
+    color = (255, 255, 255)
+
+    # light shade of the button
+    color_light = (170, 170, 170)
+
+    # dark shade of the button
+    color_dark = (100, 100, 100)
+
+    # stores the width of the
+    # screen into a variable
+    width = screen.get_width()
+
+    # stores the height of the
+    # screen into a variable
+    height = screen.get_height()
+
+    # defining a font
+    smallfont = pg.font.SysFont('Corbel', 35)
+
+    # rendering a text written in
+    # this font
+    text = smallfont.render('quit', True, color)
+
+
+
 
 
     # start_button = pg.draw.rect(screen, (0, 0, 240), (150, 90, 100, 50));
@@ -267,6 +299,8 @@ def p(request, product_id):
         screen.blit(img2, (0, 0))
 
         screen.blit(img, rect)
+        pg.draw.rect(screen, color_light, [width / 2, height / 2, 140, 40])
+
 
         # Construct the border to the image
         pg.draw.rect(screen, BLUE, rect, 2)

@@ -1,71 +1,71 @@
-# Python program to move the image
-# with the mouse
-
-# Import the library pygame
 import pygame
-from pygame.locals import *
+import sys
 
-# Take colors input
-YELLOW = (255, 255, 0)
-BLUE = (0, 0, 255)
-
-# Construct the GUI game
+# initializing the constructor
 pygame.init()
 
-# Set dimensions of game GUI
-w, h = 600, 600
-screen = pygame.display.set_mode((w, h))
+# screen resolution
+res = (720, 720)
 
-# Take image as input
-img = pygame.image.load('a3.png')
-img.convert()
+# opens up a window
+screen = pygame.display.set_mode(res)
 
-# Draw rectangle around the image
-rect = img.get_rect()
-rect.center = w // 2, h // 2
+# white color
+color = (255, 255, 255)
 
-# Set running and moving values
-running = True
-moving = False
+# light shade of the button
+color_light = (170, 170, 170)
 
-# Setting what happens when game
-# is in running state
-while running:
+# dark shade of the button
+color_dark = (100, 100, 100)
 
-    for event in pygame.event.get():
+# stores the width of the
+# screen into a variable
+width = screen.get_width()
 
-        # Close if the user quits the
-        # game
-        if event.type == QUIT:
-            running = False
+# stores the height of the
+# screen into a variable
+height = screen.get_height()
 
-        # Making the image move
-        elif event.type == MOUSEBUTTONDOWN:
-            if rect.collidepoint(event.pos):
-                moving = True
+# defining a font
+smallfont = pygame.font.SysFont('Corbel', 35)
 
-        # Set moving as False if you want
-        # to move the image only with the
-        # mouse click
-        # Set moving as True if you want
-        # to move the image without the
-        # mouse click
-        elif event.type == MOUSEBUTTONUP:
-            moving = False
+# rendering a text written in
+# this font
+text = smallfont.render('quit', True, color)
 
-        # Make your image move continuously
-        elif event.type == MOUSEMOTION and moving:
-            rect.move_ip(event.rel)
+while True:
 
-    # Set screen color and image on screen
-    screen.fill(YELLOW)
-    screen.blit(img, rect)
+    for ev in pygame.event.get():
 
-    # Construct the border to the image
-    pygame.draw.rect(screen, BLUE, rect, 2)
+        if ev.type == pygame.QUIT:
+            pygame.quit()
 
-    # Update the GUI pygame
+        # checks if a mouse is clicked
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+
+            # if the mouse is clicked on the
+            # button the game is terminated
+            if width / 2 <= mouse[0] <= width / 2 + 140 and height / 2 <= mouse[1] <= height / 2 + 40:
+                pygame.quit()
+
+    # fills the screen with a color
+    screen.fill((60, 25, 60))
+
+    # stores the (x,y) coordinates into
+    # the variable as a tuple
+    mouse = pygame.mouse.get_pos()
+
+    # if mouse is hovered on a button it
+    # changes to lighter shade
+    if width / 2 <= mouse[0] <= width / 2 + 140 and height / 2 <= mouse[1] <= height / 2 + 40:
+        pygame.draw.rect(screen, color_light, [width / 2, height / 2, 140, 40])
+
+    else:
+        pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 140, 40])
+
+    # superimposing the text onto our button
+    screen.blit(text, (width / 2 + 50, height / 2))
+
+    # updates the frames of the game
     pygame.display.update()
-
-# Quit the GUI game
-pygame.quit()
