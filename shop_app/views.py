@@ -193,22 +193,20 @@ def p(request, product_id):
     HEIGHT = 200
 
 
-    # Set the size for the image
-    DEFAULT_IMAGE_SIZE = (WIDTH, HEIGHT)
+    DEFAULT_IMAGE_SIZE = (WIDTH, HEIGHT)  # Set the size for the image
 
-    # Take image as input
-    img = pg.image.load(product.display)
+    img = pg.image.load(product.display)  # Take image as input -product image
+    img = pg.transform.scale(img, DEFAULT_IMAGE_SIZE)  # Scale the image to your needed size
 
-    # Scale the image to your needed size
-    img = pg.transform.scale(img, DEFAULT_IMAGE_SIZE)
 
-    img1 = pg.image.load(images)
+    img1 = pg.image.load(images) #design image background
     img.convert()
     img1.convert()
     img2 = pg.transform.scale(img1, (1200, 600))
 
-    # Draw rectangle around the image
 
+
+    # Draw rectangle around the image
     rect = img.get_rect()
     rect.center = w // 2, h // 2
 
@@ -226,24 +224,9 @@ def p(request, product_id):
     height = screen.get_height()
 
 
-
-
-
     # Setting what happens when game
     # is in running state
     while running:
-        # events = pg.event.get()
-
-        #zoom out function
-
-        # button_down = pg.mouse.get_pressed()
-        # if button_down == (1, 0, 0):
-        #     print("Clicked")
-        #     WIDTH = WIDTH + 10
-        #     HEIGHT = HEIGHT + 10
-        #     img = pg.transform.scale(img, (WIDTH, HEIGHT))
-
-
         for event in pg.event.get():
 
             # Close if the user quits the
@@ -255,18 +238,12 @@ def p(request, product_id):
             elif event.type == MOUSEBUTTONDOWN:
                 if rect.collidepoint(event.pos):
                     moving = True
+            elif event.type == MOUSEBUTTONUP: # Set moving as False if you want to move the image only with the mouse click
+                moving = False                 # Set moving as True if you want to move the image without the mouse click
 
-            # Set moving as False if you want
-            # to move the image only with the
-            # mouse click
-            # Set moving as True if you want
-            # to move the image without the
-            # mouse click
-            elif event.type == MOUSEBUTTONUP:
-                moving = False
 
-            # Make your image move continuously
-            elif event.type == MOUSEMOTION and moving:
+            elif event.type == MOUSEMOTION and moving: # Make your image move continuously
+
                 rect.move_ip(event.rel)
 
 
@@ -274,18 +251,29 @@ def p(request, product_id):
 
                 mouse = pg.mouse.get_pos()
                 w1=1056
-                h1=230
+                h1=90
                 h2=160
-                if w1 <= mouse[0] <= w1 + 140 and h1 <= mouse[1] <= h1 + 40:    # if the mouse is clicked on the button the game is terminated
+                h3=230
+                if w1 <= mouse[0] <= w1 + 140 and h1 <= mouse[1] <= h1 + 40:
+                    if WIDTH <= 220 and HEIGHT <= 220:# zoom out product image
+                        WIDTH = WIDTH + 5
+                        HEIGHT = HEIGHT + 5
+                        img = pg.transform.scale(img, (WIDTH, HEIGHT))
+
+                elif w1 <= mouse[0] <= w1 + 140 and h2 <= mouse[1] <= h2 + 40:  # zoom in product image
+                    if WIDTH >= 180 and HEIGHT >= 180:
+
+                        WIDTH = WIDTH - 5
+                        HEIGHT = HEIGHT - 5
+                        img = pg.transform.scale(img, (WIDTH, HEIGHT))
+
+                elif w1 <= mouse[0] <= w1 + 140 and h3 <= mouse[1] <= h3 + 40:  # quit window button
                     pg.quit()
                     return redirect(url)
 
-                elif w1 <= mouse[0] <= w1 + 140 and h2 <= mouse[1] <= h1 + 40:
-                    pg.quit()
-                    return redirect(url)
 
 
-        screen.fill(YELLOW)           # Set screen color and image on screen
+        screen.fill(YELLOW)  # set screen color and image on screen
         screen.blit(img2, (0, 0))
         screen.blit(img, rect)
 
@@ -294,9 +282,53 @@ def p(request, product_id):
         continue_button = pg.draw.rect(screen, (0, 244, 0), (1050, 160, 100, 50));
         quit_button = pg.draw.rect(screen, (244, 0, 0), (1050, 230, 100, 50));
 
+        w1 = 1056
+        h1 = 90
+        h2 = 160
+        h3 = 230
 
-        # Construct the border to the image
-        pg.draw.rect(screen, BLUE, rect, 2)
+        # white color
+        color = (255, 255, 255)
+
+
+        # defining a font
+        smallfont = pg.font.SysFont('Corbel', 35)
+
+        # rendering a text written in
+        # this font
+        text = smallfont.render('quit', True, color)
+        screen.blit(text, (w1, h3))
+        text1 = smallfont.render('+', True, color)
+        screen.blit(text1, (w1, h1))
+        text2 = smallfont.render('-', True, color)
+        screen.blit(text2, (w1, h2))
+
+        # w1 = 1056
+        # h1 = 90
+        # h2 = 160
+        # h3 = 230
+        #
+        # # light shade of the button
+        # color_light = (170, 170, 170)
+        #
+        # # dark shade of the button
+        # color_dark = (100, 100, 100)
+        #
+        # # if mouse is hovered on a button it
+        # # changes to lighter shade
+        # mouse = pg.mouse.get_pos()
+        #
+        # if w1 <= mouse[0] <= width / 2 + 140 and h1 <= mouse[1] <= h1 + 40:
+        #     pg.draw.rect(screen, color_light, [w1, h1, 140, 40])
+        #
+        # else:
+        #     pg.draw.rect(screen, color_dark, [w1, h1, 140, 40])
+
+
+
+
+        # pg.draw.rect(screen, BLUE, rect, 2)  # Construct the border to the image
+
 
         # Update the GUI pygame
         pg.display.update()
