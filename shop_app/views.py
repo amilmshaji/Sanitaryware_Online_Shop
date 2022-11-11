@@ -219,6 +219,7 @@ def p(request, product_id):
     # screen into a variable
     width = screen.get_width()
 
+
     # stores the height of the
     # screen into a variable
     height = screen.get_height()
