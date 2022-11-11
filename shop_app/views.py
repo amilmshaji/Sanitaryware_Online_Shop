@@ -4,7 +4,7 @@ from django.core.checks import messages
 from django.http.response import HttpResponse, HttpResponseRedirect
 
 from .forms import ReviewForm
-from .models import Category, Other_Product
+from .models import Category, Product_Display
 from django.shortcuts import get_object_or_404, redirect, render
 from . models import Product, ReviewRating, Productgallery
 from cart.models import CartItem, Cart
@@ -153,13 +153,26 @@ def submit_review(request, product_id):
 
 def view(request):
     url = request.META.get('HTTP_REFERER')
-    if request.method=="POST":
-        images=request.FILES['images']
-        other=Other_Product(images=images,user=request.user)
-        other.save()
-        messages.success(request, 'Your bathroom image is kept for display!')
+    other_exist=Product_Display.objects.filter(user=request.user).exists()
+    if other_exist:
+        other = Product_Display.objects.get(user=request.user)
+        if request.method == "POST":
+            images = request.FILES['images']
+            other.images = images
+            other.save()
+            messages.success(request, 'Your bathroom image is kept for display!')
+            return redirect(url)
+    else:
+        if request.method == "POST":
+            images = request.FILES['images']
+            other = Product_Display(images=images, user=request.user)
+            other.save()
+            messages.success(request, 'Your bathroom image is kept for display!')
+            return redirect(url)
 
-        return redirect(url)
+
+
+
     return render(request, 'product-detail-variable.html')
 
 
@@ -168,7 +181,7 @@ def view(request):
 
 def p(request, product_id):
     url = request.META.get('HTTP_REFERER')
-    h_products = Other_Product.objects.filter(user=request.user)
+    h_products = Product_Display.objects.filter(user=request.user)
     product = Product.objects.get(id=product_id)
     print(h_products)
     for i in h_products:

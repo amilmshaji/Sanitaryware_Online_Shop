@@ -133,7 +133,7 @@ from django_resized import ResizedImageField
 
 
 
-class Other_Product(models.Model):
+class Product_Display(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True,editable=False,unique=True)
 
-    images = ResizedImageField(upload_to='view/photos',)
+    images = ResizedImageField(upload_to='view/photos',null=True, blank=True)
