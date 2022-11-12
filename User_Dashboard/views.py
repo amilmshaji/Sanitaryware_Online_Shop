@@ -66,3 +66,11 @@ def changePassword(request):
             messages.error(request, 'Password does not match')
             return redirect('changePassword')
     return render(request, 'dashboard/change_password.html')
+
+
+def addressbook(request):
+    return render(request, 'dashboard/dash-address-book.html')
+
+def addressadd(request):
+    return render(request, 'dashboard/dash-address-add.html')
+
