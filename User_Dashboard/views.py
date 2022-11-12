@@ -71,6 +71,7 @@ def changePassword(request):
 def addressbook(request):
     address =Address_Book.objects.all().filter(user=request.user.id)
 
+
     context = {
         'address': address,
     }
@@ -86,6 +87,7 @@ def addressadd(request):
         city = request.POST['city']
         state = request.POST['state']
         pin = request.POST['pin']
+
         profile=Address_Book(user=request.user,fname=fname,lname=lname,phone_number=phone_number,house=house,street=street,
                             city=city,state=state,pin=pin)
         profile.save()
@@ -93,4 +95,36 @@ def addressadd(request):
 
 
     return render(request, 'dashboard/dash-address-add.html')
+
+def addressedit(request,address_id):
+    address = Address_Book.objects.get(id=address_id)
+    if request.method == 'POST':
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        phone_number=request.POST['tel']
+        house = request.POST['house']
+        street = request.POST['street']
+        city = request.POST['city']
+        state = request.POST['state']
+        pin = request.POST['pin']
+
+
+
+        address.fname=fname
+        address.lname=lname
+        address.phone_number=phone_number
+        address.house=house
+        address.street=street
+        address.city=city
+        address.state=state
+        address.pin=pin
+
+        address.save()
+        messages.success(request, 'your address is updated...!')
+        return redirect('addressbook')
+
+    context = {
+            'address': address,
+    }
+    return render(request,'dashboard/dash-address-edit.html', context)
 

@@ -87,7 +87,7 @@
                                                     <tr>
                                                         <td>
 
-                                                            <a class="address-book-edit btn--e-transparent-platinum-b-2" href="dash-address-edit.html">Edit</a></td>
+                                                            <a class="address-book-edit btn--e-transparent-platinum-b-2" href="{% url 'addressedit' a.id %}">Edit</a></td>
                                                         <td>{{a.fname}} {{a.lname}}</td>
                                                         <td>{{a.house}}</td>
                                                         <td>{{a.street}}</td>

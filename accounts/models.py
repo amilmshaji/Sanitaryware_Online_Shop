@@ -82,7 +82,8 @@ class Account(AbstractBaseUser,PermissionsMixin):
 
 
 class Address_Book(models.Model):
-    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
     fname = models.CharField(max_length=100, blank=True, null=True, editable=False)
     lname = models.CharField(max_length=100, blank=True, null=True, editable=False)
     phone_number = models.BigIntegerField(default=0, editable=False)
@@ -91,10 +92,12 @@ class Address_Book(models.Model):
     city = models.CharField(blank=True, max_length=20,null=True)
     state = models.CharField(blank=True, max_length=20,null=True)
     pin = models.IntegerField(blank=True,null=True)
+    status = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.user.fname
 
     def full_address(self):
-        return f'{self.address_line} {self.street}'
+        return f'{self.house} {self.street}'
 

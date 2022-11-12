@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="dash-address-add.html">My Account</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
+
+
+            <!--====== Section 2 ======-->
+            <div class="u-s-p-b-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="dash">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12">
+
+                                    <!--====== Dashboard Features ======-->
+                                    {% include 'dashboard/dash-feature.html' %}
+
+                                    <!--====== End - Dashboard Features ======-->
+                                </div>
+                                <div class="col-lg-9 col-md-12">
+                                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
+                                        <div class="dash__pad-2">
+                                            <h1 class="dash__h1 u-s-m-b-14">Add new Address</h1>
+
+                                            <span class="dash__text u-s-m-b-30">We need an address where we could deliver products.</span>
+                                            <form class="dash-address-manipulation" method="post" action="{% url 'addressedit' address.id %}"  enctype="multipart/form-data">
+                                                {% csrf_token %}
+
+                                                <div class="gl-inline">
+                                                    <div class="u-s-m-b-30">
+
+                                                        <label class="gl-label" for="fname">FIRST NAME *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="fname" name="fname" value={{address.fname}} placeholder="First Name"></div>
+                                                    <div class="u-s-m-b-30">
+
+                                                        <label class="gl-label" for="lname">LAST NAME *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="lname" name="lname" value={{address.lname}} placeholder="Last Name"></div>
+                                                </div>
+                                                <div class="gl-inline">
+                                                    <div class="u-s-m-b-30">
+
+                                                        <label class="gl-label" for="tel">PHONE *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="tel" name="tel" value={{address.phone_number}}></div>
+                                                    <div class="u-s-m-b-30">
+
+                                                        <label class="gl-label" for="house">House address *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="house" name="house" value={{address.house}} placeholder="House Name/Appartment Name"></div>
+                                                </div>
+                                                <div class="gl-inline">
+                                                    <div class="u-s-m-b-30">
+
+                                                        <!--====== Select Box ======-->
+
+                                                        <label class="gl-label" for="street">STREET ADDRESS *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="street" name="street" value={{address.street}} placeholder="Street address">
+                                                        <!--====== End - Select Box ======-->
+                                                    </div>
+                                                    <div class="u-s-m-b-30">
+
+                                                        <!--====== Select Box ======-->
+
+                                                        <label class="gl-label" for="city">TOWN/CITY *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="city" name="city" value={{address.city}}>
+                                                        <!--====== End - Select Box ======-->
+                                                    </div>
+                                                </div>
+                                                <div class="gl-inline">
+                                                    <div class="u-s-m-b-30">
+                                                        <label class="gl-label" for="state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="state" name="state">
+                                                            <option selected value="{{address.state}}">{{address.state}}</option>
+                                                            <option value="kerala">Kerala</option>
+                                                            <option value="al">Karnatka</option>
+                                                            <option value="ny">New York</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="u-s-m-b-30">
+
+                                                        <label class="gl-label" for="pin">ZIP/POSTAL CODE *</label>
+
+                                                        <input class="input-text input-text--primary-style" type="text" id="pin" name="pin" value={{address.pin}} placeholder="Zip/Postal Code"></div>
+                                                </div>
+
+                                                <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 2 ======-->
+        </div>
+        <!--====== End - App Content ======-->
+
+{% endblock %}
