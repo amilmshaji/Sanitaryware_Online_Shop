@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 
+
+
         <!--====== App Content ======-->
         <div class="app-content">
 
@@ -27,6 +29,65 @@
                 </div>
             </div>
             <!--====== End - Section 1 ======-->
+                                   <script>
+                 function validate()
+                {
+					var f=document.getElementById("fname").value;
+					var l=document.getElementById("lname").value;
+					var s=/^[a-zA-Z^\s]+$/;
+						   if(f=="")
+                {
+                    document.getElementById('fn').style.display = "block";
+
+                    document.getElementById('fn').innerHTML="**Please Enter  First Name";
+                    return false;
+                }
+					if(f!="" && s.test(f)==false){
+
+						document.getElementById('fn').style.display = "block";
+						document.getElementById('fn').innerHTML = "Invalid First Name";
+						return false;
+					}
+					else{
+						document.getElementById('fn').style.display = "none";
+					}
+					 if(l=="")
+                {
+                    document.getElementById('ln').style.display = "block";
+
+                    document.getElementById('ln').innerHTML="**Please Enter  Last Name";
+                    return false;
+                }
+					if(l!="" && s.test(l)==false){
+
+						document.getElementById('ln').style.display = "block";
+						document.getElementById('ln').innerHTML = "Invalid Last Name";
+						return false;
+					}
+					else{
+						document.getElementById('ln').style.display = "none";
+					}
+					var ph = document.getElementById("tel").value;
+					var expr = /^[6-9]\d{9}$/;
+                    if(ph=="")
+                {
+                    document.getElementById('pe').style.display = "block";
+
+                    document.getElementById('pe').innerHTML="**Please Enter  Phone Number";
+                    return false;
+                }
+					if(ph!="" && expr.test(ph)==false){
+						document.getElementById('pe').style.display = "block";
+						document.getElementById('pe').innerHTML = "Invalid Phone number";
+						return false;
+								}
+								else{
+						document.getElementById('pe').style.display = "none";
+						                    return true;
+
+					}
+				}
+			</script>
 
 
             <!--====== Section 2 ======-->
@@ -58,19 +119,27 @@
 
                                                         <label class="gl-label" for="fname">FIRST NAME *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="fname" name="fname" placeholder="First Name"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="fname" name="fname" placeholder="First Name" onblur="return validate()" onKeyUp="return validate()">
+                                                                                                                    <span id="fn" style="color: red;"></span>
+
+                                                    </div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="lname">LAST NAME *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="lname" name="lname" placeholder="Last Name"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="lname" name="lname" placeholder="Last Name" >
+                                                                                                                    <span id="ln" style="color: red;"></span>
+
+                                                    </div>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="tel">PHONE *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="tel" name="tel"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="tel" name="tel" onblur="return validate()" onKeyUp="return validate()"  minlength="10" maxlength="10">
+                                                                                                                    <span id="pe" style="color: red;"></span>
+                                                    </div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="house">House address *</label>
