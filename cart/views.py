@@ -223,7 +223,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
             total += (cart_item.product.price*cart_item.quantity)
             quantity += cart_item.quantity
 
-        # address = Address_Book.objects.get(user=request.user)
+        address = Address_Book.objects.get(user=request.user,status=True)
 
         tax = (2*total)/100
         grand_total = total+tax
@@ -231,7 +231,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         pass
 
     context = {
-        # 'address': address,
+        'address': address,
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,

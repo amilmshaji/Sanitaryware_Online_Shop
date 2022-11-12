@@ -38,154 +38,141 @@
                     <div class="container">
                         <div class="checkout-f">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <h1 class="checkout-f__h1">DELIVERY INFORMATION</h1>
-                                    <form class="checkout-f__delivery">
-                                        <div class="u-s-m-b-30">
-                                            <div class="u-s-m-b-15">
+<!--                                <div class="col-lg-6">-->
+<!--                                    <h1 class="checkout-f__h1">DELIVERY INFORMATION</h1>-->
+<!--                                    <form class="checkout-f__delivery">-->
+<!--                                        <div class="u-s-m-b-30">-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
 
-                                                    <input type="checkbox" id="get-address">
-                                                    <div class="check-box__state check-box__state--primary">
+<!--                                                    <input type="checkbox" id="get-address">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary" >-->
 
-                                                        <label class="check-box__label" for="get-address">Use default shipping and billing address from account</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-                                            </div>
+<!--                                                        <label class="check-box__label" for="get-address">Use default shipping and billing address from account</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+<!--                                            </div>-->
 
-                                            <!--====== First Name, Last Name ======-->
-                                            <div class="gl-inline">
-                                                <div class="u-s-m-b-15">
+<!--                                            &lt;!&ndash;====== First Name, Last Name ======&ndash;&gt;-->
+<!--                                            <div class="gl-inline">-->
+<!--                                                <div class="u-s-m-b-15">-->
 
-                                                    <label class="gl-label" for="billing-fname">FIRST NAME *</label>
+<!--                                                    <label class="gl-label" for="fname">FIRST NAME *</label>-->
 
-                                                    <input class="input-text input-text--primary-style" type="text" id="billing-fname" data-bill=""></div>
-                                                <div class="u-s-m-b-15">
+<!--                                                    <input class="input-text input-text&#45;&#45;primary-style" type="text" id="fname" value="{{address.fname}}" data-bill="" readonly></div>-->
+<!--                                                <div class="u-s-m-b-15">-->
 
-                                                    <label class="gl-label" for="billing-lname">LAST NAME *</label>
+<!--                                                    <label class="gl-label" for="lname">LAST NAME *</label>-->
 
-                                                    <input class="input-text input-text--primary-style" type="text" id="billing-lname" data-bill=""></div>
-                                            </div>
-                                            <!--====== End - First Name, Last Name ======-->
-
-
-                                            <!--====== E-MAIL ======-->
-                                            <div class="u-s-m-b-15">
-
-                                                <label class="gl-label" for="billing-email">E-MAIL *</label>
-
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-email" data-bill=""></div>
-                                            <!--====== End - E-MAIL ======-->
+<!--                                                    <input class="input-text input-text&#45;&#45;primary-style" type="text" id="lname" value="{{address.lname}}" data-bill="" readonly></div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;====== End - First Name, Last Name ======&ndash;&gt;-->
 
 
-                                            <!--====== PHONE ======-->
-                                            <div class="u-s-m-b-15">
+<!--                                            &lt;!&ndash;====== E-MAIL ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <label class="gl-label" for="billing-phone">PHONE *</label>
+<!--                                                <label class="gl-label" for="billing-email">E-MAIL *</label>-->
 
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-phone" data-bill=""></div>
-                                            <!--====== End - PHONE ======-->
-
-
-                                            <!--====== Street Address ======-->
-                                            <div class="u-s-m-b-15">
-
-                                                <label class="gl-label" for="billing-street">STREET ADDRESS *</label>
-
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-street" placeholder="House name and street name" data-bill=""></div>
-                                            <div class="u-s-m-b-15">
-
-                                                <label for="billing-street-optional"></label>
-
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-street-optional" placeholder="Apartment, suite unit etc. (optional)" data-bill=""></div>
-                                            <!--====== End - Street Address ======-->
+<!--                                                <input class="input-text input-text&#45;&#45;primary-style" type="text" id="billing-email" value="{{address.user.email}}" data-bill="" readonly></div>-->
+<!--                                            &lt;!&ndash;====== End - E-MAIL ======&ndash;&gt;-->
 
 
-                                            <!--====== Country ======-->
-                                            <div class="u-s-m-b-15">
+<!--                                            &lt;!&ndash;====== PHONE ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <!--====== Select Box ======-->
+<!--                                                <label class="gl-label" for="tel">PHONE *</label>-->
 
-                                                <label class="gl-label" for="billing-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="billing-country" data-bill="">
-                                                    <option selected value="">Choose Country</option>
-                                                    <option value="uae">United Arab Emirate (UAE)</option>
-                                                    <option value="uk">United Kingdom (UK)</option>
-                                                    <option value="us">United States (US)</option>
-                                                </select>
-                                                <!--====== End - Select Box ======-->
-                                            </div>
-                                            <!--====== End - Country ======-->
+<!--                                                <input class="input-text input-text&#45;&#45;primary-style" type="text" id="tel" value="{{address.phone_number}}" data-bill="" readonly></div>-->
+<!--                                            &lt;!&ndash;====== End - PHONE ======&ndash;&gt;-->
 
 
-                                            <!--====== Town / City ======-->
-                                            <div class="u-s-m-b-15">
+<!--                                            &lt;!&ndash;====== Street Address ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <label class="gl-label" for="billing-town-city">TOWN/CITY *</label>
+<!--                                                <label class="gl-label" for="house">Home/Appartment Name *</label>-->
 
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-town-city" data-bill=""></div>
-                                            <!--====== End - Town / City ======-->
+<!--                                                <input class="input-text input-text&#45;&#45;primary-style" type="text" id="house" value="{{address.house}}" placeholder="House/Appartment name" data-bill="" readonly></div>-->
+<!--                                            &lt;!&ndash;====== End - Street Address ======&ndash;&gt;-->
 
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                            <!--====== STATE/PROVINCE ======-->
-                                            <div class="u-s-m-b-15">
+<!--                                                <label class="gl-label" for="street">STREET ADDRESS *</label>-->
 
-                                                <!--====== Select Box ======-->
-
-                                                <label class="gl-label" for="billing-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="billing-state" data-bill="">
-                                                    <option selected value="">Choose State/Province</option>
-                                                    <option value="al">Alabama</option>
-                                                    <option value="al">Alaska</option>
-                                                    <option value="ny">New York</option>
-                                                </select>
-                                                <!--====== End - Select Box ======-->
-                                            </div>
-                                            <!--====== End - STATE/PROVINCE ======-->
+<!--                                                <input class="input-text input-text&#45;&#45;primary-style" type="text" id="street" value="{{address.street}}" placeholder="House name and street name" data-bill="" readonly></div>-->
 
 
-                                            <!--====== ZIP/POSTAL ======-->
-                                            <div class="u-s-m-b-15">
 
-                                                <label class="gl-label" for="billing-zip">ZIP/POSTAL CODE *</label>
+<!--                                            &lt;!&ndash;====== Town / City ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-zip" placeholder="Zip/Postal Code" data-bill=""></div>
-                                            <!--====== End - ZIP/POSTAL ======-->
-                                            <div class="u-s-m-b-10">
+<!--                                                <label class="gl-label" for="billing-town-city">TOWN/CITY *</label>-->
 
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
+<!--                                                <input class="input-text input-text&#45;&#45;primary-style" type="text" id="billing-town-city" value="{{address.city}}" data-bill="" readonly></div>-->
+<!--                                            &lt;!&ndash;====== End - Town / City ======&ndash;&gt;-->
 
-                                                    <input type="checkbox" id="make-default-address" data-bill="">
-                                                    <div class="check-box__state check-box__state--primary">
 
-                                                        <label class="check-box__label" for="make-default-address">Make default shipping and billing address</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-                                            </div>
-                                            <div class="u-s-m-b-10">
+<!--                                            &lt;!&ndash;====== STATE/PROVINCE ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <a class="gl-link" href="#create-account" data-toggle="collapse">Want to create a new account?</a></div>
-                                            <div class="collapse u-s-m-b-15" id="create-account">
+<!--                                                &lt;!&ndash;====== Select Box ======&ndash;&gt;-->
 
-                                                <span class="gl-text u-s-m-b-15">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</span>
-                                                <div>
+<!--                                                <label class="gl-label" for="billing-state">STATE/PROVINCE *</label><select class="select-box select-box&#45;&#45;primary-style" id="billing-state" data-bill="" disabled>-->
+<!--                                                    <option selected value="{{address.state}}">{{address.state}}</option>-->
+<!--                                                    <option value="al">Alabama</option>-->
+<!--                                                    <option value="al">Alaska</option>-->
+<!--                                                    <option value="ny">New York</option>-->
+<!--                                                </select>-->
+<!--                                                &lt;!&ndash;====== End - Select Box ======&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;====== End - STATE/PROVINCE ======&ndash;&gt;-->
 
-                                                    <label class="gl-label" for="reg-password">Account Password *</label>
 
-                                                    <input class="input-text input-text--primary-style" type="text" data-bill id="reg-password"></div>
-                                            </div>
-                                            <div class="u-s-m-b-10">
+<!--                                            &lt;!&ndash;====== ZIP/POSTAL ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-15">-->
 
-                                                <label class="gl-label" for="order-note">ORDER NOTE</label><textarea class="text-area text-area--primary-style" id="order-note"></textarea></div>
-                                            <div>
+<!--                                                <label class="gl-label" for="billing-zip">ZIP/POSTAL CODE *</label>-->
 
-                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">SAVE</button></div>
-                                        </div>
-                                    </form>
-                                </div>
+<!--                                                <input class="input-text input-text&#45;&#45;primary-style" type="text" id="billing-zip" value="{{address.pin}}" placeholder="Zip/Postal Code" data-bill="" readonly></div>-->
+<!--                                            &lt;!&ndash;====== End - ZIP/POSTAL ======&ndash;&gt;-->
+<!--                                            <div class="u-s-m-b-10">-->
 
-                                <div class="col-lg-6">
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div class="check-box">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                                    <input type="checkbox" id="make-default-address" data-bill="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div class="check-box__state check-box__state&#45;&#45;primary">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                                        <label class="check-box__label" for="make-default-address">Make default shipping and billing address</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            <div class="u-s-m-b-10">-->
+
+<!--                                                <a class="gl-link" href="{% url 'addressbook' %}" >Want to change default shipping address?</a></div>-->
+<!--                                            <div class="collapse u-s-m-b-15" id="create-account">-->
+
+<!--                                                <span class="gl-text u-s-m-b-15">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</span>-->
+<!--                                                <div>-->
+
+<!--                                                    <label class="gl-label" for="reg-password">Account Password *</label>-->
+
+<!--                                                    <input class="input-text input-text&#45;&#45;primary-style" type="text" data-bill id="reg-password"></div>-->
+<!--                                            </div>-->
+<!--                                            <div class="u-s-m-b-10">-->
+
+<!--                                                <label class="gl-label" for="order-note">ORDER NOTE</label><textarea class="text-area text-area&#45;&#45;primary-style" id="order-note"></textarea></div>-->
+<!--                                            <div>-->
+
+<!--                                                <button class="btn btn&#45;&#45;e-transparent-brand-b-2" type="submit">SAVE</button></div>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+
+                                <div class="col-lg-12">
                                     <h1 class="checkout-f__h1">ORDER SUMMARY</h1>
 
                                     <!--====== Order Summary ======-->
@@ -223,7 +210,9 @@
 
                                                     <span class="ship-b__text">Ship to:</span>
                                                     <div class="ship-b__box u-s-m-b-10">
-                                                        <p class="ship-b__p">4247 Ashford Drive Virginia VA-20006 USA (+0) 900901904</p>
+                                                        <p class="ship-b__p">{{address.fname}} {{address.lname}}, {{address.house}} {{address.street}}</p>
+<!--                                                        <p class="ship-b__p">{{address.house}} {{address.street}}</p>-->
+
 
                                                         <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
                                                     </div>
