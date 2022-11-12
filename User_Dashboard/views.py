@@ -92,8 +92,7 @@ def addressadd(request):
                             city=city,state=state,pin=pin)
         profile.save()
         messages.success(request, 'New address is added...!')
-
-
+        return redirect('addressbook')
     return render(request, 'dashboard/dash-address-add.html')
 
 def addressedit(request,address_id):
@@ -127,4 +126,16 @@ def addressedit(request,address_id):
             'address': address,
     }
     return render(request,'dashboard/dash-address-edit.html', context)
+
+def address_set(request,address_id):
+    url = request.META.get('HTTP_REFERER')
+    all = Address_Book.objects.filter(user=request.user)
+    for a in all:
+        if a.status==True:
+            a.status=False
+            a.save()
+    address = Address_Book.objects.get(id=address_id)
+    address.status=True
+    address.save()
+    return redirect(url)
 

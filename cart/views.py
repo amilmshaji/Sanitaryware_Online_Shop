@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+
+from accounts.models import Address_Book
 from . models import Cart, CartItem
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -220,12 +222,16 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         for cart_item in cart_items:
             total += (cart_item.product.price*cart_item.quantity)
             quantity += cart_item.quantity
+
+        # address = Address_Book.objects.get(user=request.user)
+
         tax = (2*total)/100
         grand_total = total+tax
     except ObjectDoesNotExist:
         pass
 
     context = {
+        # 'address': address,
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,

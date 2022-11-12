@@ -69,6 +69,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Action</th>
+                                                        <th>Action</th>
+
                                                         <th>Full Name</th>
                                                         <th>House Name</th>
                                                         <th>Street</th>
@@ -88,6 +90,9 @@
                                                         <td>
 
                                                             <a class="address-book-edit btn--e-transparent-platinum-b-2" href="{% url 'addressedit' a.id %}">Edit</a></td>
+                                                        <td>
+                                                            <a class="address-book-edit btn--e-transparent-platinum-b-2" href="{% url 'address_set' a.id %}">SET</a></td>
+
                                                         <td>{{a.fname}} {{a.lname}}</td>
                                                         <td>{{a.house}}</td>
                                                         <td>{{a.street}}</td>
