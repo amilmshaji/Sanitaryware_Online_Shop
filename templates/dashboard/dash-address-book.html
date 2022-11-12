@@ -65,47 +65,49 @@
                                     <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius u-s-m-b-30">
                                         <div class="dash__table-2-wrap gl-scroll">
                                             <table class="dash__table-2">
+
                                                 <thead>
                                                     <tr>
                                                         <th>Action</th>
                                                         <th>Full Name</th>
-                                                        <th>Address</th>
-                                                        <th>Region</th>
+                                                        <th>House Name</th>
+                                                        <th>Street</th>
+                                                        <th>City</th>
+                                                        <th>State</th>
+
                                                         <th>Phone Number</th>
+                                                        <th>Pin Code</th>
+
                                                         <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    {% for a in address %}
+
                                                     <tr>
                                                         <td>
 
                                                             <a class="address-book-edit btn--e-transparent-platinum-b-2" href="dash-address-edit.html">Edit</a></td>
-                                                        <td>John Doe</td>
-                                                        <td>4247 Ashford Drive Virginia VA-20006 USA</td>
-                                                        <td>Virginia VA-20006 USA</td>
-                                                        <td>(+0) 900901904</td>
+                                                        <td>{{a.fname}} {{a.lname}}</td>
+                                                        <td>{{a.house}}</td>
+                                                        <td>{{a.street}}</td>
+                                                        <td>{{a.city}}</td>
+                                                        <td>{{a.state}}</td>
+                                                        <td>{{a.phone_number}}</td>
+                                                        <td>{{a.pin}}</td>
                                                         <td>
                                                             <div class="gl-text">Default Shipping Address</div>
                                                             <div class="gl-text">Default Billing Address</div>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-
-                                                            <a class="address-book-edit btn--e-transparent-platinum-b-2" href="dash-address-edit.html">Edit</a></td>
-                                                        <td>Doe John</td>
-                                                        <td>1484 Abner Road</td>
-                                                        <td>Eau Claire WI - Wisconsin</td>
-                                                        <td>(+0) 7154419563</td>
-                                                        <td></td>
-                                                    </tr>
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div>
 
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="dash-address-add.html"><i class="fas fa-plus u-s-m-r-8"></i>
+                                        <a class="dash__custom-link btn--e-brand-b-2" href="{% url 'addressadd' %}"><i class="fas fa-plus u-s-m-r-8"></i>
 
                                             <span>Add New Address</span></a></div>
                                 </div>
