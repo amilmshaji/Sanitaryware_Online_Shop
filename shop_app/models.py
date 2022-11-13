@@ -89,18 +89,40 @@ variation_category_choice = (
 )
 
 
+class Color(models.Model):
+    color = models.CharField(max_length=100,null=True, blank=True)
+
+    def __str__(self):
+        return self.color
+
+class Brand(models.Model):
+    brand = models.CharField(max_length=100,null=True, blank=True)
+
+    def __str__(self):
+        return self.brand
+
+class Design(models.Model):
+    design = models.CharField(max_length=100,null=True, blank=True)
+
+    def __str__(self):
+        return self.design
+
+
+
 class Variation(models.Model):
+    id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variation_category = models.CharField(
-        max_length=100, choices=variation_category_choice)
-    variation_value = models.CharField(max_length=100)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True, blank=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
+    design = models.ForeignKey(Design, on_delete=models.CASCADE,null=True, blank=True)
+
     is_active = models.BooleanField(default=True)
     created_date = models.DateField(auto_now_add=True)
 
     objects = VariationManager()
 
     def __str__(self):
-        return self.variation_value
+        return str(self.product)
 
 
 class ReviewRating(models.Model):
@@ -115,6 +137,10 @@ class ReviewRating(models.Model):
 
     def __str__(self):
         return str(self.product)
+
+
+
+
 
 
 class Productgallery(models.Model):

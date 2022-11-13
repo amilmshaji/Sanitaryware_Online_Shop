@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from .models import Product, Variation, ReviewRating, Productgallery, Product_Display
+from .models import Product, Variation, ReviewRating, Productgallery, Product_Display, Color, Brand, Design
 import admin_thumbnails
 
 from .models import Category
@@ -62,8 +62,9 @@ class ProductAdmin(admin.ModelAdmin):
 class VariationAdmin(admin.ModelAdmin):
     list_display = (
         'product',
-        'variation_category',
-        'variation_value',
+        'color',
+        'brand',
+        'design',
         'is_active',
     )
     list_editable = (
@@ -72,14 +73,15 @@ class VariationAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'product',
-        'variation_category',
-        'variation_value',
+        'color',
+        'brand',
+        'design',
         'is_active',
     )
 
 
 admin.site.register(Product, ProductAdmin)
-# admin.site.register(Variation, VariationAdmin)
+admin.site.register(Variation, VariationAdmin)
 
 
 
@@ -109,6 +111,12 @@ class RatingAdmin(admin.ModelAdmin):
 admin.site.register(ReviewRating, RatingAdmin)
 
 admin.site.register(Product_Display)
+admin.site.register(Color)
+admin.site.register(Brand)
+admin.site.register(Design)
+
+
+
 
 
 
