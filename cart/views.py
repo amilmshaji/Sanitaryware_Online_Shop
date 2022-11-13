@@ -207,35 +207,3 @@ def cart(request, total=0, quantity=0, cart_item=None, cart_items=None):
 
     return render(request, 'cart.html', context)
 
-
-@login_required(login_url='login')
-def checkout(request, total=0, quantity=0, cart_item=None):
-    try:
-        tax = 0
-        grand_total = 0
-        if request.user.is_authenticated:
-            cart_items = CartItem.objects.filter(
-                user=request.user, is_active=True)
-        else:
-            cart = Cart.objects.get(cart_id=_cart_id(request))
-            cart_items = CartItem.objects.filter(cart=cart, is_active=True)
-        for cart_item in cart_items:
-            total += (cart_item.product.price*cart_item.quantity)
-            quantity += cart_item.quantity
-
-        address = Address_Book.objects.get(user=request.user,status=True)
-
-        tax = (2*total)/100
-        grand_total = total+tax
-    except ObjectDoesNotExist:
-        pass
-
-    context = {
-        'address': address,
-        'total': total,
-        'quantity': quantity,
-        'cart_items': cart_items,
-        'tax': tax,
-        'grand_total': grand_total
-    }
-    return render(request, 'checkout.html', context)

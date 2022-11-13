@@ -134,6 +134,6 @@ from django_resized import ResizedImageField
 
 
 class Product_Display(models.Model):
-    user = models. OneToOneField(Account, on_delete=models.CASCADE,editable=False,unique=True)
+    user = models. OneToOneField(Account, on_delete=models.CASCADE,null=True,editable=False,unique=True)
 
     images = ResizedImageField(upload_to='view/photos',null=True, blank=True)
