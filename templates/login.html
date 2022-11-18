@@ -58,6 +58,20 @@
 
 
                 <!--====== Section Content ======-->
+                  {% if request.GET.command == 'verification' %}
+
+    <div class="container mx-auto alert alert-info text-center" role="alert"
+        style="max-width: 1020px; margin-top:100px;">
+        Thank You For Registering With Us. We Have Send Email Verifications To Your Email Address
+        [{{request.GET.email}}].
+        Please Verify'
+        <br><br>
+        Already Verify? <a href="{% url 'login' %}">Login</a>
+
+
+    </div>
+
+    {% else %}
                 <div class="section__content">
                     <div class="container">
                         <div class="row row--center">
@@ -125,6 +139,7 @@
                         </div>
                     </div>
                 </div>
+        {% endif %}
                 <!--====== End - Section Content ======-->
             </div>
             <!--====== End - Section 2 ======-->

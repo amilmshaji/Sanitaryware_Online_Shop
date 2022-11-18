@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from Sanitaryware_Shop.settings import RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY
 from accounts.models import Address_Book
 
@@ -11,7 +13,6 @@ from cart.views import _cart_id
 import razorpay
 
 from orders.models import Payment
-from Sanitaryware_Shop import settings
 
 
 @login_required(login_url='login')
@@ -36,6 +37,8 @@ def checkout(request, total=0, quantity=0, cart_item=None):
     except ObjectDoesNotExist:
         pass
     print(total)
+    customer=Address_Book.objects.filter(user=request.user,status=True)
+
     client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY,settings.RAZORPAY_API_SECRET_KEY))
 
     data = {
@@ -71,14 +74,16 @@ def checkout(request, total=0, quantity=0, cart_item=None):
 
 def payment_done(request):
     order_id = request.GET.get('order_id')
+    print(order_id)
     payment_id=request.GET.get('payment_id')
-    # cust_id = request.GET.get('cust_id')
-    user=request.user
-    # customer=Address_Book.objects.get(id=cust_id)
+    print(payment_id)
+    print("payment_done : oid = ",order_id,"pid=",payment_id)
     payment=Payment.objects.get(razorpay_order_id=order_id)
     payment.paid = True
     payment.razorpay_payment_id = payment_id
     payment.save()
+    cart=CartItem.objects.filter(user=request.user)
+    return redirect('store')
 
 
 

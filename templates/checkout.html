@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 
 
@@ -358,12 +357,9 @@
                             "handler": function (response){
                                 console.log("success")
                                 var form = document.getElementById["myform"];
-
                                 alert(response.razorpay_payment_id);
-                                alert(response.razorpay_order_id);
-                                alert(response.razorpay_signature)
-                                    window.location.href = 'http://locahost:8000/paymentdone?order_id=${response.razorpay_order_id}&
-                                    payment_id=${response.razorpay_payment_id}'
+                                window.location.href = 'http://127.0.0.1:8000/paymentdone?order_id=${response.razorpay_order_id}&payment_id=${response.razorpay_payment_id}&cust_id=${response.customer}'
+
                             },
                             "theme": {
                                 "color": "#3399cc"
@@ -371,9 +367,10 @@
                         };
                         var rzp1 = new Razorpay(options);
                         rzp1.on('payment.failed', function (response){
-                                alert(response.error.code);
+                                alert(response.error.description);
                         });
                         document.getElementById('rzp-button1').onclick = function(e){
+                            console.log("button click");
                             rzp1.open();
                             e.preventDefault();
                         }

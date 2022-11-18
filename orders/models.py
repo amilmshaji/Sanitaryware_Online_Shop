@@ -15,6 +15,8 @@ class Payment(models.Model):
     razorpay_payment_id = models.CharField(max_length=100,blank=True,null=True)
     razorpay_payment_status = models.CharField(max_length=100,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    customer = models.ForeignKey(Address_Book,on_delete=models.SET_NULL, null=True,default=1)
+
     paid = models.BooleanField(default=False)
 
     #

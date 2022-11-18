@@ -7,7 +7,9 @@ urlpatterns = [
     path('changePassword/', views.changePassword, name='changePassword'),
     path('addressbook/', views.addressbook, name='addressbook'),
     path('addressadd/', views.addressadd, name='addressadd'),
+
     path('addressedit/<int:address_id>/', views.addressedit, name='addressedit'),
+
     path('address_set/<int:address_id>/', views.address_set, name='address_set'),
 
 ]
