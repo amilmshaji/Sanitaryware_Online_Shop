@@ -98,16 +98,14 @@ def addressadd(request):
 def addressedit(request,address_id):
     address = Address_Book.objects.get(id=address_id)
     if request.method == 'POST':
-        fname=request.POST['fname']
-        lname=request.POST['lname']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
         phone_number=request.POST['tel']
         house = request.POST['house']
         street = request.POST['street']
         city = request.POST['city']
         state = request.POST['state']
         pin = request.POST['pin']
-
-
 
         address.fname=fname
         address.lname=lname

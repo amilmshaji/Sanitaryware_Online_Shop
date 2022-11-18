@@ -38,10 +38,9 @@ class Product(models.Model):
     price = models.IntegerField()
     images = models.ImageField(upload_to='photos/product')
     display = models.ImageField(upload_to='photos/display',default="a3.png")
-    stock = models.IntegerField() 
+    stock = models.IntegerField()
     is_available = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
-
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
     modified_date = models.DateField(auto_now=True)
@@ -89,40 +88,55 @@ variation_category_choice = (
 )
 
 
-class Color(models.Model):
-    color = models.CharField(max_length=100,null=True, blank=True)
-
-    def __str__(self):
-        return self.color
-
-class Brand(models.Model):
-    brand = models.CharField(max_length=100,null=True, blank=True)
-
-    def __str__(self):
-        return self.brand
-
-class Design(models.Model):
-    design = models.CharField(max_length=100,null=True, blank=True)
-
-    def __str__(self):
-        return self.design
-
-
 
 class Variation(models.Model):
-    id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True, blank=True)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
-    design = models.ForeignKey(Design, on_delete=models.CASCADE,null=True, blank=True)
-
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
+    variation_category = models.CharField(
+        max_length=100, choices=variation_category_choice, blank=True)
+    variation_value = models.CharField(max_length=100, blank=True)
     is_active = models.BooleanField(default=True)
     created_date = models.DateField(auto_now_add=True)
 
     objects = VariationManager()
 
     def __str__(self):
-        return str(self.product)
+        return self.variation_value
+#
+#
+# class Color(models.Model):
+#     color = models.CharField(max_length=100,null=True, blank=True)
+#
+#     def __str__(self):
+#         return self.color
+#
+# class Brand(models.Model):
+#     brand = models.CharField(max_length=100,null=True, blank=True)
+#
+#     def __str__(self):
+#         return self.brand
+#
+# class Design(models.Model):
+#     design = models.CharField(max_length=100,null=True, blank=True)
+#
+#     def __str__(self):
+#         return self.design
+#
+#
+#
+# class Variation(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True, blank=True)
+#     brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
+#     design = models.ForeignKey(Design, on_delete=models.CASCADE,null=True, blank=True)
+#
+#     is_active = models.BooleanField(default=True)
+#     created_date = models.DateField(auto_now_add=True)
+#
+#     objects = VariationManager()
+#
+#     def __str__(self):
+#         return str(self.product)
 
 
 class ReviewRating(models.Model):

@@ -317,29 +317,6 @@ def p(request, product_id):
         text2 = smallfont.render('-', True, color)
         screen.blit(text2, (w1, h2))
 
-        # w1 = 1056
-        # h1 = 90
-        # h2 = 160
-        # h3 = 230
-        #
-        # # light shade of the button
-        # color_light = (170, 170, 170)
-        #
-        # # dark shade of the button
-        # color_dark = (100, 100, 100)
-        #
-        # # if mouse is hovered on a button it
-        # # changes to lighter shade
-        # mouse = pg.mouse.get_pos()
-        #
-        # if w1 <= mouse[0] <= width / 2 + 140 and h1 <= mouse[1] <= h1 + 40:
-        #     pg.draw.rect(screen, color_light, [w1, h1, 140, 40])
-        #
-        # else:
-        #     pg.draw.rect(screen, color_dark, [w1, h1, 140, 40])
-
-        # pg.draw.rect(screen, BLUE, rect, 2)  # Construct the border to the image
-
 
         # Update the GUI pygame
         pg.display.update()

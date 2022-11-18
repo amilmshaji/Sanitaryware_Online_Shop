@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.db import models
-from .models import Product, Variation, ReviewRating, Productgallery, Product_Display, Color, Brand, Design
+from .models import Product, Variation, ReviewRating, Productgallery, Product_Display
 import admin_thumbnails
 
 from .models import Category
@@ -58,30 +58,30 @@ class ProductAdmin(admin.ModelAdmin):
     thumbnail_preview.short_description = 'Image Preview'
     thumbnail_preview.allow_tags = True
 
-
-class VariationAdmin(admin.ModelAdmin):
-    list_display = (
-        'product',
-        'color',
-        'brand',
-        'design',
-        'is_active',
-    )
-    list_editable = (
-        'is_active',
-
-    )
-    list_filter = (
-        'product',
-        'color',
-        'brand',
-        'design',
-        'is_active',
-    )
+#
+# class VariationAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'product',
+#         'color',
+#         'brand',
+#         'design',
+#         'is_active',
+#     )
+#     list_editable = (
+#         'is_active',
+#
+#     )
+#     list_filter = (
+#         'product',
+#         'color',
+#         'brand',
+#         'design',
+#         'is_active',
+#     )
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Variation, VariationAdmin)
+# admin.site.register(Variation, VariationAdmin)
 
 
 
@@ -111,9 +111,9 @@ class RatingAdmin(admin.ModelAdmin):
 admin.site.register(ReviewRating, RatingAdmin)
 
 admin.site.register(Product_Display)
-admin.site.register(Color)
-admin.site.register(Brand)
-admin.site.register(Design)
+# admin.site.register(Color)
+# admin.site.register(Brand)
+# admin.site.register(Design)
 
 
 
