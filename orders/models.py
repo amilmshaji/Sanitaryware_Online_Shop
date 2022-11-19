@@ -19,9 +19,9 @@ class Payment(models.Model):
 
     paid = models.BooleanField(default=False)
 
-    #
-    # def __str__(self):
-    #     return self.
+
+    def __str__(self):
+        return self.customer.fname
 
 class OrderPlaced(models.Model):
     STATUS = (
@@ -45,7 +45,7 @@ class OrderPlaced(models.Model):
         return self.quantity
 
     def __str__(self):
-        return self.first_name
+        return self.customer.fname
 
 
 

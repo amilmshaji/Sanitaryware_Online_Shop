@@ -348,7 +348,7 @@
                                     <script>
                         var options = {
                             "key": 'rzp_test_8wXiTT2Zx0pNy3', // Enter the Key ID generated from the Dashboard
-                            "amount": "{{total}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                            "amount": "{{razoramount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                             "currency": "INR",
                             "name": "SanKart",
                             "description": "Test Transaction",
@@ -357,8 +357,13 @@
                             "handler": function (response){
                                 console.log("success")
                                 var form = document.getElementById["myform"];
-                                alert(response.razorpay_payment_id);
-                                window.location.href = 'http://127.0.0.1:8000/paymentdone?order_id=${response.razorpay_order_id}&payment_id=${response.razorpay_payment_id}&cust_id=${response.customer}'
+
+
+                                var a = response.razorpay_payment_id;
+
+                                alert({{order_id}})
+
+                                window.location.href = 'http://127.0.0.1:8000/paymentdone?order_id=${response.razorpay_order_id}&cust_id=${response.customer}&payment_id='+a
 
                             },
                             "theme": {

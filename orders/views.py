@@ -1,3 +1,4 @@
+import app as app
 from django.conf import settings
 
 from Sanitaryware_Shop.settings import RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY
@@ -33,10 +34,10 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         address = Address_Book.objects.get(user=request.user,status=True)
 
         tax = (2*total)/100
-        grand_total = total+tax
+        razoramount = total*100
     except ObjectDoesNotExist:
         pass
-    print(total)
+    print(razoramount)
     customer=Address_Book.objects.filter(user=request.user,status=True)
 
     client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY,settings.RAZORPAY_API_SECRET_KEY))
@@ -54,6 +55,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
     #  'currency': 'INR', 'receipt': 'order_rcptid_11', 'offer_id': None, 'status':
     #      'created', 'attempts': 0, 'notes': [], 'created_at': 1668314382}
     order_id = payment_response['id']
+    request.session['order_id'] = order_id
     order_status = payment_response['status']
     if order_status == 'created':
         payment = Payment(user=request.user,
@@ -63,7 +65,8 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         payment.save()
 
     context = {
-        'address': address,
+        'razoramount':razoramount,
+        'customer': customer,
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
@@ -73,15 +76,20 @@ def checkout(request, total=0, quantity=0, cart_item=None):
     return render(request, 'checkout.html', context)
 
 def payment_done(request):
-    order_id = request.GET.get('order_id')
-    print(order_id)
-    payment_id=request.GET.get('payment_id')
+
+    # order_id = request.GET.get('order_id')
+    # print(order_id)
+    order_id=request.session['order_id']
+    payment_id = request.GET.get('payment_id')
     print(payment_id)
-    print("payment_done : oid = ",order_id,"pid=",payment_id)
-    payment=Payment.objects.get(razorpay_order_id=order_id)
+
+    payment=Payment.objects.get(razorpay_order_id = order_id)
+
     payment.paid = True
     payment.razorpay_payment_id = payment_id
     payment.save()
+    customer=Address_Book.objects.filter(user=request.user,status=True)
+
     cart=CartItem.objects.filter(user=request.user)
     return redirect('store')
 
