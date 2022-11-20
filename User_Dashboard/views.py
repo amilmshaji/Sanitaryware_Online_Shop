@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
 from accounts.models import Account, Address_Book
+from orders.models import OrderPlaced
 
 
 @login_required(login_url='login')
@@ -136,4 +137,16 @@ def address_set(request,address_id):
     address.status=True
     address.save()
     return redirect(url)
+
+
+@login_required(login_url='login')
+def my_orders(request):
+    orders = OrderPlaced.objects.filter(
+        user=request.user, is_ordered=True).order_by('ordered_date')
+    context = {
+        'orders': orders,
+    }
+    return render(request, 'dashboard/dash-my-order.html', context)
+
+
 

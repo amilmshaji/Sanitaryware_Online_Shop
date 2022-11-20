@@ -11,5 +11,6 @@ urlpatterns = [
     path('addressedit/<int:address_id>/', views.addressedit, name='addressedit'),
 
     path('address_set/<int:address_id>/', views.address_set, name='address_set'),
+    path('my_orders/', views.my_orders, name='my_orders'),
 
 ]
