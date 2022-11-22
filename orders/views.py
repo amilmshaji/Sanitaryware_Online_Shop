@@ -1,4 +1,4 @@
-import app as app
+from django.contrib import messages
 from django.conf import settings
 
 from Sanitaryware_Shop.settings import RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY
@@ -92,7 +92,11 @@ def payment_done(request):
 
     for c in cart:
         OrderPlaced(user=request.user,customer=customer,product=c.product,quantity=c.quantity,payment=payment,is_ordered=True).save()
+        prod=Product.objects.get(product_name=c.product.product_name)
+        prod.stock=prod.stock-c.quantity
+        prod.save()
         c.delete()
+    messages.success(request, 'Thank You for ordering...!')
     return redirect('my_orders')
 
 

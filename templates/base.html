@@ -26,6 +26,15 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </head>
+<script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function() {
+            null
+        };
+    </script>
 <body class="config">
     <div class="preloader is-active">
         <div class="preloader__wrap">
@@ -230,20 +239,20 @@
 
                                         <a  href="{% url 'myprofile' %}">Welcome {{user.fname}}</a></li>
                                     {% endif %}
-                                    <li>
+<!--                                    <li>-->
 
-                                        <a href="#">NEW ARRIVALS</a></li>
-                                    <li class="has-dropdown">
+<!--                                        <a href="#">NEW ARRIVALS</a></li>-->
+<!--                                    <li class="has-dropdown">-->
 
-                                        <a>BLOG<i class="u-s-m-l-6"></i></a>
+<!--                                        <a>BLOG<i class="u-s-m-l-6"></i></a>-->
 
                                         <!--====== Dropdown ======-->
 
                                         <!--====== End - Dropdown ======-->
-                                    </li>
-                                    <li>
+<!--                                    </li>-->
+<!--                                    <li>-->
 
-                                        <a href="#">VALUE OF THE DAY</a></li>
+<!--                                        <a href="#">VALUE OF THE DAY</a></li>-->
                                     <li>
 
                                         <a href="{% url 'store' %}">SHOP NOW</a></li>

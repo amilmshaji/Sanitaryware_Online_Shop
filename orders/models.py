@@ -1,4 +1,3 @@
-
 from accounts.models import Account, Address_Book
 from django.db import models
 
@@ -23,6 +22,8 @@ class Payment(models.Model):
     def __str__(self):
         return self.customer.fname
 
+
+
 class OrderPlaced(models.Model):
     STATUS = (
         ('New', 'New'),
@@ -38,7 +39,7 @@ class OrderPlaced(models.Model):
     quantity = models.IntegerField(default=1)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     is_ordered = models.BooleanField(default=False)
-    ordered_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def total_cost(self):
@@ -46,6 +47,10 @@ class OrderPlaced(models.Model):
 
     def __str__(self):
         return self.customer.fname
+
+    def amount(self):
+        amountt = self.payment.amount
+        return amountt
 
 
 

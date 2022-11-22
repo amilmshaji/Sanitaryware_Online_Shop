@@ -19,6 +19,7 @@ def dashboard(request):
     }
     return render(request, 'dashboard/dash-my-profile.html', context)
 
+@login_required(login_url='login')
 def editprofile(request):
     # orders = Order.objects.order_by(
     #     '-created_at').filter(user_id=request.user.id, is_ordered=True)
@@ -68,7 +69,7 @@ def changePassword(request):
             return redirect('changePassword')
     return render(request, 'dashboard/change_password.html')
 
-
+@login_required(login_url='login')
 def addressbook(request):
     address =Address_Book.objects.all().filter(user=request.user.id)
 
@@ -78,6 +79,7 @@ def addressbook(request):
     }
     return render(request, 'dashboard/dash-address-book.html', context)
 
+@login_required(login_url='login')
 def addressadd(request):
     if request.method == 'POST':
         fname=request.POST['fname']
@@ -96,6 +98,7 @@ def addressadd(request):
         return redirect('addressbook')
     return render(request, 'dashboard/dash-address-add.html')
 
+@login_required(login_url='login')
 def addressedit(request,address_id):
     address = Address_Book.objects.get(id=address_id)
     if request.method == 'POST':
@@ -126,6 +129,7 @@ def addressedit(request,address_id):
     }
     return render(request,'dashboard/dash-address-edit.html', context)
 
+@login_required(login_url='login')
 def address_set(request,address_id):
     url = request.META.get('HTTP_REFERER')
     all = Address_Book.objects.filter(user=request.user)
@@ -143,6 +147,7 @@ def address_set(request,address_id):
 def my_orders(request):
     orders = OrderPlaced.objects.filter(
         user=request.user, is_ordered=True).order_by('ordered_date')
+    # price=
     context = {
         'orders': orders,
     }

@@ -77,7 +77,7 @@ def register(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('home')
 
 def activate(request, uidb64, token):
     try:

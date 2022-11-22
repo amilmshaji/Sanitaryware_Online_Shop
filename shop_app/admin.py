@@ -90,6 +90,7 @@ class RatingAdmin(admin.ModelAdmin):
         'user',
         'product',
         'review',
+        'rating',
         'created_at',
 
 
@@ -110,4 +111,3 @@ class RatingAdmin(admin.ModelAdmin):
 
 admin.site.register(ReviewRating, RatingAdmin)
 
-admin.site.register(Product_Display)

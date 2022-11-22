@@ -29,6 +29,15 @@
             </div>
             <!--====== End - Section 1 ======-->
 
+                                    {% include 'alerts2.html' %}
+
+                                      <script>
+                                          setTimeout(function(){
+                                            if ($('#message').length > 0){
+                                              $('#message').remove();
+                                              }
+                                            },3000)
+                                            </script>
 
             <!--====== Section 2 ======-->
             <div class="u-s-p-b-60">
@@ -76,15 +85,16 @@
                                                             <div>
                                                                 <div class="dash__link dash__link--brand">
 
-                                                                    <a href="dash-manage-order.html">MANAGE</a></div>
+<!--                                                                    <a href="dash-manage-order.html">MANAGE</a>-->
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="manage-o__description">
                                                         <div class="description__container">
-<!--                                                            <div class="description__img-wrap">-->
+                                                            <div class="description__img-wrap">
 
-<!--                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></div>-->
+                                                                <img class="u-img-fluid" src="{{order.product.images.url}}" alt=""></div>
                                                             <div class="description-title">{{order.product.product_name}}</div>
                                                         </div>
                                                         <div class="description__info-wrap">

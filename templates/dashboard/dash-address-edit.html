@@ -16,10 +16,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="#">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-address-add.html">My Account</a></li>
+                                        <a href="#">My Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -27,6 +27,155 @@
                 </div>
             </div>
             <!--====== End - Section 1 ======-->
+                                               <script>
+                 function validate()
+                {
+					var f=document.getElementById("fname").value;
+					var l=document.getElementById("lname").value;
+					var s=/^[a-zA-Z^\s]+$/;
+						   if(f=="")
+                {
+                    document.getElementById('fn').style.display = "block";
+
+                    document.getElementById('fn').innerHTML="**Please Enter  First Name";
+                    return false;
+                }
+					if(f!="" && s.test(f)==false){
+
+						document.getElementById('fn').style.display = "block";
+						document.getElementById('fn').innerHTML = "Invalid First Name";
+						return false;
+					}
+					else{
+						document.getElementById('fn').style.display = "none";
+					}
+					 if(l=="")
+                {
+                    document.getElementById('ln').style.display = "block";
+
+                    document.getElementById('ln').innerHTML="**Please Enter  Last Name";
+                    return false;
+                }
+					if(l!="" && s.test(l)==false){
+
+						document.getElementById('ln').style.display = "block";
+						document.getElementById('ln').innerHTML = "Invalid Last Name";
+						return false;
+					}
+					else{
+						document.getElementById('ln').style.display = "none";
+					}
+					var ph = document.getElementById("tel").value;
+					var expr = /^[6-9]\d{9}$/;
+                    if(ph=="")
+                {
+                    document.getElementById('pe').style.display = "block";
+
+                    document.getElementById('pe').innerHTML="**Please Enter  Phone Number";
+                    return false;
+                }
+					if(ph!="" && expr.test(ph)==false){
+						document.getElementById('pe').style.display = "block";
+						document.getElementById('pe').innerHTML = "Invalid Phone number";
+						return false;
+								}
+								else{
+						document.getElementById('pe').style.display = "none";
+
+					}
+					var ho=document.getElementById("house").value;
+
+					if(ho=="")
+                {
+                    document.getElementById('hn').style.display = "block";
+
+                    document.getElementById('hn').innerHTML="**Please Enter  House/Appartment Name";
+                    return false;
+                }
+					if(ho!="" && s.test(ho)==false){
+
+						document.getElementById('hn').style.display = "block";
+						document.getElementById('hn').innerHTML = "Invalid House/Appartment Name";
+						return false;
+					}
+					else{
+						document.getElementById('hn').style.display = "none";
+
+					}
+					var st=document.getElementById("street").value;
+
+					if(st=="")
+                {
+                    document.getElementById('str').style.display = "block";
+
+                    document.getElementById('str').innerHTML="**Please Enter  House/Appartment Name";
+                    return false;
+                }
+					if(st!="" && s.test(st)==false){
+
+						document.getElementById('str').style.display = "block";
+						document.getElementById('str').innerHTML = "Invalid House/Appartment Name";
+						return false;
+					}
+					else{
+						document.getElementById('str').style.display = "none";
+
+					}
+					var ci=document.getElementById("city").value;
+
+					if(ci=="")
+                {
+                    document.getElementById('cit').style.display = "block";
+
+                    document.getElementById('cit').innerHTML="**Please Enter  House/Appartment Name";
+                    return false;
+                }
+					if(ci!="" && s.test(ci)==false){
+
+						document.getElementById('cit').style.display = "block";
+						document.getElementById('cit').innerHTML = "Invalid House/Appartment Name";
+						return false;
+					}
+					else{
+						document.getElementById('cit').style.display = "none";
+
+					}
+					 var st = document.getElementById("state").value;
+					if(st=="")
+                {
+                    document.getElementById('sta').style.display = "block";
+
+                    document.getElementById('sta').innerHTML="**Please Enter The State";
+                    return false;
+                }
+                else{
+						document.getElementById('sta').style.display = "none";
+
+					}
+										var p = document.getElementById("pin").value;
+					var expre = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+                    if(p=="")
+                {
+                    document.getElementById('pi').style.display = "block";
+
+                    document.getElementById('pi').innerHTML="**Please Enter  PIN Code";
+                    return false;
+                }
+					if(p!="" && expre.test(p)==false){
+						document.getElementById('pi').style.display = "block";
+						document.getElementById('pi').innerHTML = "Invalid PIN Code";
+						return false;
+								}
+								else{
+						document.getElementById('pi').style.display = "none";
+									            return true;
+
+
+					}
+
+				}
+			</script>
+
 
 
             <!--====== Section 2 ======-->
@@ -58,24 +207,35 @@
 
                                                         <label class="gl-label" for="fname">FIRST NAME *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="fname" name="fname" value={{address.fname}} placeholder="First Name"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="fname" name="fname" value={{address.fname}} placeholder="First Name" onblur="return validate()" onKeyUp="return validate()">
+                                                                                                                                                                        <span id="fn" style="color: red;"></span>
+                                                    </div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="lname">LAST NAME *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="lname" name="lname" value={{address.lname}} placeholder="Last Name"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="lname" name="lname" value={{address.lname}} placeholder="Last Name" onblur="return validate()" onKeyUp="return validate()">
+                                                                                                                                                                        <span id="ln" style="color: red;"></span>
+
+                                                    </div>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="tel">PHONE *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="tel" name="tel" value={{address.phone_number}}></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="tel" name="tel" value={{address.phone_number}} onblur="return validate()" onKeyUp="return validate()" minlength="10" maxlength="10">
+                                                                                                            <span id="pe" style="color: red;"></span>
+
+                                                    </div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="house">House address *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="house" name="house" value={{address.house}} placeholder="House Name/Appartment Name"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="house" name="house" value={{address.house}} placeholder="House Name/Appartment Name" onblur="return validate()" onKeyUp="return validate()">
+                                                                                                            <span id="hn" style="color: red;"></span>
+
+                                                    </div>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
@@ -84,7 +244,9 @@
 
                                                         <label class="gl-label" for="street">STREET ADDRESS *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="street" name="street" value={{address.street}} placeholder="Street address">
+                                                        <input class="input-text input-text--primary-style" type="text" id="street" name="street" value={{address.street}} placeholder="Street address" onblur="return validate()" onKeyUp="return validate()">
+                                                                                                                <span id="str" style="color: red;"></span>
+
                                                         <!--====== End - Select Box ======-->
                                                     </div>
                                                     <div class="u-s-m-b-30">
@@ -93,24 +255,56 @@
 
                                                         <label class="gl-label" for="city">TOWN/CITY *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="city" name="city" value={{address.city}}>
+                                                        <input class="input-text input-text--primary-style" type="text" id="city" name="city" value={{address.city}} onblur="return validate()" onKeyUp="return validate()">
+                                                                                                                                                                        <span id="cit" style="color: red;"></span>
+
                                                         <!--====== End - Select Box ======-->
                                                     </div>
                                                 </div>
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
-                                                        <label class="gl-label" for="state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="state" name="state">
+                                                        <label class="gl-label" for="state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="state" name="state" onblur="return validate()" onKeyUp="return validate()">
                                                             <option selected value="{{address.state}}">{{address.state}}</option>
-                                                            <option value="kerala">Kerala</option>
-                                                            <option value="al">Karnatka</option>
-                                                            <option value="ny">New York</option>
+                                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chattisgarh">Chattisgarh</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                        <option value="Kerala">Kerala</option>
+                                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Odisha">Odisha</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="Uttarakhand">Uttarakhand</option>
+                                                    <option value="West Bengal">West Bengal</option>
                                                         </select>
+                                                                                                                <span id="sta" style="color: red;"></span>
+
                                                     </div>
                                                     <div class="u-s-m-b-30">
 
                                                         <label class="gl-label" for="pin">ZIP/POSTAL CODE *</label>
 
-                                                        <input class="input-text input-text--primary-style" type="text" id="pin" name="pin" value={{address.pin}} placeholder="Zip/Postal Code"></div>
+                                                        <input class="input-text input-text--primary-style" type="text" id="pin" name="pin" value={{address.pin}} placeholder="Zip/Postal Code" onblur="return validate()" onKeyUp="return validate()" minlength="6" maxlength="6">
+                                                                                                                                                                <span id="pi" style="color: red;"></span>
+</div>
                                                 </div>
 
                                                 <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
