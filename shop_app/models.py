@@ -7,6 +7,7 @@ from django.urls.base import reverse
 from accounts.models import Account
 from django.db.models import Aggregate, Avg, Count
 # Create your models here.
+from variations.models import Color, Brand, Design, Dimensions
 
 
 class Category(models.Model):
@@ -31,23 +32,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name  #shows the name
 
-class Color(models.Model):
-    color = models.CharField(max_length=100,null=True, blank=True)
 
-    def __str__(self):
-        return self.color
-
-class Brand(models.Model):
-    brand = models.CharField(max_length=100,null=True, blank=True)
-
-    def __str__(self):
-        return self.brand
-
-class Design(models.Model):
-    design = models.CharField(max_length=100,null=True, blank=True)
-
-    def __str__(self):
-        return self.design
 
 class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
@@ -60,6 +45,8 @@ class Product(models.Model):
     color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
     design = models.ForeignKey(Design, on_delete=models.CASCADE,null=True, blank=True)
+    dimensions = models.ForeignKey(Dimensions, on_delete=models.CASCADE,null=True, blank=True)
+
     is_available = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

@@ -111,6 +111,3 @@ class RatingAdmin(admin.ModelAdmin):
 admin.site.register(ReviewRating, RatingAdmin)
 
 admin.site.register(Product_Display)
-admin.site.register(Color)
-admin.site.register(Brand)
-admin.site.register(Design)

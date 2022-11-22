@@ -6,7 +6,7 @@ from django.urls import path
 from django.urls.conf import include
 from django.conf import settings
 
-# admin.site.unregister(Group)
+admin.site.unregister(Group)
 
 urlpatterns = [
     # path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
@@ -18,6 +18,8 @@ urlpatterns = [
     path('',include('shop_app.urls')),
     path('', include('User_Dashboard.urls')),
     path('', include('orders.urls')),
+    path('', include('variations.urls')),
+
 
     path('cart/', include('cart.urls')),
     path('wishlist/', include('wishlist.urls')),

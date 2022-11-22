@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'wishlist',
     'User_Dashboard',
     'orders',
+    'variations',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -201,13 +202,24 @@ JAZZMIN_SETTINGS = {
     # Top Menu #
     ############
     #
-    # # Links to put along the top menu
-    "topmenu_links": [
 
+
+    # # Links to put along the top menu
+    # "topmenu_links": [
+    #
+    #
+    #
+    #     # external url that opens in a new window (Permissions can be added)
+    #     {"name": "View Website", "url": "http://127.0.0.1:8000/", "new_window": True},
+    #
+    # ],
+    # Links to put along the top menu
+    "topmenu_links": [
 
 
         # external url that opens in a new window (Permissions can be added)
         {"name": "View Website", "url": "http://127.0.0.1:8000/", "new_window": True},
+
 
     ],
     #

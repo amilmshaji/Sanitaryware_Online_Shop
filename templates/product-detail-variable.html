@@ -405,12 +405,12 @@
                             <div class="pd-tab">
                                 <div class="u-s-m-b-30">
                                     <ul class="nav pd-tab__list">
-<!--                                        <li class="nav-item">-->
-
-<!--                                            <a class="nav-link" data-toggle="tab" href="#pd-desc">DESCRIPTION</a></li>-->
                                         <li class="nav-item">
 
-                                            <a class="nav-link" data-toggle="tab" href="#pd-tag">TAGS</a></li>
+                                            <a class="nav-link" data-toggle="tab" href="#pd-desc">SPECIFICATION</a></li>
+<!--                                        <li class="nav-item">-->
+
+<!--                                            <a class="nav-link" data-toggle="tab" href="#pd-tag">TAGS</a></li>-->
                                         <li class="nav-item">
 
                                             <a class="nav-link active" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
@@ -427,61 +427,33 @@
                                                 <p>{{ single_product.description }}</p>
                                             </div>
 <!--                                            <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>-->
-                                            <div class="u-s-m-b-30">
-                                                <ul>
-                                                    <li><i class="fas fa-check u-s-m-r-8"></i>
 
-                                                        <span>Buyer Protection.</span></li>
-                                                    <li><i class="fas fa-check u-s-m-r-8"></i>
-
-                                                        <span>Full Refund if you don't receive your order.</span></li>
-                                                    <li><i class="fas fa-check u-s-m-r-8"></i>
-
-                                                        <span>Returns accepted if product not as described.</span></li>
-                                                </ul>
-                                            </div>
                                             <div class="u-s-m-b-15">
-                                                <h4>PRODUCT INFORMATION</h4>
+                                                <h4>PRODUCT SPECIFICATION</h4>
                                             </div>
                                             <div class="u-s-m-b-15">
                                                 <div class="pd-table gl-scroll">
                                                     <table>
                                                         <tbody>
                                                             <tr>
-                                                                <td>Main Material</td>
-                                                                <td>Cotton</td>
+                                                                <td>BRAND NAME</td>
+                                                                <td>{{ single_product.brand }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Color</td>
-                                                                <td>Green, Blue, Red</td>
+                                                                <td>COLOR</td>
+                                                                <td>{{ single_product.color }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Sleeves</td>
-                                                                <td>Long Sleeve</td>
+                                                                <td>DESIGN</td>
+                                                                <td>{{ single_product.design }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Top Fit</td>
-                                                                <td>Regular</td>
+                                                                <td>DIMENSIONS</td>
+                                                                <td>{{ single_product.dimensions }}mm</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Print</td>
-                                                                <td>Not Printed</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Neck</td>
-                                                                <td>Round Neck</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Pieces Count</td>
-                                                                <td>1 Piece</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Occasion</td>
-                                                                <td>Casual</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Shipping Weight (kg)</td>
-                                                                <td>0.5</td>
+                                                                <td>CATEGORY</td>
+                                                                <td>{{ single_product.category }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

@@ -212,17 +212,17 @@
 
                                                     <span class="ship-b__text">Ship to:</span>
                                                     <div class="ship-b__box u-s-m-b-10">
-                                                        <p class="ship-b__p">{{address.fname}} {{address.lname}}, {{address.house}} {{address.street}}</p>
-<!--                                                        <p class="ship-b__p">{{address.house}} {{address.street}}</p>-->
+                                                        <span class="ship-b__text">{{address.fname}} {{address.lname}}, {{address.house}},{{address.street}},{{address.city}}</span>
 
 
-                                                        <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
+
+                                                        <a href="{% url 'addressbook' %}" class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
                                                     </div>
                                                     <div class="ship-b__box">
 
-                                                        <span class="ship-b__text">Bill to default billing address</span>
+                                                        <span class="ship-b__text">{{address.state}},{{address.phone_number}},{{address.pin}}</span>
 
-                                                        <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -231,108 +231,58 @@
                                                 <table class="o-summary__table">
                                                     <tbody>
                                                         <tr>
-                                                            <td>SHIPPING</td>
-                                                            <td>$4.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>TAX</td>
-                                                            <td>$0.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>SUBTOTAL</td>
-                                                            <td>$379.00</td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>GRAND TOTAL</td>
-                                                            <td>{{total}}</td>
+                                                            <td>₹{{total}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
+                                        <script type="text/javascript" language="JavaScript">
+                                            <!--
+                                            function checkCheckBoxes(theForm) {
+                                                if (
+                                                theForm.MyCheckbox.checked == false)
+                                                {
+                                                    alert ('You didn\'t choose any of the checkboxes!');
+                                                    return false;
+                                                } else {
+                                                    return true;
+                                                }
+                                            }
+                                            //-->
+                                            </script>
                                         <div class="o-summary__section u-s-m-b-30">
                                             <div class="o-summary__box">
                                                 <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
-                                                <form class="checkout-f__payment" id="myform">
+                                                <form class="checkout-f__payment" id="myform" onsubmit="return checkCheckBoxes(this);">
                                                     <div class="u-s-m-b-10">
 
                                                         <!--====== Radio Box ======-->
                                                         <div class="radio-box">
 
-                                                            <input type="radio" id="cash-on-delivery" name="payment">
+                                                            <input type="radio" id="pay-pal" name="payment" required>
                                                             <div class="radio-box__state radio-box__state--primary">
+<!--                                                                <label class="radio-box__label" for="pay-pal">Razor Pay</label></div>-->
 
-                                                                <label class="radio-box__label" for="cash-on-delivery">Cash on Delivery</label></div>
+
+                                                                <label  for="pay-pal">Razor Pay</label></div>
                                                         </div>
                                                         <!--====== End - Radio Box ======-->
 
-                                                        <span class="gl-text u-s-m-t-6">Pay Upon Cash on delivery. (This service is only available for some countries)</span>
-                                                    </div>
-                                                    <div class="u-s-m-b-10">
-
-                                                        <!--====== Radio Box ======-->
-                                                        <div class="radio-box">
-
-                                                            <input type="radio" id="direct-bank-transfer" name="payment">
-                                                            <div class="radio-box__state radio-box__state--primary">
-
-                                                                <label class="radio-box__label" for="direct-bank-transfer">Direct Bank Transfer</label></div>
-                                                        </div>
-                                                        <!--====== End - Radio Box ======-->
-
-                                                        <span class="gl-text u-s-m-t-6">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</span>
-                                                    </div>
-                                                    <div class="u-s-m-b-10">
-
-                                                        <!--====== Radio Box ======-->
-                                                        <div class="radio-box">
-
-                                                            <input type="radio" id="pay-with-check" name="payment">
-                                                            <div class="radio-box__state radio-box__state--primary">
-
-                                                                <label class="radio-box__label" for="pay-with-check">Pay With Check</label></div>
-                                                        </div>
-                                                        <!--====== End - Radio Box ======-->
-
-                                                        <span class="gl-text u-s-m-t-6">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</span>
-                                                    </div>
-                                                    <div class="u-s-m-b-10">
-
-                                                        <!--====== Radio Box ======-->
-                                                        <div class="radio-box">
-
-                                                            <input type="radio" id="pay-with-card" name="payment">
-                                                            <div class="radio-box__state radio-box__state--primary">
-
-                                                                <label class="radio-box__label" for="pay-with-card">Pay With Credit / Debit Card</label></div>
-                                                        </div>
-                                                        <!--====== End - Radio Box ======-->
-
-                                                        <span class="gl-text u-s-m-t-6">International Credit Cards must be eligible for use within the United States.</span>
-                                                    </div>
-                                                    <div class="u-s-m-b-10">
-
-                                                        <!--====== Radio Box ======-->
-                                                        <div class="radio-box">
-
-                                                            <input type="radio" id="pay-pal" name="payment">
-                                                            <div class="radio-box__state radio-box__state--primary">
-
-                                                                <label class="radio-box__label" for="pay-pal">Pay Pal</label></div>
-                                                        </div>
-                                                        <!--====== End - Radio Box ======-->
-
-                                                        <span class="gl-text u-s-m-t-6">When you click "Place Order" below we'll take you to Paypal's site to set up your billing information.</span>
+                                                        <span class="gl-text u-s-m-t-6">When you click "Place Order" below we'll take you to Razor Pay's interface to set up your billing information.</span>
                                                     </div>
                                                     <div class="u-s-m-b-15">
 
                                                         <!--====== Check Box ======-->
                                                         <div class="check-box">
 
-                                                            <input type="checkbox" id="term-and-condition">
+                                                            <input type="checkbox" id="term-and-condition"  name="MyCheckbox" required>
                                                             <div class="check-box__state check-box__state--primary">
+<!--                                                                <label class="check-box__label" for="term-and-condition" >I consent to the</label></div>-->
 
-                                                                <label class="check-box__label" for="term-and-condition">I consent to the</label></div>
+
+                                                                <label for="term-and-condition" >I consent to the</label></div>
                                                         </div>
                                                         <!--====== End - Check Box ======-->
 

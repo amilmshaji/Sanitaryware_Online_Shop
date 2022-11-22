@@ -40,6 +40,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         pass
     print(razoramount)
     customer=Address_Book.objects.filter(user=request.user,status=True)
+    print(customer)
 
     client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY,settings.RAZORPAY_API_SECRET_KEY))
 
@@ -51,10 +52,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
 
     }
     payment_response = client.order.create(data=data)
-    print(payment_response)
-    # {'id': 'order_KfOVTk7tVbCTus', 'entity': 'order', 'amount': 1223898, 'amount_paid': 0, 'amount_due': 1223898,
-    #  'currency': 'INR', 'receipt': 'order_rcptid_11', 'offer_id': None, 'status':
-    #      'created', 'attempts': 0, 'notes': [], 'created_at': 1668314382}
+
     order_id = payment_response['id']
     request.session['order_id'] = order_id
     order_status = payment_response['status']
@@ -68,6 +66,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
     context = {
         'razoramount':razoramount,
         'customer': customer,
+        'address' : address,
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
