@@ -6,6 +6,8 @@
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+
+from shop_app.models import Color, Brand, Design
 from .models import Account, Address_Book
 from django.utils.html import format_html
 
@@ -60,4 +62,6 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(Account, AccountAdmin)
 admin.site.register(Address_Book)
+
+
 

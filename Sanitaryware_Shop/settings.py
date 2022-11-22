@@ -275,7 +275,7 @@ JAZZMIN_SETTINGS = {
     # "custom_js": "js/vendor.js",
 
     # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
-    # "use_google_fonts_cdn": True,
+    "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
     "show_ui_builder": False,
 
