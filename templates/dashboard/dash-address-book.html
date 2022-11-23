@@ -28,6 +28,15 @@
                 </div>
             </div>
             <!--====== End - Section 1 ======-->
+                                          {% include 'alerts2.html' %}
+
+                                      <script>
+                                          setTimeout(function(){
+                                            if ($('#message').length > 0){
+                                              $('#message').remove();
+                                              }
+                                            },3000)
+                                            </script>
 
 
             <!--====== Section 2 ======-->
