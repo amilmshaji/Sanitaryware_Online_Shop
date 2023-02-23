@@ -1,7 +1,5 @@
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
 
-from accounts.models import Address_Book
 from . models import Cart, CartItem
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render

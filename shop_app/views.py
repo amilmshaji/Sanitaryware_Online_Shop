@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+import requests
 from django.core import paginator
 from django.core.checks import messages
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -142,6 +143,9 @@ def submit_review(request, product_id):
                 data = ReviewRating()
                 data.rating = form.cleaned_data['rating']
                 data.review = form.cleaned_data['review']
+
+
+
                 data.ip = request.META.get('REMOTE_ADDR')
                 data.product_id = product_id
                 data.user_id = request.user.id
@@ -209,18 +213,25 @@ def p(request, product_id):
     DEFAULT_IMAGE_SIZE = (WIDTH, HEIGHT)  # Set the size for the image
 
     img = pg.image.load(product.display)  # Take image as input -product image
+    img4 = pg.image.load(product.display2)
     img = pg.transform.scale(img, DEFAULT_IMAGE_SIZE)  # Scale the image to your needed size
+    img4 = pg.transform.scale(img4, DEFAULT_IMAGE_SIZE)
 
 
     img1 = pg.image.load(images) #design image background
     img.convert()
+    img4.convert()
+
     img1.convert()
     img2 = pg.transform.scale(img1, (1200, 600))
 
 
 
+
     # Draw rectangle around the image
     rect = img.get_rect()
+    rect = img4.get_rect()
+
     rect.center = w // 2, h // 2
 
     # Set running and moving values
@@ -273,6 +284,8 @@ def p(request, product_id):
                         WIDTH = WIDTH + 5
                         HEIGHT = HEIGHT + 5
                         img = pg.transform.scale(img, (WIDTH, HEIGHT))
+                        img4 = pg.transform.scale(img4, (WIDTH, HEIGHT))
+
 
                 elif w1 <= mouse[0] <= w1 + 140 and h2 <= mouse[1] <= h2 + 40:  # zoom in product image
                     if WIDTH >= 180 and HEIGHT >= 180:
@@ -280,6 +293,8 @@ def p(request, product_id):
                         WIDTH = WIDTH - 5
                         HEIGHT = HEIGHT - 5
                         img = pg.transform.scale(img, (WIDTH, HEIGHT))
+                        img4 = pg.transform.scale(img4, (WIDTH, HEIGHT))
+
 
                 elif w1 <= mouse[0] <= w1 + 140 and h3 <= mouse[1] <= h3 + 40:  # quit window button
                     pg.quit()
@@ -289,7 +304,10 @@ def p(request, product_id):
 
         screen.fill(YELLOW)  # set screen color and image on screen
         screen.blit(img2, (0, 0))
+
         screen.blit(img, rect)
+        screen.blit(img4, rect)
+
 
 
         start_button = pg.draw.rect(screen, (0, 0, 240), (1050, 90, 100, 50));

@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.core.serializers import json
+from django.http import JsonResponse
 
-# Create your views here.
+def my_view(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body)
+        print(json_data)
+    return JsonResponse({'status': 'success'})
+
