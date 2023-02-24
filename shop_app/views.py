@@ -1,8 +1,5 @@
 from django.contrib.auth.decorators import login_required
-import requests
-from django.core import paginator
 from django.core.checks import messages
-from django.http.response import HttpResponse, HttpResponseRedirect
 
 from .forms import ReviewForm
 from .models import Category, Product_Display
