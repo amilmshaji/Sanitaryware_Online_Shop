@@ -42,6 +42,7 @@ class Product(models.Model):
     images = models.ImageField(upload_to='photos/product')
     display = models.ImageField(upload_to='photos/display',default="a3.png")
     display2 = models.ImageField(upload_to='photos/display', default="a3.png")
+    display3 = models.ImageField(upload_to='photos/display', default="a3.png")
     stock = models.IntegerField()
     color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
