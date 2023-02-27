@@ -1,6 +1,11 @@
 from django.contrib import messages
 from django.conf import settings
 
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.views.generic import View
+from .utils import render_to_pdf
+
 from Sanitaryware_Shop.settings import RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY
 from accounts.models import Address_Book
 
@@ -98,6 +103,33 @@ def payment_done(request):
         c.delete()
     messages.success(request, 'Thank You for ordering...!')
     return redirect('my_orders')
+
+def get(request, id, *args, **kwargs, ):
+
+    place = OrderPlaced.objects.get(id=id)
+    date = place.payment.created_at
+
+    orders = OrderPlaced.objects.filter(user_id=request.user.id, payment__created_at=date)
+    total = 0
+    for o in orders:
+        total = total + (o.product.price * o.quantity)
+    addrs = Address_Book.objects.get(user_id=request.user.id,status=True)
+
+    data = {
+            "total": total,
+            "orders": orders,
+            "shipping": addrs,
+        }
+    pdf = render_to_pdf('report.html', data)
+    if pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+            # filename = "Report_for_%s.pdf" %(data['id'])
+        filename = "Bill"
+
+        content = "inline; filename= %s" % (filename)
+        response['Content-Disposition'] = content
+        return response
+    return HttpResponse("Page Not Found")
 
 
 

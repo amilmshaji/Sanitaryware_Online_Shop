@@ -84,8 +84,9 @@
                                                             </div>
                                                             <div>
                                                                 <div class="dash__link dash__link--brand">
-
-<!--                                                                    <a href="dash-manage-order.html">MANAGE</a>-->
+                                                                {% for i in orders|slice:"1" %}
+                                                                    <a href="{% url 'pdf' i.id %}">BILL</a>
+                                                                    {% endfor %}
                                                                 </div>
                                                             </div>
                                                         </div>

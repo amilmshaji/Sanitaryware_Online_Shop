@@ -397,8 +397,8 @@ def p(request, product_id):
 
         # Draw button text
         button_font = pg.font.SysFont('Helvetica', 20)
-        start_text = button_font.render('Zoom IN', True, text_color)
-        continue_text = button_font.render('Zoom OUT', True, text_color)
+        start_text = button_font.render('Zoom OUT', True, text_color)
+        continue_text = button_font.render('Zoom IN', True, text_color)
         quit_text = button_font.render('Quit', True, text_color)
         screen.blit(start_text, (start_button_rect.x + button_padding, start_button_rect.y + button_padding))
         screen.blit(continue_text, (continue_button_rect.x + button_padding, continue_button_rect.y + button_padding))
