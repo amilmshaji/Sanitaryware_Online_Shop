@@ -24,3 +24,11 @@ class Dimensions(models.Model):
 
     def __str__(self):
         return self.dimensions
+
+
+class Brand_Company(models.Model):
+    brand = models.CharField(max_length=100,null=True, blank=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.brand
