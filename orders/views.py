@@ -104,6 +104,8 @@ def payment_done(request):
     messages.success(request, 'Thank You for ordering...!')
     return redirect('my_orders')
 
+
+
 def get(request, id, *args, **kwargs, ):
 
     place = OrderPlaced.objects.get(id=id)
