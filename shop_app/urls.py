@@ -21,6 +21,6 @@ urlpatterns = [
          views.submit_review, name='submit_review'),
     path('view/', views.view, name='view'),
     path('main_view/', views.InfoListView, name='main-view'),
-
+    path('search-suggestions/', views.search_suggestions, name='search_suggestions'),
 
 ]

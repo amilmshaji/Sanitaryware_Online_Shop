@@ -121,6 +121,24 @@ def search(request):
         'product_count': product_count,
     }
     return render(request, 'shop.html', context)
+from django.http import JsonResponse
+from django.db.models import Q
+
+def search_suggestions(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Product.objects.filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
+            suggestions = []
+            for product in products:
+                suggestion = {
+                    'name': product.product_name,
+                    'url': product.get_url()
+                }
+                suggestions.append(suggestion)
+            return JsonResponse(suggestions, safe=False)
+    return JsonResponse([], safe=False)
+
 
 from django.views.generic import ListView
 import json
