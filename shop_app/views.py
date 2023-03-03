@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
 
 from .forms import ReviewForm
-from .models import Category, Product_Display
+from .models import Category, Product_Display, Info
 from django.shortcuts import get_object_or_404, redirect, render
 from . models import Product, ReviewRating, Productgallery
 from cart.models import CartItem, Cart
@@ -121,6 +121,19 @@ def search(request):
         'product_count': product_count,
     }
     return render(request, 'shop.html', context)
+
+from django.views.generic import ListView
+import json
+
+class InfoListView(ListView):
+    model = Info
+    template_name = 'main.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["qs_json"] = json.dumps(list(Info.objects.values()))
+        return context
+
 
 @login_required(login_url='login')
 def submit_review(request, product_id):

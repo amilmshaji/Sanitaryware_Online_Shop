@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from .views import InfoListView
+
 
 urlpatterns = [
     path('', views.Home, name='home'),
@@ -18,5 +20,7 @@ urlpatterns = [
     path('submit_review/<int:product_id>/',
          views.submit_review, name='submit_review'),
     path('view/', views.view, name='view'),
+    path('main_view/', views.InfoListView, name='main-view'),
+
 
 ]

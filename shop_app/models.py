@@ -185,3 +185,9 @@ class Product_Display(models.Model):
     user = models. OneToOneField(Account, on_delete=models.CASCADE,null=True,editable=False,unique=True)
 
     images = ResizedImageField(upload_to='view/photos',null=True, blank=True)
+
+class Info(models.Model):
+    name=models.CharField(max_length=200)
+
+    def __str__(self):
+        return str(self.name)
