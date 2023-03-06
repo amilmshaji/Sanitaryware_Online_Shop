@@ -58,30 +58,8 @@ class ProductAdmin(admin.ModelAdmin):
     thumbnail_preview.short_description = 'Image Preview'
     thumbnail_preview.allow_tags = True
 
-#
-# class VariationAdmin(admin.ModelAdmin):
-#     list_display = (
-#         'product',
-#         'color',
-#         'brand',
-#         'design',
-#         'is_active',
-#     )
-#     list_editable = (
-#         'is_active',
-#
-#     )
-#     list_filter = (
-#         'product',
-#         'color',
-#         'brand',
-#         'design',
-#         'is_active',
-#     )
-
 
 admin.site.register(Product, ProductAdmin)
-# admin.site.register(Variation, VariationAdmin)
 
 
 
