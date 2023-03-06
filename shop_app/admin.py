@@ -33,7 +33,59 @@ class ProductGalleryInline(admin.TabularInline):
     model=Productgallery
     extra=1
 
+from django.utils import timezone
+
 class ProductAdmin(admin.ModelAdmin):
+    # ...
+
+    list_filter = (
+        ('created_date', admin.DateFieldListFilter),
+    )
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        today = timezone.now().date()
+        yesterday = today - timezone.timedelta(days=1)
+        last_month = today - timezone.timedelta(days=30)
+
+        if request.GET.get('date_filter') == 'today':
+            return qs.filter(created_date=today)
+        elif request.GET.get('date_filter') == 'yesterday':
+            return qs.filter(created_date=yesterday)
+        elif request.GET.get('date_filter') == 'last_month':
+            return qs.filter(created_date__gte=last_month, created_date__lte=today)
+        else:
+            return qs
+
+    def changelist_view(self, request, extra_context=None):
+        if request.GET.get('date_filter'):
+            self.list_display = (
+                'thumbnail_preview',
+                'product_name',
+                'price',
+                'stock',
+                'category',
+                'is_available',
+                'is_featured',
+                'created_date',
+            )
+            self.list_filter = ()
+        else:
+            self.list_display = (
+                'thumbnail_preview',
+                'product_name',
+                'price',
+                'stock',
+                'category',
+                'is_available',
+                'is_featured',
+            )
+            self.list_filter = (
+                ('created_date', admin.DateFieldListFilter),
+            )
+
+        return super().changelist_view(request, extra_context=extra_context)
+
     list_display = (
         'thumbnail_preview',
         'product_name',
