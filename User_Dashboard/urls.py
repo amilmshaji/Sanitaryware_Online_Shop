@@ -12,5 +12,6 @@ urlpatterns = [
 
     path('address_set/<int:address_id>/', views.address_set, name='address_set'),
     path('my_orders/', views.my_orders, name='my_orders'),
+    path('p/<int:product_id>/', views.p, name='p'),
 
 ]
