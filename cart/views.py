@@ -25,10 +25,13 @@ def add_cart(request, product_id):
 
     # Check if the product is currently locked
     cart_item = CartItem.objects.filter(product=product, is_active=True).exclude(user=current_user).first()
-    if cart_item and cart_item.reserved_until > timezone.now():
-        time_left = cart_item.reserved_until - timezone.now()
-        messages.success(request, f"This product is currently locked for {time_left.seconds } seconds.")
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    print(cart_item)
+
+    if cart_item and cart_item.quantity == product.stock:
+        if cart_item and cart_item.reserved_until > timezone.now():
+            time_left = cart_item.reserved_until - timezone.now()
+            messages.success(request, f"This product is currently locked for {time_left.seconds } seconds.")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     # Lock the product for 2 minutes
     reserved_until = timezone.now() + timedelta(minutes=2)

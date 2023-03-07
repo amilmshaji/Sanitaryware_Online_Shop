@@ -343,7 +343,8 @@ def p(request, product_id):
                             img5 = pg.transform.scale(img5, (WIDTH, HEIGHT))
 
                     elif w1 <= mouse[0] <= w1 + 140 and h3 <= mouse[1] <= h3 + 40:  # quit window button
-                        pg.quit()
+                        # pg.quit()
+                        pg.image.save(screen, "screenshot.png")
                         return redirect(url)
 
 
@@ -386,8 +387,13 @@ def p(request, product_id):
         quit_icon = button_font.render('X', True, text_color)
         screen.blit(quit_icon, (quit_button_rect.x + button_padding, quit_button_rect.y + button_padding))
 
+
+
         # Update the GUI pygame
         pg.display.update()
+
+
+
 
     # Quit the GUI game
     pg.quit()
