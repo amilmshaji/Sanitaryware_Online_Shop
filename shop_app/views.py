@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
 
+from variations.models import Color, Brand
 from .forms import ReviewForm
 from .models import Category, Product_Display, Info
 from django.shortcuts import get_object_or_404, redirect, render
@@ -48,6 +49,9 @@ def Home(request,category_slug=None):
 def store(request, category_slug=None):
     categories = None
     products = None
+    colors = Color.objects.all()
+    brands = Brand.objects.all()
+    cat=Category.objects.all()
 
     if category_slug != None:
         categories = get_object_or_404(Category, slug=category_slug)
@@ -68,9 +72,37 @@ def store(request, category_slug=None):
     context = {
         'products': paged_products,
         'product_count': product_count,
+        'cat': cat,
+        'colors': colors,
+        'brands': brands,
     }
     return render(request, 'shop.html', context)
 
+def filter_products(request):
+    category = request.GET.get('category')
+    color = request.GET.get('color')
+    brand = request.GET.get('brand')
+
+
+    products = Product.objects.filter(
+        category__slug=category,
+        color__slug=color,
+        brand__slug=brand,
+
+        is_available=True
+    )
+
+    data = []
+    for product in products:
+        data.append({
+            'id': product.id,
+            'name': product.product_name,
+            'description': product.description,
+
+            'image': product.images.url
+        })
+
+    return JsonResponse({'products': data})
 
 def product_detail(request,  category_slug, product_slug):
     try:

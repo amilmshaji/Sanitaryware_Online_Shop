@@ -21,4 +21,8 @@
 #
 #
 # admin.site.register(Cart, CartAdmin)
-# admin.site.register(CartItem, CartItemAdmin)
+from django.contrib import admin
+
+from cart.models import CartItem
+
+admin.site.register(CartItem)
