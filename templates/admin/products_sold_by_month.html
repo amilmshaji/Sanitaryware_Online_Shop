@@ -1,18 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'admin/base.html' %}
 
 {% block content %}
-<div class="container">
-  <h1>Products sold by month</h1>
+<div class="container-fluid">
+  <h1 class="pb-3">Products sold by month</h1>
 
   <div class="row">
     <div class="col-md-8">
       <img src="data:image/png;base64,{{ graphic }}" class="img-fluid">
     </div>
     <div class="col-md-4">
-      <ul class="list-group">
-        <li class="list-group-item"><a href="{% url 'home' %}">Home</a></li>
-        <li class="list-group-item"><a href="{% url 'store' %}">Product list</a></li>
-      </ul>
+      <div class="card">
+        <div class="card-header">
+          Navigation
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="#">Dashboard</a></li>
+          <li class="list-group-item"><a href="#">Product list</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

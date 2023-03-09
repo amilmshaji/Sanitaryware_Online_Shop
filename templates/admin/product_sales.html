@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{ title }}</h1>
+        <div id="product-sales-chart"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.26.3/dist/apexcharts.min.js"></script>
+  <script>
+    var options = {
+      chart: {
+        type: 'bar',
+        height: 350
+      },
+      series: [{
+        name: 'Sales',
+        data: [{% for label, value in data %}{{ value }},{% endfor %}]
+      }],
+      xaxis: {
+        categories: [{% for label, value in data %}'{{ label }}',{% endfor %}]
+      }
+    }
+
+    var chart = new ApexCharts(document.querySelector("#product-sales-chart"), options);
+
+    document.addEventListener('DOMContentLoaded', function() {
+      chart.render();
+    });
+  </script>
+{% endblock %}

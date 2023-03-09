@@ -138,7 +138,12 @@ import matplotlib.pyplot as plt
 from django.db.models.functions import ExtractMonth
 from django.db.models import Count
 from .models import OrderPlaced
+from django.views.decorators.csrf import csrf_exempt
+import matplotlib
+matplotlib.use('Agg')
 
+
+@csrf_exempt
 def products_sold_by_month(request):
     data = OrderPlaced.objects.filter(is_ordered=True).annotate(month=ExtractMonth('ordered_date')).values(
         'month').order_by('month')
