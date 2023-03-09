@@ -16,7 +16,6 @@ class OrderProductAdmin(admin.ModelAdmin):
         'is_ordered',
         'ordered_date',
     )
-    list_editable = ['ordered_date']
 
     # # This will help you to disbale add functionality
     # def has_add_permission(self, request):
