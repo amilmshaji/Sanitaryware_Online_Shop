@@ -53,7 +53,7 @@ class OrderPlaced(models.Model):
     quantity = models.IntegerField(default=1)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     is_ordered = models.BooleanField(default=False)
-    ordered_date = models.DateField(auto_now_add=True)
+    ordered_date = models.DateField(null=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def total_cost(self):
