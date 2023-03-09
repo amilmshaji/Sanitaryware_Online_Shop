@@ -16,16 +16,7 @@ from django.http import HttpResponse
 from django.db.models import F
 # Register your models here.
 
-def export_users(modeladmin, request, queryset):
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="Users.csv"'
-    writer = csv.writer(response)
-    writer.writerow(['Name'])
-    Account = queryset.values_list('email')
-    for user in Account:
-        writer.writerow(user)
-    return response
-export_users.short_description = 'Download Customer Details'
+
 
 
 class AccountAdmin(UserAdmin):

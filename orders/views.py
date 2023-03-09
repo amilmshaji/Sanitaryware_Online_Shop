@@ -134,4 +134,40 @@ def get(request, id, *args, **kwargs, ):
     return HttpResponse("Page Not Found")
 
 
+import matplotlib.pyplot as plt
+from django.db.models.functions import ExtractMonth
+from django.db.models import Count
+from .models import OrderPlaced
+
+def products_sold_by_month(request):
+    data = OrderPlaced.objects.filter(is_ordered=True).annotate(month=ExtractMonth('ordered_date')).values(
+        'month').order_by('month')
+
+    months = [month[1] for month in OrderPlaced.MONTH_CHOICES]
+
+    totals = [data.filter(month=month[0]).aggregate(total=Count('id'))['total'] for month in OrderPlaced.MONTH_CHOICES]
+
+    plt.bar(months, totals)
+    plt.title('Products sold by month')
+    plt.xlabel('Month')
+    plt.ylabel('Total')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    # Convert the plot to a Django view response
+    from io import BytesIO
+    import base64
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+    graphic = base64.b64encode(image_png)
+    graphic = graphic.decode('utf-8')
+
+    # Render the template with the plot and URLs
+    context = {
+        'graphic': graphic,
+    }
+    return render(request, 'admin/products_sold_by_month.html', context)
 

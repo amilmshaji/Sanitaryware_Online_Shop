@@ -1,8 +1,5 @@
 from django.db import models
 from django.utils.html import mark_safe
-
-
-
 from django.urls.base import reverse
 from accounts.models import Account
 from django.db.models import Aggregate, Avg, Count

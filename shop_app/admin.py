@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.db import models
 from .models import Product, Variation, ReviewRating, Productgallery, Product_Display, Color, Brand, Design, Info
 import admin_thumbnails
+from django.utils import timezone
+
 
 from .models import Category
 
@@ -22,8 +24,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
     thumbnail_preview.short_description = 'Image Preview'
     thumbnail_preview.allow_tags = True
-
-
 admin.site.register(Category, CategoryAdmin)
 
 
@@ -33,7 +33,6 @@ class ProductGalleryInline(admin.TabularInline):
     model=Productgallery
     extra=1
 
-from django.utils import timezone
 
 class ProductAdmin(admin.ModelAdmin):
     # ...
@@ -99,6 +98,18 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
     list_editable = ['price','stock','is_available','is_featured',]
+    search_fields = ('product_name', 'description')
+    ordering = ('-created_date',)
+    actions = ['make_available', 'make_unavailable']
+
+    def make_available(self, request, queryset):
+        queryset.update(is_available=True)
+    make_available.short_description = 'Mark selected products as available'
+
+    def make_unavailable(self, request, queryset):
+        queryset.update(is_available=False)
+    make_unavailable.short_description = 'Mark selected products as unavailable'
+
 
 
     prepopulated_fields = {'slug': ('product_name',)}

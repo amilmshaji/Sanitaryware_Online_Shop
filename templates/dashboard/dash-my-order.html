@@ -17,10 +17,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="#">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-my-order.html">My Account</a></li>
+                                        <a href="#">My Account</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                         <div class="dash__pad-2">
                                             <h1 class="dash__h1 u-s-m-b-14">My Orders</h1>
 
-<!--                                            <span class="dash__text u-s-m-b-30">Here you can see all products that have been delivered.</span>-->
+                                            <span class="dash__text u-s-m-b-30">Here you can see all products that have been ordered.</span>
                                             <form class="m-order u-s-m-b-30">
 <!--                                                <div class="m-order__select-wrapper">-->
 
@@ -79,8 +79,8 @@
                                                     <div class="manage-o__header u-s-m-b-30">
                                                         <div class="dash-l-r">
                                                             <div>
-<!--                                                                <div class="manage-o__text-2 u-c-secondary">Order #305423126</div>-->
-<!--                                                                <div class="manage-o__text u-c-silver">Placed on 26 Oct 2016 09:08:37</div>-->
+                                                                <div class="manage-o__text-2 u-c-secondary">Order ID #{{order.payment.razorpay_order_id}}</div>
+                                                                <div class="manage-o__text u-c-silver">Placed on {{order.ordered_date}}</div>
                                                             </div>
                                                             <div>
                                                                 <div class="dash__link dash__link--brand">
@@ -93,8 +93,8 @@
                                                         <div class="description__container">
                                                             <div class="description__img-wrap">
 
-                                                                <img class="u-img-fluid" src="{{order.product.images.url}}" alt=""></div>
-                                                            <div class="description-title">{{order.product.product_name}}</div>
+                                                               <a href="{{order.product.get_url}}"> <img class="u-img-fluid" src="{{order.product.images.url}}" alt=""></a></div>
+                                                            <a href="{{order.product.get_url}}"><div class="description-title">{{order.product.product_name}}</div></a>
                                                         </div>
                                                         <div class="description__info-wrap">
                                                             <div>
