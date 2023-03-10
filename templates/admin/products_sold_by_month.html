@@ -1,12 +1,16 @@
 {% extends 'admin/base.html' %}
 
 {% block content %}
-<div class="container-fluid">
-  <h1 class="pb-3">Products sold by month</h1>
 
+<div class="container-fluid">
+  <h1 class="pb-3">Products Sold by Month</h1>
   <div class="row">
     <div class="col-md-8">
-      <img src="data:image/png;base64,{{ graphic }}" class="img-fluid">
+      <div class="card">
+        <div class="card-body">
+          <img src="data:image/png;base64,{{ graphic }}" class="card-img-top">
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="card">
@@ -14,8 +18,10 @@
           Navigation
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><a href="#">Dashboard</a></li>
-          <li class="list-group-item"><a href="#">Product list</a></li>
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/login/admin/" class="nav-link">Dashboard</a></li>
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/login/admin/shop_app/product/" class="nav-link">Product List</a></li>
+
+
         </ul>
       </div>
     </div>

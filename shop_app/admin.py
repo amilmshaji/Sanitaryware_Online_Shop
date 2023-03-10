@@ -152,4 +152,4 @@ class RatingAdmin(admin.ModelAdmin):
 
 admin.site.register(ReviewRating, RatingAdmin)
 
-admin.site.register(Info)
+# admin.site.register(Info)

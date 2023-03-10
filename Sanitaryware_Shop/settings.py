@@ -185,7 +185,7 @@ JAZZMIN_SETTINGS = {
 
         # external url that opens in a new window (Permissions can be added)
         {"name": "View Website", "url": "http://127.0.0.1:8000/", "new_window": True},
-        {"name": "Sales", "url": "http://127.0.0.1:8000/products_sold_by_month/", "new_window": True},
+        {"name": "Sales", "url": "http://127.0.0.1:8000/products_sold_by_month/", "new_window": False},
 
 
     ],

@@ -133,7 +133,7 @@ def get(request, id, *args, **kwargs, ):
         return response
     return HttpResponse("Page Not Found")
 
-
+#for data visualisatiom im admin panel
 import matplotlib.pyplot as plt
 from django.db.models.functions import ExtractMonth
 from django.db.models import Count
