@@ -185,7 +185,7 @@ JAZZMIN_SETTINGS = {
 
         # external url that opens in a new window (Permissions can be added)
         {"name": "View Website", "url": "http://127.0.0.1:8000/", "new_window": True},
-        {"name": "Sales", "url": "http://127.0.0.1:8000/products_sold_by_month/", "new_window": False},
+        {"name": "Sales Chart", "url": "http://127.0.0.1:8000/products_sold_by_month/", "new_window": False},
 
 
     ],
@@ -204,7 +204,7 @@ JAZZMIN_SETTINGS = {
     # # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
     # "order_with_respect_to": ["auth", "books", "books.author", "books.book"],
     #
-    # # Custom links to append to app groups, keyed on app name
+    # # Custom links to append to app groups, keyed on app names
     # "custom_links": {
     #     "books": [{
     #         "name": "Make Messages",
