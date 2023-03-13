@@ -19,7 +19,7 @@ urlpatterns = [
     path('', include('User_Dashboard.urls')),
     path('', include('orders.urls')),
     path('', include('variations.urls')),
-
+    path('', include('chatbot.urls')),
 
     path('cart/', include('cart.urls')),
     path('wishlist/', include('wishlist.urls')),

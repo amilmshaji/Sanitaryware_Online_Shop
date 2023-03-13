@@ -9,7 +9,6 @@ from . models import Product, ReviewRating, Productgallery
 from cart.models import CartItem, Cart
 from cart.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.db.models import Q
 from django.contrib import messages
 
 # Python program to move the image
@@ -231,10 +230,6 @@ def view(request):
             other.save()
             messages.success(request, 'Your bathroom image is kept for display!')
             return redirect(url)
-
-
-
-
     return render(request, 'product-detail-variable.html')
 
 
