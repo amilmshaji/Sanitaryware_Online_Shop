@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'User_Dashboard',
     'orders',
     'chatbot',
+    'recommendation',
     'variations',
     'django.contrib.admin',
     'django.contrib.auth',

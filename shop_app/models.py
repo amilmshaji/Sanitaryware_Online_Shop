@@ -27,6 +27,8 @@ class Category(models.Model):
         return reverse('products_by_category', args=[self.slug])
 
        #shows the name
+    def __str__(self):
+        return self.category_name
 
 
 
@@ -39,6 +41,8 @@ class Product(models.Model):
     display = models.ImageField(upload_to='photos/display',default="a3.png")
     display2 = models.ImageField(upload_to='photos/display', default="a3.png")
     display3 = models.ImageField(upload_to='photos/display', default="a3.png")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
     stock = models.IntegerField()
     color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
@@ -47,7 +51,6 @@ class Product(models.Model):
 
     is_available = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
     modified_date = models.DateField(auto_now=True)
 

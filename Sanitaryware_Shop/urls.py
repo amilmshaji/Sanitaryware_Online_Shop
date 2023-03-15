@@ -20,6 +20,7 @@ urlpatterns = [
     path('', include('orders.urls')),
     path('', include('variations.urls')),
     path('', include('chatbot.urls')),
+    path('', include('recommendation.urls')),
 
     path('cart/', include('cart.urls')),
     path('wishlist/', include('wishlist.urls')),

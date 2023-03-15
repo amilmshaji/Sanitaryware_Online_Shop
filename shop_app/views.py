@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
 
+from recommendation.models import SearchHistory
 from variations.models import Color, Brand
 from .forms import ReviewForm
 from .models import Category, Product_Display, Info
@@ -141,6 +142,8 @@ def product_detail(request,  category_slug, product_slug):
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
+        key=SearchHistory(query=keyword,user=request.user)
+        key.save()
         if keyword:
             products = Product.objects.order_by(
                 'created_date').filter(Q(category__category_name__icontains=keyword) | Q(product_name__icontains=keyword))
@@ -231,6 +234,13 @@ def view(request):
             messages.success(request, 'Your bathroom image is kept for display!')
             return redirect(url)
     return render(request, 'product-detail-variable.html')
+
+
+
+from django.shortcuts import render
+from .models import Product, ReviewRating
+from django.db.models import Q
+from sklearn.ensemble import RandomForestRegressor
 
 
 
