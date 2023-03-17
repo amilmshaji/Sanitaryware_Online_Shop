@@ -1,3 +1,4 @@
+import numpy as np
 from django.contrib import messages
 from django.conf import settings
 
@@ -133,46 +134,18 @@ def get(request, id, *args, **kwargs, ):
         return response
     return HttpResponse("Page Not Found")
 
-#for data visualisatiom im admin panel
-import matplotlib.pyplot as plt
-from django.db.models.functions import ExtractMonth
+
+from django.shortcuts import render
 from django.db.models import Count
-from .models import OrderPlaced
-from django.views.decorators.csrf import csrf_exempt
-import matplotlib
-matplotlib.use('Agg')
+from django.utils import timezone
+from .models import Product, OrderPlaced
 
 
-@csrf_exempt
-def products_sold_by_month(request):
-    data = OrderPlaced.objects.filter(is_ordered=True).annotate(month=ExtractMonth('ordered_date')).values(
-        'month').order_by('month')
-
-    months = [month[1] for month in OrderPlaced.MONTH_CHOICES]
-
-    totals = [data.filter(month=month[0]).aggregate(total=Count('id'))['total'] for month in OrderPlaced.MONTH_CHOICES]
-
-    plt.bar(months, totals)
-    plt.title('Products sold by month')
-    plt.xlabel('Month')
-    plt.ylabel('Total')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-
-    # Convert the plot to a Django view response
-    from io import BytesIO
-    import base64
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
-    graphic = base64.b64encode(image_png)
-    graphic = graphic.decode('utf-8')
-
-    # Render the template with the plot and URLs
-    context = {
-        'graphic': graphic,
-    }
-    return render(request, 'admin/products_sold_by_month.html', context)
+def product_sales(request):
+    current_month = timezone.now().month
+    product_sales = OrderPlaced.objects.filter(ordered_date__month=current_month)\
+        .values('product__brand__brand').annotate(total_sales=Count('product')).order_by('-total_sales')
+    labels = [ps['product__brand__brand'] for ps in product_sales]
+    data = [ps['total_sales'] for ps in product_sales]
+    return render(request, 'admin/product_sales.html', {'labels': labels, 'data': data})
 
