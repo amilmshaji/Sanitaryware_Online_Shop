@@ -1,0 +1,81 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          Product Sales Based on Company</div>
+          <div class="btn-group" role="group" aria-label="Sales Chart Type">
+          <button type="button" class="btn btn-secondary" onclick="salesChart.config.type='pie'; salesChart.update();">Pie</button>
+          <button type="button" class="btn btn-secondary" onclick="salesChart.config.type='bar'; salesChart.update();">Bar</button>
+          <button type="button" class="btn btn-secondary" onclick="salesChart.config.type='line'; salesChart.update();">Line</button>
+          <button type="button" class="btn btn-secondary" onclick="salesChart.config.type='scatter'; salesChart.update();">scatter</button>
+
+          </div>
+    <canvas id="salesChart"></canvas>
+      </div>
+    </div>
+          <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Navigation
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/login/admin/" class="nav-link">Dashboard</a></li>
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/sales-report/" class="nav-link">Current Months sales</a></li>
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+    var salesData = {
+        labels: [
+            {% for item in product_data %}
+                "{{ item.name }}",
+            {% endfor %}
+        ],
+        datasets: [{
+            label: "Quantity sold",
+            backgroundColor: "#428bca",
+            data: [
+                {% for item in product_data %}
+                    {{ item.quantity }},
+                {% endfor %}
+            ]
+        }, {
+            label: "Total sales",
+            backgroundColor: "#5cb85c",
+            data: [
+                {% for item in product_data %}
+                    {{ item.total }},
+                {% endfor %}
+            ]
+        }]
+    };
+
+    var chartOptions = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+    var salesChart = new Chart("salesChart", {
+        type: 'bar',
+        data: salesData,
+        options: chartOptions
+    });
+</script>
+{% endblock %}

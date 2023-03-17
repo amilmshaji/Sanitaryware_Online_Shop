@@ -157,18 +157,27 @@ def product_sales(request):
     data = [ps['total_sales'] for ps in product_sales]
     return render(request, 'admin/product_sales.html', {'labels': labels, 'data': data})
 
-from django.db.models.functions import TruncMonth
+from django.db.models import Sum
+from django.shortcuts import render
+from datetime import datetime
 
-def monthly_sales(request):
-    orders = OrderPlaced.objects.filter(is_ordered=True, status='Completed').annotate(month=TruncMonth('ordered_date')).values('month').annotate(sales=Sum('quantity'), amount=Sum('payment__amount')).order_by('-month')
-
-    labels = [o['month'].strftime('%B') for o in orders]
-    sales_data = [o['sales'] for o in orders]
-    amount_data = [o['amount'] for o in orders]
-
+def sales_report(request):
+    current_month = datetime.now().month
+    orders = OrderPlaced.objects.filter(ordered_date__month=current_month, is_ordered=True)
+    product_data = []
+    for order in orders:
+        product = order.product
+        product_total = order.total_cost() * order.quantity
+        product_data.append({
+            'name': product.product_name,
+            'quantity': order.quantity,
+            'total': product_total,
+        })
+    total_sales = sum([item['total'] for item in product_data])
     context = {
-        'labels': labels,
-        'sales_data': sales_data,
-        'amount_data': amount_data,
+        'product_data': product_data,
+        'total_sales': total_sales,
     }
-    return render(request, 'admin/monthly_sales.html', context)
+    return render(request, 'admin/sales_report.html', context)
+
+

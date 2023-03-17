@@ -8,7 +8,7 @@ urlpatterns = [
     path('pdf/<int:id>/', views.get,name='pdf'),
 
     #sales url
-    # path('products_sold_by_month/', views.products_sold_by_month, name='products_sold_by_month'),
+    path('sales-report/', views.sales_report, name='sales_report'),
     path('product-sales/', views.product_sales, name='product_sales'),
 
 ]
