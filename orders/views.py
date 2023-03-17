@@ -7,7 +7,9 @@ from django.http import HttpResponse
 from django.views.generic import View
 from .utils import render_to_pdf
 
-from Sanitaryware_Shop.settings import RAZORPAY_API_KEY, RAZORPAY_API_SECRET_KEY
+from django.db.models import Count
+from django.utils import timezone
+
 from accounts.models import Address_Book
 
 from django.shortcuts import get_object_or_404, redirect, render
@@ -134,11 +136,6 @@ def get(request, id, *args, **kwargs, ):
         return response
     return HttpResponse("Page Not Found")
 
-
-from django.shortcuts import render
-from django.db.models import Count
-from django.utils import timezone
-from .models import Product, OrderPlaced
 
 
 def product_sales(request):
