@@ -1,11 +1,25 @@
 {% extends 'admin/base.html' %}
 {% block content %}
+{% block title %}Sales Chart{% endblock %}
+
 <div class="container mt-5">
   <div class="row">
+
     <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          Product Sales Based on Company</div>
+          <div class="btn-group" role="group" aria-label="Sales Chart Type">
+          <button type="button" class="btn btn-secondary" onclick="myChart.config.type='pie'; myChart.update();">Pie</button>
+          <button type="button" class="btn btn-secondary" onclick="myChart.config.type='bar'; myChart.update();">Bar</button>
+          <button type="button" class="btn btn-secondary" onclick="myChart.config.type='line'; myChart.update();">Line</button>
+          <button type="button" class="btn btn-secondary" onclick="myChart.config.type='scatter'; myChart.update();">scatter</button>
+
+          </div>
       <canvas id="product-sales-chart"></canvas>
+      </div>
     </div>
-        <div class="col-md-4">
+    <div class="col-md-4">
       <div class="card">
         <div class="card-header">
           Navigation
@@ -27,11 +41,11 @@
   <script>
     var ctx = document.getElementById('product-sales-chart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
             labels: {{ labels|safe }},
             datasets: [{
-                label: 'Product Sales',
+                label: 'Product Sales based on Company',
                 data: {{ data|safe }},
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

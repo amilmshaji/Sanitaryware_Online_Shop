@@ -137,12 +137,38 @@ def get(request, id, *args, **kwargs, ):
     return HttpResponse("Page Not Found")
 
 
+#
+# def product_sales(request):
+#     current_month = timezone.now().month
+#     product_sales = OrderPlaced.objects.filter(ordered_date__month=current_month)\
+#         .values('product__brand__brand').annotate(total_sales=Count('product')).order_by('-total_sales')
+#     labels = [ps['product__brand__brand'] for ps in product_sales]
+#     data = [ps['total_sales'] for ps in product_sales]
+#     return render(request, 'admin/product_sales.html', {'labels': labels, 'data': data})
+
+from django.db.models import Sum
 
 def product_sales(request):
     current_month = timezone.now().month
     product_sales = OrderPlaced.objects.filter(ordered_date__month=current_month)\
-        .values('product__brand__brand').annotate(total_sales=Count('product')).order_by('-total_sales')
+        .values('product__brand__brand').annotate(total_sales=Sum('quantity')).order_by('-total_sales')
+    print(product_sales)
     labels = [ps['product__brand__brand'] for ps in product_sales]
     data = [ps['total_sales'] for ps in product_sales]
     return render(request, 'admin/product_sales.html', {'labels': labels, 'data': data})
 
+from django.db.models.functions import TruncMonth
+
+def monthly_sales(request):
+    orders = OrderPlaced.objects.filter(is_ordered=True, status='Completed').annotate(month=TruncMonth('ordered_date')).values('month').annotate(sales=Sum('quantity'), amount=Sum('payment__amount')).order_by('-month')
+
+    labels = [o['month'].strftime('%B') for o in orders]
+    sales_data = [o['sales'] for o in orders]
+    amount_data = [o['amount'] for o in orders]
+
+    context = {
+        'labels': labels,
+        'sales_data': sales_data,
+        'amount_data': amount_data,
+    }
+    return render(request, 'admin/monthly_sales.html', context)
