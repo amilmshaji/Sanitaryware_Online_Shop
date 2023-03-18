@@ -143,7 +143,6 @@ def product_sales(request):
     current_month = timezone.now().month
     product_sales = OrderPlaced.objects.filter(ordered_date__month=current_month)\
         .values('product__brand__brand').annotate(total_sales=Sum('quantity')).order_by('-total_sales')
-    print(product_sales)
     labels = [ps['product__brand__brand'] for ps in product_sales]
     data = [ps['total_sales'] for ps in product_sales]
     return render(request, 'admin/product_sales.html', {'labels': labels, 'data': data})
