@@ -153,6 +153,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sankartstore@gmail.com '
 DEFAULT_FROM_EMAIL = 'sankartstore@gmail.com'
 SERVER_EMAIL = 'sankartstore@gmail.com'
+ADMIN_EMAIL = 'sankartstore@gmail.com'
+
 EMAIL_HOST_PASSWORD = 'iznydhnznrizbdxz'
 
 EMAIL_USE_TLS = True
