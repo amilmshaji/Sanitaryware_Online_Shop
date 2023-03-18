@@ -7,17 +7,18 @@
     <div class="col-md-8 mx-auto">
       <div class="card">
         <div class="card-header">
-          Product Sales Based on Company  <form method="get">
-  <label for="month">Select a month:</label>
-  <select name="month" id="month">
-    <option value="1">January</option>
-    <option value="2">February</option>
-    <option value="3">March</option>
-    <!-- add more options for other months -->
-  </select>
-  <button type="submit">Show Sales</button>
-</form>
-</div>
+          Product Sales Based on Company
+            <form method="get">
+            <label for="month">Select a month:</label>
+            <select name="month" id="month">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <!-- add more options for other months -->
+            </select>
+            <button type="submit">Show Sales</button>
+            </form>
+        </div>
           <div class="btn-group" role="group" aria-label="Sales Chart Type">
           <button type="button" class="btn btn-secondary" onclick="salesChart.config.type='pie'; salesChart.update();">Pie</button>
           <button type="button" class="btn btn-secondary" onclick="salesChart.config.type='bar'; salesChart.update();">Bar</button>
@@ -35,7 +36,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><a href="http://127.0.0.1:8000/login/admin/" class="nav-link">Dashboard</a></li>
-          <li class="list-group-item"><a href="http://127.0.0.1:8000/sales-report/" class="nav-link">Current Months sales</a></li>
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/sales-report/" class="nav-link">Monthly sales</a></li>
 
 
         </ul>
@@ -47,16 +48,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
-  var salesUrl = "{% url 'sales_report' %}";
-salesUrl += "?month={{ selected_month }}";
-
-$.getJSON(salesUrl, function(data) {
-    var productData = data.product_data;
-    var totalSales = data.total_sales;
-
-    // rest of the code remains the same
-});
-
 
 
     var salesData = {

@@ -67,17 +67,16 @@
                         <!--====== End - Main Logo ======-->
 
                         <!--====== Search Form ======-->
-<!--====== Search Form ======-->
-<form class="main-form" action="{% url 'search' %}" method="get">
-    <label for="main-search"></label>
-    <div class="search-container">
-        <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" name="keyword" placeholder="Search" onkeyup="searchProducts(this.value)">
-        <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
-    </div>
-    <div class="search-suggestions">
-        <ul id="search-suggestions"></ul>
-    </div>
-</form>
+                    <form class="main-form" action="{% url 'search' %}" method="get">
+                        <label for="main-search"></label>
+                        <div class="search-container">
+                            <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" name="keyword" placeholder="Search" onkeyup="searchProducts(this.value)">
+                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
+                        </div>
+                        <div class="search-suggestions">
+                            <ul id="search-suggestions"></ul>
+                        </div>
+                    </form>
 
 <style>
     .search-suggestions {
