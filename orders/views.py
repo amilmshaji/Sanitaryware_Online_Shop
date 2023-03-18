@@ -151,7 +151,12 @@ from datetime import datetime
 
 def sales_report(request):
     current_month = datetime.now().month
-    orders = OrderPlaced.objects.filter(ordered_date__month=current_month, is_ordered=True)
+    selected_month = request.GET.get('month')
+    if selected_month:
+        orders = OrderPlaced.objects.filter(ordered_date__month=selected_month, is_ordered=True)
+    else:
+        orders = OrderPlaced.objects.filter(ordered_date__month=current_month, is_ordered=True)
+
     product_data = []
     for order in orders:
         product = order.product

@@ -183,14 +183,27 @@ JAZZMIN_SETTINGS = {
 
     # Links to put along the top menu
     "topmenu_links": [
-
-
-        # external url that opens in a new window (Permissions can be added)
-        {"name": "View Website", "url": "http://127.0.0.1:8000/", "new_window": True},
-        {"name": "Sales Chart", "url": "http://127.0.0.1:8000/product-sales/", "new_window": False},
-
-
-    ],
+        {
+            "name": "View Website",
+            "url": "http://127.0.0.1:8000/",
+            "new_window": True
+        },
+        {
+            "name": "Sales",
+            "dropdown_links": [
+                {
+                    "name": "Sales Chart",
+                    "url": "http://127.0.0.1:8000/product-sales/",
+                    "new_window": False
+                },
+                {
+                    "name": "Monthly Sales",
+                    "url": "http://127.0.0.1:8000/monthly-sales/",
+                    "new_window": False
+                }
+            ]
+        }
+    ]
     #
     # #############
     # # User Menu #
