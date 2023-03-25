@@ -19,6 +19,7 @@ from django.contrib import messages
 
 
 # Create your views here.
+@login_required(login_url='login')
 def Home(request,category_slug=None):
     categories = None
     products = None
@@ -66,7 +67,6 @@ def Home(request,category_slug=None):
     }
     return render(request, 'index.html', context)
 
-
 def store(request, category_slug=None):
     categories = None
     products = None
@@ -99,6 +99,7 @@ def store(request, category_slug=None):
     }
     return render(request, 'shop.html', context)
 
+@login_required(login_url='login')
 def filter_products(request):
     category = request.GET.get('category')
     color = request.GET.get('color')
@@ -158,7 +159,6 @@ def product_detail(request,  category_slug, product_slug):
         'product_gallery':product_gallery,
     }
     return render(request, 'product-detail-variable.html', context)
-
 
 def search(request):
     if 'keyword' in request.GET:
