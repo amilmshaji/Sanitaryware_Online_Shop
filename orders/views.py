@@ -83,11 +83,12 @@ def checkout(request, total=0, quantity=0, cart_item=None):
     }
     return render(request, 'checkout.html', context)
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 def payment_done(request):
     order_id=request.session['order_id']
     payment_id = request.GET.get('payment_id')
-    print(payment_id)
-
     payment=Payment.objects.get(razorpay_order_id = order_id)
 
     payment.paid = True
@@ -96,12 +97,20 @@ def payment_done(request):
     customer=Address_Book.objects.get(user=request.user,status=True)
 
     cart=CartItem.objects.filter(user=request.user)
-    # item = Product.objects.get(product=product, id=item_id)
 
     for c in cart:
         OrderPlaced(user=request.user,customer=customer,product=c.product,quantity=c.quantity,payment=payment,is_ordered=True).save()
         prod=Product.objects.get(product_name=c.product.product_name)
         prod.stock=prod.stock-c.quantity
+        if prod.stock < 4:
+            message = f"The stock of {prod.product_name} is running low. Please update the stock."
+            send_mail(
+                'Product Stock Warning',
+                message,
+                'sankartstore@gmail.com',
+                ['sankartstore@gmail.com'],
+                fail_silently=False,
+            )
         prod.save()
         c.delete()
     messages.success(request, 'Thank You for ordering...!')
