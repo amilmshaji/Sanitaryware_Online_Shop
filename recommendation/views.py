@@ -4,8 +4,6 @@ from shop_app.models import Product, ReviewRating
 from .models import SearchHistory
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from sklearn.ensemble import RandomForestRegressor
-import pandas as pd
 
 from django.shortcuts import render
 def recommend_products(request):

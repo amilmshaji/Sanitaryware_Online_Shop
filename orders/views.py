@@ -1,4 +1,3 @@
-import numpy as np
 from django.contrib import messages
 from django.conf import settings
 

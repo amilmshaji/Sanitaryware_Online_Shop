@@ -261,7 +261,6 @@ def view(request):
 from django.shortcuts import render
 from .models import Product, ReviewRating
 from django.db.models import Q
-from sklearn.ensemble import RandomForestRegressor
 
 
 
