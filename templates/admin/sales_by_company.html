@@ -1,0 +1,107 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+{% block title %}Sales Chart{% endblock %}
+
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+            <h1>Product Sales for {{ brand.brand }}</h1></div>
+          <div class="btn-group" role="group" aria-label="Sales Chart Type">
+          <button type="button" class="btn btn-secondary" onclick="productSalesChart.config.type='pie'; productSalesChart.update();">Pie</button>
+          <button type="button" class="btn btn-secondary" onclick="productSalesChart.config.type='bar'; productSalesChart.update();">Bar</button>
+          <button type="button" class="btn btn-secondary" onclick="productSalesChart.config.type='line'; productSalesChart.update();">Line</button>
+          <button type="button" class="btn btn-secondary" onclick="productSalesChart.config.type='scatter'; productSalesChart.update();">scatter</button>
+
+          </div>
+  <canvas id="productSalesChart"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Navigation
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/login/admin/" class="nav-link">Dashboard</a></li>
+          <li class="list-group-item"><a href="http://127.0.0.1:8000/sales-report/" class="nav-link">Current Months sales</a></li>
+
+
+        </ul>
+      </div>
+            <div class="card">
+        <div class="card-header">
+          Companies
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for company in companies %}
+          <li class="list-group-item"><a href="{% url 'product_saless' company.id %}" class="nav-link">{{company.brand}}</a></li>
+          {% endfor %}
+
+
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+  <script>
+    const productNames = {{ product_names|safe }};
+    const salesData = {{ sales_data|safe }};
+
+    const ctx = document.getElementById('productSalesChart').getContext('2d');
+    const productSalesChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: productNames,
+        datasets: [{
+          label: 'Sales',
+          data: salesData,
+          backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+          borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

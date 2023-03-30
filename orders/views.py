@@ -4,6 +4,8 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
+
+from variations.models import Brand
 from .utils import render_to_pdf
 
 from django.db.models import Count
@@ -45,7 +47,6 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         razoramount = total*100
     except ObjectDoesNotExist:
         pass
-    print(razoramount)
     customer=Address_Book.objects.filter(user=request.user,status=True)
     print(customer)
 
@@ -153,7 +154,16 @@ def product_sales(request):
         .values('product__brand__brand').annotate(total_sales=Sum('quantity')).order_by('-total_sales')
     labels = [ps['product__brand__brand'] for ps in product_sales]
     data = [ps['total_sales'] for ps in product_sales]
-    return render(request, 'admin/product_sales.html', {'labels': labels, 'data': data})
+    companies=Brand.objects.all()
+
+    context = {
+        'companies': companies,
+        'product_company': product_sales,
+        'labels': labels,
+        'data': data,
+
+    }
+    return render(request, 'admin/sales_of_all_company.html', context)
 
 from datetime import datetime
 
@@ -181,4 +191,52 @@ def sales_report(request):
     }
     return render(request, 'admin/sales_report.html', context)
 
+from django.db.models import Sum
+
+def product_saless(request, id):
+    current_month = timezone.now().month
+    product_sales = OrderPlaced.objects.filter(
+        ordered_date__month=current_month, product__brand_id=id
+    ).values('product__product_name').annotate(total_sales=Sum('quantity')).order_by('-total_sales')
+
+    product_names = [ps['product__product_name'] for ps in product_sales]
+    sales_data = [ps['total_sales'] for ps in product_sales]
+
+    brand = Brand.objects.get(id=id)
+    companies=Brand.objects.all()
+
+    context = {
+        'brand': brand,
+        'product_names': product_names,
+        'sales_data': sales_data,
+        'companies': companies,
+
+    }
+
+    return render(request, 'admin/sales_by_company.html', context)
+
+
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from .forms import ProductStockUpdateForm
+
+
+def low_stock_products(request):
+    products = Product.objects.filter(stock__lt=4)
+    context = {'products': products}
+    return render(request, 'admin/low_stock_products.html', context)
+
+
+# views.py
+
+
+def update_stock(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        stock = request.POST.get('stock')
+        product.stock = stock
+        product.save()
+        return redirect('low_stock_products')
+    context = {'product': product}
+    return render(request, 'admin/update_stock.html', context)
 

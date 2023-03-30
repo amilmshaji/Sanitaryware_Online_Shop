@@ -10,5 +10,10 @@ urlpatterns = [
     #sales url
     path('sales-report/', views.sales_report, name='sales_report'),
     path('product-sales/', views.product_sales, name='product_sales'),
+    path('product-saless/<int:id>/', views.product_saless, name='product_saless'),
+
+
+    path('low-stock/', views.low_stock_products, name='low_stock_products'),
+    path('update_stock/<int:pk>/', views.update_stock, name='update_stock'),
 
 ]

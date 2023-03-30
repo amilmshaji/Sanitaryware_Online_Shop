@@ -31,6 +31,19 @@
 
         </ul>
       </div>
+            <div class="card">
+        <div class="card-header">
+          Companies
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for company in companies %}
+          <li class="list-group-item"><a href="{% url 'product_saless' company.id %}" class="nav-link">{{company.brand}}</a></li>
+          {% endfor %}
+
+
+        </ul>
+      </div>
+
     </div>
 
   </div>

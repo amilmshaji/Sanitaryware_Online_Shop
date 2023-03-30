@@ -1,0 +1,31 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+  <div class="alert alert-warning" role="alert">
+    Some products are running low on stock. Please update the stock to avoid running out of stock.
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Stock</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.product_name }}</td>
+          <td>{{ product.stock }}</td>
+          <td>
+            <a href="{% url 'update_stock' product.pk %}" class="btn btn-primary">Update Stock</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No products found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
