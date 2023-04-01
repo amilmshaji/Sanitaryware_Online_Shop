@@ -171,8 +171,6 @@ RAZORPAY_API_SECRET_KEY = 'TqgmRmkGXkbTCcJBXLPVYk1I'
 
 
 
-
-
 JAZZMIN_SETTINGS = {
 
 
@@ -204,7 +202,7 @@ JAZZMIN_SETTINGS = {
         {"model": "auth.user"}
     ],
 
-    "show_ui_builder": True,
+    "show_ui_builder": False,
 
 
 }
