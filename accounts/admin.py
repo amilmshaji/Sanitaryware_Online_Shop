@@ -49,6 +49,11 @@ class AccountAdmin(UserAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+        # This will help you to disable change functionality
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 
 admin.site.register(Account, AccountAdmin)
