@@ -149,9 +149,10 @@ def get(request, id, *args, **kwargs, ):
 from django.db.models import Sum
 
 def product_sales(request):
-    current_month = timezone.now().month
-    product_sales = OrderPlaced.objects.filter(ordered_date__month=current_month)\
+    current_year = timezone.now().year
+    product_sales = OrderPlaced.objects.filter(ordered_date__year=current_year) \
         .values('product__brand__brand').annotate(total_sales=Sum('quantity')).order_by('-total_sales')
+
     labels = [ps['product__brand__brand'] for ps in product_sales]
     data = [ps['total_sales'] for ps in product_sales]
     companies=Brand.objects.all()
@@ -194,26 +195,26 @@ def sales_report(request):
 from django.db.models import Sum
 
 def product_saless(request, id):
-    current_month = timezone.now().month
+    current_year = timezone.now().year
     product_sales = OrderPlaced.objects.filter(
-        ordered_date__month=current_month, product__brand_id=id
+        ordered_date__year=current_year, product__brand_id=id
     ).values('product__product_name').annotate(total_sales=Sum('quantity')).order_by('-total_sales')
 
     product_names = [ps['product__product_name'] for ps in product_sales]
     sales_data = [ps['total_sales'] for ps in product_sales]
 
     brand = Brand.objects.get(id=id)
-    companies=Brand.objects.all()
+    companies = Brand.objects.all()
 
     context = {
         'brand': brand,
         'product_names': product_names,
         'sales_data': sales_data,
         'companies': companies,
-
     }
 
     return render(request, 'admin/sales_by_company.html', context)
+
 
 
 from django.shortcuts import render, get_object_or_404
