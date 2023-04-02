@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from . models import Product, ReviewRating, Productgallery
 from cart.models import CartItem, Cart
 from cart.views import _cart_id
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import  Paginator
 from django.contrib import messages
 
 # Python program to move the image
@@ -19,28 +19,27 @@ from django.contrib import messages
 
 
 # Create your views here.
-@login_required(login_url='login')
 def Home(request,category_slug=None):
     categories = None
     products = None
+    current_user=request.user
 
+    if current_user.is_authenticated:
+        search_history = SearchHistory.objects.filter(user=request.user)
 
-    search_history = SearchHistory.objects.filter(user=request.user)
+        # Extract the keywords used in the search history
+        keywords = [search.query for search in search_history]
 
-    # Extract the keywords used in the search history
-    keywords = [search.query for search in search_history]
+        # Find other users who have searched for similar keywords
+        similar_search_history = SearchHistory.objects.filter(query__in=keywords)
 
-    # Find other users who have searched for similar keywords
-    similar_search_history = SearchHistory.objects.filter(query__in=keywords)
-    print(similar_search_history)
+        # Extract the distinct keywords from similar search history
+        similar_keywords = similar_search_history.values_list('query', flat=True).distinct()
 
-    # Extract the distinct keywords from similar search history
-    similar_keywords = similar_search_history.values_list('query', flat=True).distinct()
-    print(similar_keywords)
-
-    # Retrieve the product recommendations based on the similar keywords
-    recommended_products = Product.objects.filter(Q(category__category_name__in=similar_keywords)).distinct()
-    print(recommended_products)
+        # Retrieve the product recommendations based on the similar keywords
+        recommended_products = Product.objects.filter(Q(category__category_name__in=similar_keywords)).distinct()
+    else:
+        recommended_products=None
 
 
     if category_slug != None:
