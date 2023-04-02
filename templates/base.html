@@ -181,80 +181,12 @@
                                                     <span>Hello {{user.fname}}</span></a></li>
                                              <li>
 
-                                                <a href="{% url 'logout' %}"><i class="fas fa-lock-open u-s-m-r-6"></i>
-
-                                                    <span>Signout</span></a></li>
-                                            {% else %}
-
-                                            <li>
-
-                                                <a href="{% url 'register' %}"><i class="fas fa-user-plus u-s-m-r-6"></i>
-
-                                                    <span>Signup</span></a></li>
-                                            <li>
-
-                                                <a href="{% url 'login' %}"><i class="fas fa-lock u-s-m-r-6"></i>
-
-                                                    <span>Signin</span></a></li>
                                             {% endif %}
 
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Settings">
-
-                                        <a  href="{% url 'myprofile' %}"><i class="fas fa-user-cog"></i></a>
-
-                                        <!--====== Dropdown ======-->
-
-<!--                                        <span class="js-menu-toggle"></span>-->
-<!--                                        <ul style="width:120px">-->
-<!--                                            <li class="has-dropdown has-dropdown&#45;&#45;ul-right-100">-->
-
-<!--                                                <a>Language<i class="fas fa-angle-down u-s-m-l-6"></i></a>-->
-
-                                                <!--====== Dropdown ======-->
-
-<!--                                                <span class="js-menu-toggle"></span>-->
-<!--                                                <ul style="width:120px">-->
-<!--                                                    <li>-->
-
-<!--                                                        <a class="u-c-brand">ENGLISH</a></li>-->
-<!--                                                    <li>-->
-
-<!--                                                        <a>ARABIC</a></li>-->
-<!--                                                    <li>-->
-
-<!--                                                        <a>FRANCAIS</a></li>-->
-<!--                                                    <li>-->
-
-<!--                                                        <a>ESPANOL</a></li>-->
-<!--                                                </ul>-->
-                                                <!--====== End - Dropdown ======-->
-<!--                                            </li>-->
-<!--                                            <li class="has-dropdown has-dropdown&#45;&#45;ul-right-100">-->
-
-<!--                                                <a>Currency<i class="fas fa-angle-down u-s-m-l-6"></i></a>-->
-
-                                                <!--====== Dropdown ======-->
-
-<!--                                                <span class="js-menu-toggle"></span>-->
-<!--                                                <ul style="width:225px">-->
-<!--                                                    <li>-->
-
-<!--                                                        <a class="u-c-brand">$ - US DOLLAR</a></li>-->
-<!--                                                    <li>-->
-
-<!--                                                        <a>£ - BRITISH POUND STERLING</a></li>-->
-<!--                                                    <li>-->
-
-<!--                                                        <a>€ - EURO</a></li>-->
-<!--                                                </ul>-->
-                                                <!--====== End - Dropdown ======-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-                                        <!--====== End - Dropdown ======-->
-                                    </li>
+                   
                                     <li data-tooltip="tooltip" data-placement="left" title="Contact">
 
                                         <a href="tel:+919747972560"><i class="fas fa-phone-volume"></i></a></li>
@@ -305,29 +237,32 @@
 
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
+                                    <li>
+
+                                        <a href="{% url 'store' %}">SHOP NOW</a></li>
                                     {% if user.is_authenticated %}
 
                                       <li>
 
                                         <a  href="{% url 'myprofile' %}">Welcome {{user.fname}}</a></li>
-                                    {% endif %}
-<!--                                    <li>-->
 
-<!--                                        <a href="#">NEW ARRIVALS</a></li>-->
-<!--                                    <li class="has-dropdown">-->
+                                        <li>
 
-<!--                                        <a>BLOG<i class="u-s-m-l-6"></i></a>-->
-
-                                        <!--====== Dropdown ======-->
-
-                                        <!--====== End - Dropdown ======-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-
-<!--                                        <a href="#">VALUE OF THE DAY</a></li>-->
+                                            <a  href="{% url 'logout' %}">LOGOUT</a></li>
+                                    {% else %} 
                                     <li>
 
-                                        <a href="{% url 'store' %}">SHOP NOW</a></li>
+                                        <a  href="{% url 'login' %}">LOGIN</a></li>
+                                    <li>
+
+                                        <a  href="{% url 'register' %}">REGISTER</a></li>
+
+
+
+                                    
+                                    {% endif %}
+
+                                   
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>

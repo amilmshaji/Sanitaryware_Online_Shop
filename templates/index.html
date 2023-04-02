@@ -4,9 +4,18 @@
 
 
 
+
+
                                     {% include 'alerts2.html' %}
 
                                       <script>
+
+                                        window.onpageshow = function(event) {
+                                            if (event.persisted) {
+                                              window.location.reload();
+                                            }
+                                          };
+                                          
                                           setTimeout(function(){
                                             if ($('#message').length > 0){
                                               $('#message').remove();

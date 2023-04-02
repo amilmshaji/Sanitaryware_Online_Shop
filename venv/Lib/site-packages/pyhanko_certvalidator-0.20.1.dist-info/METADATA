@@ -1,0 +1,138 @@
+Metadata-Version: 2.1
+Name: pyhanko-certvalidator
+Version: 0.20.1
+Summary: Validates X.509 certificates and paths; forked from wbond/certvalidator
+Home-page: https://github.com/MatthiasValvekens/certvalidator
+Author: Matthias Valvekens
+Author-email: dev@mvalvekens.be
+License: MIT
+Keywords: crypto pki x509 certificate crl ocsp
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Security :: Cryptography
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests (>=2.24.0)
+Requires-Dist: asn1crypto (>=1.5.1)
+Requires-Dist: oscrypto (>=1.1.0)
+Requires-Dist: cryptography (>=3.3.1)
+Requires-Dist: uritools (>=3.0.1)
+Provides-Extra: async_http
+Requires-Dist: aiohttp (~=3.8.0) ; extra == 'async_http'
+
+# certvalidator
+
+This library started as a fork of [wbond/certvalidator](https://github.com/wbond/certvalidator) with patches for [pyHanko](https://github.com/MatthiasValvekens/pyHanko), but has since diverged considerably from its parent repository.
+
+Bugs and questions regarding this library should be asked in the [pyHanko repository](https://github.com/MatthiasValvekens/pyHanko/discussions) rather than here.
+
+`pyhanko-certvalidator` is a Python library for validating X.509 certificates paths. It supports various
+options, including: validation at a specific moment in time, whitelisting and revocation checks.
+
+ - [Features](#features)
+ - [Current Release](#current-release)
+ - [Installation](#installation)
+ - [License](#license)
+ - [Documentation](#documentation)
+ - [Continuous Integration](#continuous-integration)
+ - [Testing](#testing)
+
+
+## Features
+
+ - X.509 path building
+ - X.509 basic path validation
+   - Signatures
+     - RSA (including PSS padding), DSA, ECDSA and EdDSA algorithms.
+   - Name chaining
+   - Validity dates
+   - Basic constraints extension
+     - CA flag
+     - Path length constraint
+   - Key usage extension
+   - Extended key usage extension
+   - Certificate policies
+     - Policy constraints
+     - Policy mapping
+     - Inhibit anyPolicy
+   - Failure on unknown/unsupported critical extensions
+ - TLS/SSL server validation
+ - Whitelisting certificates
+ - Blacklisting hash algorithms
+ - Revocation checks
+   - CRLs
+     - Indirect CRLs
+     - Delta CRLs
+   - OCSP checks
+     - Delegated OCSP responders
+   - Disable, require or allow soft failures
+   - Caching of CRLs/OCSP responses
+ - CRL and OCSP HTTP clients
+ - Point-in-time validation
+ - Name constraints
+ - Attribute certificate support
+
+## Current Release
+
+![pypi](https://img.shields.io/pypi/v/pyhanko-certvalidator.svg) - [changelog](changelog.md)
+
+## Dependencies
+
+ - *asn1crypto*
+ - *cryptography*
+ - *uritools*
+ - *oscrypto*
+ - *requests* or *aiohttp* (use the latter for more efficient asyncio, requires resource management)
+ - Python 3.7, 3.8, 3.9 or 3.10
+
+ ### Note on compatibility
+
+ Starting with `pyhanko-certvalidator` version `0.17.0`, the library has been refactored to use asynchronous I/O as much as possible. Most high-level API entrypoints can still be used synchronously, but have been deprecated in favour of their asyncio equivalents. 
+ As part of this move, the OCSP and CRL clients now have two separate implementations: a `requests`-based one, and an `aiohttp`-based one. The latter is probably more performant, but requires more resource management efforts on the caller's part, which was impossible to implement without making major breaking changes to the public API that would make the migration path more complicated. Therefore, the `requests`-based fetcher will remain the default for the time being.
+
+
+## Installation
+
+```bash
+pip install pyhanko-certvalidator
+```
+
+## License
+
+*certvalidator* is licensed under the terms of the MIT license. See the
+[LICENSE](LICENSE) file for the exact license text.
+
+## Documentation
+
+[*certvalidator* documentation](docs/readme.md)
+
+## Continuous Integration
+
+Various combinations of platforms and versions of Python are tested via:
+
+ - [GitHub Actions](https://github.com/MatthiasValvekens/certvalidator/actions)
+
+## Testing
+
+### Test framework
+
+Tests are written using `pytest` and require an asynchronous test case backend
+such as `pytest-asyncio`.
+
+### Test cases
+
+The test cases for the library are comprised of:
+
+ - [Public Key Interoperability Test Suite from NIST](http://csrc.nist.gov/groups/ST/crypto_apps_infra/pki/pkitesting.html)
+ - [OCSP tests from OpenSSL](https://github.com/openssl/openssl/blob/master/test/recipes/80-test_ocsp.t)
+ - Various certificates generated for TLS certificate validation
+
+
+Existing releases can be found at https://pypi.org/project/pyhanko-certvalidator.
