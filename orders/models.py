@@ -66,3 +66,6 @@ class OrderPlaced(models.Model):
         amountt = self.payment.amount
         return amountt
 
+    class Meta:
+        verbose_name = 'Order Details'
+        verbose_name_plural = 'Order Details'

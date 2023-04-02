@@ -20,6 +20,7 @@ class OrderProductAdmin(admin.ModelAdmin):
 
 
 
+
     # This will help you to disbale add functionality
     def has_add_permission(self, request):
         return False
