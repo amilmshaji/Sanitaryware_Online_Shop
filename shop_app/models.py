@@ -3,6 +3,8 @@ from django.utils.html import mark_safe
 from django.urls.base import reverse
 from accounts.models import Account
 from django.db.models import Aggregate, Avg, Count
+from django.core.exceptions import ValidationError
+
 # Create your models here.
 from variations.models import Color, Brand, Design, Dimensions
 
@@ -26,9 +28,18 @@ class Category(models.Model):
     def get_url(self):
         return reverse('products_by_category', args=[self.slug])
 
-       #shows the name
+    def save(self, *args, **kwargs):
+        self.category_name = self.category_name.lower()
+        super(Category, self).save(*args, **kwargs)
+
+    def clean(self):
+        # Check if a Category with the same name already exists (case-insensitive)
+        existing_category_name = Category.objects.filter(category_name__iexact=self.category_name).exclude(id=self.id)
+        if existing_category_name.exists():
+            raise ValidationError('A Category with this name already exists.')
+
     def __str__(self):
-        return self.category_name
+        return self.category_name.capitalize()
 
 
 
