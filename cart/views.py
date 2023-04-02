@@ -81,7 +81,7 @@ def add_cart(request, product_id):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-
+@login_required(login_url='login')
 def remove_cart(request, product_id, cart_item_id):
     product = get_object_or_404(Product, id=product_id)
     try:
@@ -101,7 +101,7 @@ def remove_cart(request, product_id, cart_item_id):
         pass
     return redirect('cart')
 
-
+@login_required(login_url='login')
 def remove_cart_item(request, product_id, cart_item_id):
     product = get_object_or_404(Product, id=product_id)
     if request.user.is_authenticated:
@@ -114,7 +114,7 @@ def remove_cart_item(request, product_id, cart_item_id):
     cart_item.delete()
     return redirect('cart')
 
-
+@login_required(login_url='login')
 def cart(request, total=0, quantity=0, cart_item=None, cart_items=None):
     try:
         tax = 0
