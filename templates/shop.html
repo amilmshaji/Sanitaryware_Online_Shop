@@ -143,7 +143,7 @@
         </div>
         <!--====== End - App Content ======-->
 
-            <!--====== Side Filters ======-->
+      <!--====== Side Filters ======-->
         <div class="shop-a" id="side-filter">
             <div class="shop-a__wrap">
                 <div class="shop-a__inner gl-scroll">
@@ -152,79 +152,246 @@
 
                             <span>FILTERS</span></h1>
                         <div class="shop-w-master__sidebar">
-                            <form id="filter-form" method="GET"  action="{% url 'filter-products' %}">
-                                                                            {% csrf_token %}
+                            <div class="u-s-m-b-30">
+                                <div class="shop-w">
+                                    <div class="shop-w__intro-wrap">
+                                        <h1 class="shop-w__h">CATEGORY</h1>
 
-    <div class="form-group">
-        <label for="category">Category:</label>
-        <select name="category" id="category" class="form-control">
-            <option value="">All categories</option>
-            {% for category in cat %}
-            <option value="{{ category.slug }}">{{ category.category_name }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="color">Color:</label>
-        <select name="color" id="color" class="form-control">
-            <option value="">All colors</option>
-            {% for color in colors %}
-            <option value="{{ color.id }}">{{ color.color }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="brand">Brand:</label>
-        <select name="brand" id="brand" class="form-control">
-            <option value="">All brands</option>
-            {% for brand in brands %}
-            <option value="{{ brand.id }}">{{ brand.brand }}</option>
-            {% endfor %}
-        </select>
-    </div>
+                                        <span class="fas fa-minus shop-w__toggle" data-target="#s-category" data-toggle="collapse"></span>
+                                    </div>
+                                    <div class="shop-w__wrap collapse show" id="s-category">
+                                        <ul class="shop-w__category-list gl-scroll">
+                                            {% for cat in links %}
+                                            <li class="has-list">
+
+                                                <a href="{{cat.get_url}}">{{cat.category_name}}</a>
 
 
-    <button type="submit" id="submit" class="btn btn-primary">Filter</button>
+                                            </li>
+                                            {% endfor %}
 
-</form>
 
-                                                          <script>
-const filterForm = document.querySelector('#filter-form');
-filterForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+<!--                            <div class="u-s-m-b-30">-->
+<!--                                <div class="shop-w">-->
+<!--                                    <div class="shop-w__intro-wrap">-->
+<!--                                        <h1 class="shop-w__h">BRAND</h1>-->
 
-    const formData = new FormData(filterForm);
-    const url = filterForm.action;
+<!--                                        <span class="fas fa-minus shop-w__toggle" data-target="#s-manufacturer" data-toggle="collapse"></span>-->
+<!--                                    </div>-->
+<!--                                    <div class="shop-w__wrap collapse show" id="s-manufacturer">-->
+<!--                                        <ul class="shop-w__list-2">-->
+<!--                                            <li>-->
+<!--                                                <div class="list__content">-->
 
-    fetch(url, {
-        method: 'GET',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        const productList = document.querySelector('#product-list');
-        productList.innerHTML = '';
+<!--                                                    <input type="checkbox" checked>-->
 
-        for (let product of data.products) {
-            const productHTML = `
-                <div class="product">
-                    <img src="${product.image}">
-                    <h2>${product.name}</h2>
-                    <p>${product.description}</p>
-                </div>
-            `;
-            productList.insertAdjacentHTML('beforeend', productHTML);
-        }
-    })
-    .catch(error => console.error(error));
-});
-                    </script>
+<!--                                                    <span>Calvin Klein</span></div>-->
 
+<!--                                                <span class="shop-w__total-text">(23)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="list__content">-->
+
+<!--                                                    <input type="checkbox">-->
+
+<!--                                                    <span>Diesel</span></div>-->
+
+<!--                                                <span class="shop-w__total-text">(2)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="list__content">-->
+
+<!--                                                    <input type="checkbox">-->
+
+<!--                                                    <span>Polo</span></div>-->
+
+<!--                                                <span class="shop-w__total-text">(2)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="list__content">-->
+
+<!--                                                    <input type="checkbox">-->
+
+<!--                                                    <span>Tommy Hilfiger</span></div>-->
+
+<!--                                                <span class="shop-w__total-text">(9)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="list__content">-->
+
+<!--                                                    <input type="checkbox">-->
+
+<!--                                                    <span>Ndoge</span></div>-->
+
+<!--                                                <span class="shop-w__total-text">(3)</span>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="u-s-m-b-30">-->
+<!--                                <div class="shop-w">-->
+<!--                                    <div class="shop-w__intro-wrap">-->
+<!--                                        <h1 class="shop-w__h">COLOR</h1>-->
+
+<!--                                        <span class="fas fa-minus shop-w__toggle" data-target="#s-color" data-toggle="collapse"></span>-->
+<!--                                    </div>-->
+<!--                                    <div class="shop-w__wrap collapse show" id="s-color">-->
+<!--                                        <ul class="shop-w__list gl-scroll">-->
+<!--                                            <li>-->
+<!--                                                <div class="color__check">-->
+
+<!--                                                    <input type="checkbox" id="jet">-->
+
+<!--                                                    <label class="color__check-label" for="jet" style="background-color: #333333"></label></div>-->
+
+<!--                                                <span class="shop-w__total-text">(2)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="color__check">-->
+
+<!--                                                    <input type="checkbox" id="folly">-->
+
+<!--                                                    <label class="color__check-label" for="folly" style="background-color: #FF0055"></label></div>-->
+
+<!--                                                <span class="shop-w__total-text">(4)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="color__check">-->
+
+<!--                                                    <input type="checkbox" id="yellow">-->
+
+<!--                                                    <label class="color__check-label" for="yellow" style="background-color: #FFFF00"></label></div>-->
+
+<!--                                                <span class="shop-w__total-text">(6)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="color__check">-->
+
+<!--                                                    <input type="checkbox" id="granite-gray">-->
+
+<!--                                                    <label class="color__check-label" for="granite-gray" style="background-color: #605F5E"></label></div>-->
+
+<!--                                                <span class="shop-w__total-text">(8)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <div class="color__check">-->
+
+<!--                                                    <input type="checkbox" id="space-cadet">-->
+
+<!--                                                    <label class="color__check-label" for="space-cadet" style="background-color: #1D3461"></label></div>-->
+
+<!--                                                <span class="shop-w__total-text">(10)</span>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="u-s-m-b-30">-->
+<!--                                <div class="shop-w">-->
+<!--                                    <div class="shop-w__intro-wrap">-->
+<!--                                        <h1 class="shop-w__h">SIZE</h1>-->
+
+<!--                                        <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-size" data-toggle="collapse"></span>-->
+<!--                                    </div>-->
+<!--                                    <div class="shop-w__wrap collapse" id="s-size">-->
+<!--                                        <ul class="shop-w__list gl-scroll">-->
+<!--                                            <li>-->
+
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
+
+<!--                                                    <input type="checkbox" id="xs">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary">-->
+
+<!--                                                        <label class="check-box__label" for="xs">XS</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+
+<!--                                                <span class="shop-w__total-text">(2)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
+
+<!--                                                    <input type="checkbox" id="small">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary">-->
+
+<!--                                                        <label class="check-box__label" for="small">Small</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+
+<!--                                                <span class="shop-w__total-text">(4)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
+
+<!--                                                    <input type="checkbox" id="medium">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary">-->
+
+<!--                                                        <label class="check-box__label" for="medium">Medium</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+
+<!--                                                <span class="shop-w__total-text">(6)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
+
+<!--                                                    <input type="checkbox" id="large">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary">-->
+
+<!--                                                        <label class="check-box__label" for="large">Large</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+
+<!--                                                <span class="shop-w__total-text">(8)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
+
+<!--                                                    <input type="checkbox" id="xl">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary">-->
+
+<!--                                                        <label class="check-box__label" for="xl">XL</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+
+<!--                                                <span class="shop-w__total-text">(10)</span>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+
+<!--                                                &lt;!&ndash;====== Check Box ======&ndash;&gt;-->
+<!--                                                <div class="check-box">-->
+
+<!--                                                    <input type="checkbox" id="xxl">-->
+<!--                                                    <div class="check-box__state check-box__state&#45;&#45;primary">-->
+
+<!--                                                        <label class="check-box__label" for="xxl">XXL</label></div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;====== End - Check Box ======&ndash;&gt;-->
+
+<!--                                                <span class="shop-w__total-text">(12)</span>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--====== End - Side Filters ======-->
-
 {% endblock %}

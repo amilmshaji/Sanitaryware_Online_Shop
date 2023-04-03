@@ -229,8 +229,6 @@ def low_stock_products(request):
 
 
 # views.py
-
-
 def update_stock(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
