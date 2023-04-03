@@ -241,3 +241,44 @@ def update_stock(request, pk):
     context = {'product': product}
     return render(request, 'admin/update_stock.html', context)
 
+from reportlab.lib.pagesizes import letter, landscape
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from django.http import HttpResponse
+from .models import Product
+
+def generate_low_stock_pdf(request):
+    # Query all products with stock less than 4
+    low_stock_products = Product.objects.filter(stock__lt=4)
+
+    # Set up the PDF document
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="low_stock_products.pdf"'
+    doc = SimpleDocTemplate(response, pagesize=landscape(letter))
+    elements = []
+
+    # Set up the table
+    data = [['Product Name', 'Stock']]
+    for product in low_stock_products:
+        data.append([product.product_name, product.stock])
+    table = Table(data)
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+        ('ALIGN', (0, 1), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 12),
+        ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
+    ]))
+
+    # Add the table to the PDF document and save it
+    elements.append(table)
+    doc.build(elements)
+    return response

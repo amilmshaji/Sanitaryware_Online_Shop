@@ -1,9 +1,13 @@
 {% extends 'admin/base.html' %}
 
 {% block content %}
-  <div class="alert alert-warning" role="alert">
-    Some products are running low on stock. Please update the stock to avoid running out of stock.
+<div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
+  <span>Some products are running low on stock. Please update the stock to avoid running out of stock.</span>&nbsp&nbsp&nbsp&nbsp&nbsp
+  <div>
+    <a href="{% url 'generate_low_stock_pdf' %}" class="btn btn-primary btn-sm me-2">Download Low Stock Details</a>
   </div>
+</div>
+
   <table class="table">
     <thead>
       <tr>
