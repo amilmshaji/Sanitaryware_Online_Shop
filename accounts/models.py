@@ -3,9 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 
 
-# Create your models here.
-from django.urls import reverse
-
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, fname, lname, email,phone_number, password=None):
