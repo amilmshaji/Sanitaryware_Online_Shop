@@ -218,8 +218,7 @@ def product_saless(request, id):
 
 
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
-from .forms import ProductStockUpdateForm
+
 
 
 def low_stock_products(request):
