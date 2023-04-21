@@ -20,7 +20,7 @@ def answer_question(question, context):
 def chatbot(request):
     if request.method == 'POST':
         question = request.POST['question']
-        context = request.POST['context']
+        context = "Django is a powerful and widely used web framework written in Python that allows developers to build robust web applications quickly and efficiently. It follows the Model-View-Template (MVT) architecture, which promotes clean separation of concerns and encourages reusable code. Django provides a plethora of built-in features and tools that simplify common web development tasks such as URL routing, authentication, database management, and form handling."
         answer = answer_question(question, context)
         return render(request, 'chatbot.html', {'question': question, 'context': context, 'answer': answer})
     else:
