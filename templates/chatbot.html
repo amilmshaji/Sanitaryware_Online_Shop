@@ -1,11 +1,21 @@
-<div id="chatbot">
-    <h1>Chatbot</h1>
-    <form method="post" action="{% url 'chatbot' %}">
-        {% csrf_token %}
-        <input type="text" name="user_input">
-        <input type="submit" value="Send">
-    </form>
-    {% if response %}
-        <p>{{ response }}</p>
-    {% endif %}
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chatbot</title>
+</head>
+<body>
+	<form method="POST" action="{% url 'chatbot' %}">
+		{% csrf_token %}
+		<label for="question">Question:</label>
+		<input type="text" name="question"><br><br>
+		<label for="context">Context:</label>
+		<textarea name="context"></textarea><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	{% if question %}
+		<p><strong>Question:</strong> {{ question }}</p>
+		<p><strong>Context:</strong> {{ context }}</p>
+		<p><strong>Answer:</strong> {{ answer }}</p>
+	{% endif %}
+</body>
+</html>

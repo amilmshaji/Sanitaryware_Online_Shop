@@ -1,29 +1,27 @@
 from django.shortcuts import render
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+import torch
 
-# Create your views here.
-from django.shortcuts import render
-import random
 
-# Define a function to handle user input and generate a response
-def get_response(user_input):
-    pages = ["home", "about", "products", "services", "contact"]
-    user_input = user_input.lower().strip()
-    if user_input == "hi" or user_input == "hello":
-        return "Hello! How can I assist you today?"
-    elif user_input in pages:
-        return f"Sure, I can help you navigate to the {user_input} page. Here's the link: www.example.com/{user_input}"
-    elif "help" in user_input:
-        return "I can help you navigate to different pages on our website. Just tell me which page you'd like to visit, or type 'menu' to see a list of options."
-    elif user_input == "menu":
-        return "Here are some options:\nHome\nAbout\nProducts\nServices\nContact"
-    else:
-        return "I'm sorry, I didn't understand. Please try again or type 'help' for assistance."
+def answer_question(question, context):
+    tokenizer = AutoTokenizer.from_pretrained('squirro/albert-base-v2-squad_v2')
+    model = AutoModelForQuestionAnswering.from_pretrained('squirro/albert-base-v2-squad_v2')
+    inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
+    input_ids = inputs["input_ids"].tolist()[0]
+    outputs = model(**inputs)
+    answer_start_scores = outputs.start_logits
+    answer_end_scores = outputs.end_logits
+    answer_start = torch.argmax(answer_start_scores)
+    answer_end = torch.argmax(answer_end_scores) + 1
+    answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+    return answer
 
-# Define a function to handle the chatbot
+
 def chatbot(request):
     if request.method == 'POST':
-        user_input = request.POST['user_input']
-        response = get_response(user_input)
-        return render(request, 'chatbot.html', {'response': response})
+        question = request.POST['question']
+        context = request.POST['context']
+        answer = answer_question(question, context)
+        return render(request, 'chatbot.html', {'question': question, 'context': context, 'answer': answer})
     else:
         return render(request, 'chatbot.html')

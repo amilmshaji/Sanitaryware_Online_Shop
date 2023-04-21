@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <form method="post" action="{% url 'answer' %}">
+        {% csrf_token %}
+        <label for="context">Context:</label><br>
+        <textarea id="context" name="context" rows="10" cols="50"></textarea><br><br>
+        <label for="question">Question:</label><br>
+        <input type="text" id="question" name="question"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
