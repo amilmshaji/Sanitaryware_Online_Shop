@@ -1,47 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Chatbot</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
+
 <style>* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	background-color: #f1f1f1;
-	font-family: Arial, sans-serif;
-}
-
-.chat-container {
-	max-width: 500px;
-	margin: 50px auto;
-	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.chat-header {
-	background-color: #2ecc71;
-	color: #fff;
-	padding: 10px;
-	border-radius: 10px 10px 0 0;
-}
-
-.chat-header h1 {
-	font-size: 20px;
-	font-weight: normal;
-	margin: 0;
-}
-
-.chat-box {
-	max-height: 400px;
-	overflow-y: auto;
-	padding: 10px;
-}
 
 .chat-bubble {
 	max-width: 80%;
@@ -56,11 +14,6 @@ body {
 	float: left;
 }
 
-.chat-bubble.user {
-	background-color: #2ecc71;
-	color: #fff;
-	float: right;
-}
 
 .bot-right {
     background-color: #f1f1f1;
@@ -70,54 +23,73 @@ body {
 }
 
 
-.chat-form {
-	display: flex;
-	align-items: center;
-	padding: 10px;
-}
-
-.chat-form input[type="text"] {
-	flex: 1;
-	border: none;
-	border-radius: 20px;
-	padding: 10px;
-	margin-right: 10px;
-}
-
-.chat-form button {
-	border: none;
-	background-color: transparent;
-	font-size: 20px;
-	color: #2ecc71;
-	cursor: pointer;
 }
 </style>
-	<div class="chat-container">
-		<div class="chat-header">
-			<h1>Chatbot</h1>
-		</div>
-		<div class="chat-box" id="chat-box">
-			<div class="chat-bubble bot-right">
-				<p>Hello! How can I help you today?</p>
-			</div>
-				{% if question %}
 
-			<div class="chat-bubble bot">
-				<p>{{ question }}</p>
-			</div>
-			<div class="chat-bubble bot-right">
-				<p>{{ answer }}</p>
-			</div>
-				{% endif %}
+{% load static %}
+<!--====== SAAM -BOT ======-->
+    <link rel="stylesheet" href="{% static 'chatbot/style.css' %}">
 
-		</div>
-		<form class="chat-form" id="chat-form" method="POST" action="{% url 'chatbot' %}">
-					{% csrf_token %}
-			<input type="text" id="message-input" name="question" placeholder="Ask me anything...">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-			<button type="submit"><i class="fa fa-paper-plane"></i></button>
-		</form>
-	</div>
-	<script src="script.js"></script>
-</body>
-</html>
+
+<div class="container">
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                </div>
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Chat support</h4>
+                    <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
+                </div>
+            </div>
+            <div class="chat-bubble bot-right" id="chatbox-question"></div>
+
+
+            <div class="chat-bubble bot" id="chatbox-messagess"></div>
+
+
+            <form id="chat-form">
+    {% csrf_token %}
+    <div class="chatbox__footer">
+        <input type="text" name="question"  placeholder="Write a message...">
+        <button class="chatbox__send--footer send__button">Send</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $("#chat-form").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'chatbot' %}",
+                data: $(this).serialize(),
+                success: function (response) {
+    if ($("#chatbox-messagess").length) {
+        $("#chatbox-question").append("<div>" + response.question + "</div>");
+
+        $("#chatbox-messagess").append("<div>" + response.answer + "</div>");
+
+    }
+},
+
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+
+        </div>
+        <div class="chatbox__button">
+            <button><img src="{% static 'chatbot/images/chatbox-icon.svg' %}" /></button>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="{% static 'chatbot/app.js' %}"></script>
+                <!--====== BOT SAM END ======-->
