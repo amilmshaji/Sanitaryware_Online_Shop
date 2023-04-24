@@ -21,6 +21,24 @@
     color: #0000ff;
 
 }
+.user-message {
+  background-color: #007bff;
+  color: #fff;
+  text-align: right;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.bot-message {
+  background-color: #cfe2f3;
+  color: #000;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 
 
 }
@@ -45,10 +63,9 @@
                     <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
                 </div>
             </div>
-            <div class="chat-bubble bot-right" id="chatbox-question"></div>
 
 
-            <div class="chat-bubble bot" id="chatbox-messagess"></div>
+            <div id="chatbox-messagess"></div>
 
 
             <form id="chat-form">
@@ -60,28 +77,28 @@
 </form>
 
 <script>
-    $(document).ready(function () {
-        $("#chat-form").submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "{% url 'chatbot' %}",
-                data: $(this).serialize(),
-                success: function (response) {
-    if ($("#chatbox-messagess").length) {
-        $("#chatbox-question").append("<div>" + response.question + "</div>");
-
-        $("#chatbox-messagess").append("<div>" + response.answer + "</div>");
-
-    }
-},
-
-                error: function (xhr, status, error) {
-                    console.log(error);
+$(document).ready(function () {
+    $("#chat-form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'chatbot' %}",
+            data: $(this).serialize(),
+            success: function (response) {
+                if ($("#chatbox-messagess").length) {
+                    var chatbox = $("#chatbox-messagess");
+                    var question = $("<div class='user-message'></div>").text(response.question);
+                    var answer = $("<div class='bot-message'></div>").text(response.answer);
+                    chatbox.append(question).append(answer);
                 }
-            });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
         });
     });
+});
+
 </script>
 
         </div>
