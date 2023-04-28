@@ -30,5 +30,5 @@ def chatbot(request):
         response_data = {'question': question, 'context': context, 'answer': answer}
         return JsonResponse(response_data)
     else:
-        return render(request, 'dash-my-profile.html')
+        return render(request, 'chatbot.html')
 

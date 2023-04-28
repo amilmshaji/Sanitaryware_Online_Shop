@@ -65,7 +65,7 @@
             </div>
 
 
-            <div id="chatbox-messagess"></div>
+            <div class="chatbox__messages" id="chatbox-messagess"></div>
 
 
             <form id="chat-form">
@@ -87,8 +87,8 @@ $(document).ready(function () {
             success: function (response) {
                 if ($("#chatbox-messagess").length) {
                     var chatbox = $("#chatbox-messagess");
-                    var question = $("<div class='user-message'></div>").text(response.question);
-                    var answer = $("<div class='bot-message'></div>").text(response.answer);
+                    var question = $("<div class='messages__item messages__item--visitor'></div>").text(response.question);
+                    var answer = $("<div class='messages__item messages__item--operator'></div>").text(response.answer);
                     chatbox.append(question).append(answer);
                 }
             },
