@@ -89,7 +89,8 @@ $(document).ready(function () {
                     var chatbox = $("#chatbox-messagess");
                     var question = $("<div class='messages__item messages__item--visitor'></div>").text(response.question);
                     var answer = $("<div class='messages__item messages__item--operator'></div>").text(response.answer);
-                    chatbox.append(question).append(answer);
+                    chatbox.prepend(question).prepend(answer);
+
                 }
             },
             error: function (xhr, status, error) {
