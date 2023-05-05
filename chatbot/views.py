@@ -33,7 +33,7 @@ def chatbot(request):
 
         context = '''Sanitaryware Online Store platform is an online marketplace that specializes in selling sanitaryware
          products. The platform offers a wide range of products, including toilets, wash basins, mirrors, bathtubs, 
-        shower mixers, and much more.'''
+        shower mixers'''
 
         answer = answer_question(question, context)
         print(answer)
