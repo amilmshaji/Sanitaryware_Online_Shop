@@ -6,7 +6,7 @@ from django.urls import path
 from django.urls.conf import include
 from django.conf import settings
 
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
 
 urlpatterns = [
     # path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
