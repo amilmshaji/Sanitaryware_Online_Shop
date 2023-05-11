@@ -68,13 +68,13 @@
             <div class="chatbox__messages" id="chatbox-messagess"></div>
 
 
-            <form id="chat-form">
-    {% csrf_token %}
-    <div class="chatbox__footer">
-        <input type="text" name="question"  placeholder="Write a message...">
-        <button class="chatbox__send--footer send__button">Send</button>
-    </div>
-</form>
+<form id="chat-form">
+  {% csrf_token %}
+  <div class="chatbox__footer">
+    <input type="text" name="question"  placeholder="Write a message...">
+<!--    <button class="fas fa-microphone" type="button" onclick="startListening()"></button>-->
+    <button class="chatbox__send--footer send__button">Send</button>
+  </div>
 
 <script>
 $(document).ready(function () {
@@ -83,16 +83,21 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "{% url 'chatbot' %}",
+
             data: $(this).serialize(),
             success: function (response) {
-                if ($("#chatbox-messagess").length) {
-                    var chatbox = $("#chatbox-messagess");
-                    var question = $("<div class='messages__item messages__item--visitor'></div>").text(response.question);
-                    var answer = $("<div class='messages__item messages__item--operator'></div>").text(response.answer);
-                    chatbox.prepend(question).prepend(answer);
+    // clear the input field
+    $('input[name="question"]').val('');
+    // append the question and answer to the chatbox
+    if ($("#chatbox-messagess").length) {
+        var chatbox = $("#chatbox-messagess");
+        var question = $("<div class='messages__item messages__item--visitor'></div>").text(response.question);
+        var answer = $("<div class='messages__item messages__item--operator'></div>").html(response.answer);
+        chatbox.prepend(question).prepend(answer);
+    }
+},
 
-                }
-            },
+
             error: function (xhr, status, error) {
                 console.log(error);
             }
@@ -100,7 +105,55 @@ $(document).ready(function () {
     });
 });
 
-</script>
+var recognition = new webkitSpeechRecognition();
+recognition.continuous = false;
+recognition.interimResults = false;
+
+// Set language to Malayalam or English
+function startListening() {
+  recognition.lang = 'ml-IN'; // Malayalam
+  recognition.start();
+  document.querySelector('.fa-microphone').classList.add('active');
+}
+
+function stopListening() {
+  recognition.stop();
+}
+
+recognition.onresult = function(event) {
+  var question = event.results[0][0].transcript;
+  console.log(question);
+  sendQuestion(question);
+};
+
+recognition.onend = function() {
+  document.querySelector('.fa-microphone').classList.remove('active');
+}
+
+function sendQuestion(question) {
+  $.ajax({
+    url: '/chatbot/',
+    type: 'POST',
+    data: {
+      'question': question,
+      'csrfmiddlewaretoken': '{{ csrf_token }}'
+    },
+    success: function(response) {
+      console.log(response.answer);
+      // Display response
+      if ($("#chatbox-messagess").length) {
+        var chatbox = $("#chatbox-messagess");
+        var question = $("<div class='messages__item messages__item--visitor'></div>").text(response.question);
+        var answer = $("<div class='messages__item messages__item--operator'></div>").html(response.answer);
+        chatbox.prepend(question).prepend(answer);
+      }
+    }
+  });
+}
+
+
+
+</script></form>
 
         </div>
         <div class="chatbox__button">

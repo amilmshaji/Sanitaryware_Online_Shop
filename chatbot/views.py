@@ -2,6 +2,10 @@ import webbrowser
 
 import requests
 from django.shortcuts import render
+from django.template.defaultfilters import safe
+
+from shop_app.models import Product
+
 API_URL = "https://api-inference.huggingface.co/models/squirro/albert-base-v2-squad_v2"
 headers = {"Authorization": "Bearer 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"}
 
@@ -14,7 +18,7 @@ def answer_question(question, context):
     elif user_input in pages:
         link = f'http://127.0.0.1:8000/{user_input}'
         answer = f"Sure, I can help you navigate to the {user_input} page. <a href='{link}' style='color:red;'>Click Here</a>"
-        webbrowser.open_new_tab(link)
+        # webbrowser.open_new_tab(link)
 
     elif user_input == "help" or user_input == "hellp" or user_input == "hellp me" or user_input == "help me":
         answer= "I can help you navigate to different pages on our website. Just tell me which page you'd like to visit, or type 'menu' to see a list of options."
@@ -30,6 +34,7 @@ def answer_question(question, context):
         }
         response = requests.post(API_URL, headers=headers, json=payload)
         answer = response.json()['answer']
+        print(response.json())
     print(answer)
     if answer == "[CLS]" or answer =='':
         answer = "sorry i cannot find the result. Can you specify with the context"
@@ -41,16 +46,29 @@ def answer_question(question, context):
 from django.http import JsonResponse
 
 def chatbot(request):
+    details = " "
+    product_list = []
+    for product in Product.objects.all():
+        details += " " + str(product.product_name) + ","
+    #     details += " Rupees " + str(h_product.rent) + " for a month "
+    #     details += f" The location available  for advertisement given by {h_product.user.fname} is " + h_product.location + "," + h_product.city + "\n"
+        product_list.append(details)
+        print(details)
+
+
     if request.method == 'POST':
+
         question = request.POST['question']
 
-        context = '''Sanitaryware Online Store platform is an online marketplace that specializes in selling sanitaryware
-         products. The platform offers a wide range of products, including toilets, wash basins, mirrors, bathtubs, 
-        shower mixers'''
+        context = f'''
+        {details}
+        
+        Sanitaryware Online Store platform is an online marketplace that specializes in selling sanitaryware
+         products. '''
 
         answer = answer_question(question, context)
         print(answer)
-        response_data = {'question': question, 'context': context, 'answer': answer}
+        response_data = {'question': question, 'context': context, 'answer': safe(answer)}
         return JsonResponse(response_data)
     else:
         return render(request, 'chatbot.html')
