@@ -71,7 +71,7 @@
                         <label for="main-search"></label>
                         <div class="search-container">
                             <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" name="keyword" placeholder="Search" onkeyup="searchProducts(this.value)">
-                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
+                            <button class="btn btn--icon fas fa-search main-search-button" type="submit" id="search"></button>
                         </div>
                         <div class="search-suggestions">
                             <ul id="search-suggestions"></ul>
@@ -239,12 +239,12 @@
                                 <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                                     <li>
 
-                                        <a href="{% url 'store' %}">SHOP NOW</a></li>
+                                        <a href="{% url 'store' %}" id="shop">SHOP NOW</a></li>
                                     {% if user.is_authenticated %}
 
                                       <li>
 
-                                        <a  href="{% url 'myprofile' %}">Welcome {{user.fname}}</a></li>
+                                        <a  href="{% url 'myprofile' %}" id="accounts">Welcome {{user.fname}}</a></li>
 
                                         <li>
 
@@ -293,7 +293,7 @@
                                         <a href="{% url 'wishlist' %}"><i class="far fa-heart"></i></a></li>
                                     <li class="has-dropdown">
 
-                                        <a href="{% url 'cart' %}" class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                                        <a href="{% url 'cart' %}" class="mini-cart-shop-link" id="cart"><i class="fas fa-shopping-bag"></i>
 
                                             <span class="total-item-round">{{cart_count}}</span>
                                         </a>

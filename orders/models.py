@@ -1,10 +1,6 @@
 from accounts.models import Account, Address_Book
 from django.db import models
-
-# Create your models here.
 from shop_app.models import Product
-
-
 
 
 class Payment(models.Model):
@@ -64,7 +60,7 @@ class OrderPlaced(models.Model):
 
     def amount(self):
         amountt = self.payment.amount
-        return amountt
+        return amountt 
 
     class Meta:
         verbose_name = 'Order Details'

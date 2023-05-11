@@ -49,7 +49,6 @@ class Account(AbstractBaseUser,PermissionsMixin):
     phone_number = models.BigIntegerField(default=0, editable=False)
 
 
-
     # required
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
@@ -73,8 +72,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
 
     def has_module_perms(self, add_label):
         return True
-    # def get_url(self):
-    #     return reverse('profile', args=[self.fname])
+
 
 
 class Address_Book(models.Model):

@@ -1,14 +1,6 @@
 from django.contrib import messages
-from django.conf import settings
-
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.generic import View
-
 from variations.models import Brand
 from .utils import render_to_pdf
-
-from django.db.models import Count
 from django.utils import timezone
 
 from accounts.models import Address_Book
@@ -44,12 +36,12 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         address = Address_Book.objects.get(user=request.user,status=True)
 
         tax = (2*total)/100
-        razoramount = total*100
+
     except ObjectDoesNotExist:
         pass
     customer=Address_Book.objects.filter(user=request.user,status=True)
     print(customer)
-
+    razoramount = total * 100
     client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY,settings.RAZORPAY_API_SECRET_KEY))
 
     data = {

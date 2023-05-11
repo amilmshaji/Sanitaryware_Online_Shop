@@ -72,13 +72,13 @@
 
                                                      <div class="product-m__add-cart">
 
-                                                        <a class="btn--e-brand" href="#" data-modal="modal">Out Of Stock</a></div>
+                                                        <a class="btn--e-brand" href="#" data-modal="modal" >Out Of Stock</a></div>
                                                     {% else %}
 
 
                                                     <div class="product-m__add-cart">
 
-                                                        <a class="btn--e-brand" href="{% url 'add_cart' product.id %}" data-modal="modal">Add to Cart</a></div>
+                                                        <a class="btn--e-brand" href="{% url 'add_cart' product.id %}" data-modal="modal" id="{{product.id}}">Add to Cart</a></div>
                                                     {% endif %}
 
                                                 </div>

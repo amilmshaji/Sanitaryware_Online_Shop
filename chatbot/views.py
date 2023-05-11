@@ -1,10 +1,9 @@
 import webbrowser
 
+import requests
 from django.shortcuts import render
-from transformers import AutoTokenizer, AutoModelForQuestionAnswering
-tokenizer = AutoTokenizer.from_pretrained('squirro/albert-base-v2-squad_v2')
-model = AutoModelForQuestionAnswering.from_pretrained('squirro/albert-base-v2-squad_v2')
-import torch
+API_URL = "https://api-inference.huggingface.co/models/squirro/albert-base-v2-squad_v2"
+headers = {"Authorization": "Bearer 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"}
 
 
 def answer_question(question, context):
@@ -23,14 +22,14 @@ def answer_question(question, context):
         answer= "Here are some options:\nhome,\nmap,\ncategory\n,shop\n,login,\nregister,\nlogout"
     else:
 
-        inputs = tokenizer.encode_plus(question, context, add_special_tokens=True, return_tensors="pt")
-        input_ids = inputs["input_ids"].tolist()[0]
-        outputs = model(**inputs)
-        answer_start_scores = outputs.start_logits
-        answer_end_scores = outputs.end_logits
-        answer_start = torch.argmax(answer_start_scores)
-        answer_end = torch.argmax(answer_end_scores) + 1
-        answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+        payload = {
+            "inputs": {
+                "question": question,
+                "context": context
+            }
+        }
+        response = requests.post(API_URL, headers=headers, json=payload)
+        answer = response.json()['answer']
     print(answer)
     if answer == "[CLS]" or answer =='':
         answer = "sorry i cannot find the result. Can you specify with the context"
@@ -42,7 +41,6 @@ def answer_question(question, context):
 from django.http import JsonResponse
 
 def chatbot(request):
-    print("working")
     if request.method == 'POST':
         question = request.POST['question']
 
