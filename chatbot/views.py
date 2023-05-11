@@ -7,7 +7,7 @@ headers = {"Authorization": "Bearer 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"}
 
 
 def answer_question(question, context):
-    pages = ["home","map","category", "shop", "login","logout", "register","myprofile"]
+    pages = ["home","cart","category", "store", "login","logout", "register","myprofile"]
     user_input = question.lower().strip()
     if user_input == "hi" or user_input == "hello" or user_input == "hlo":
         answer= "Hello! How can I assist you today?"
@@ -19,7 +19,7 @@ def answer_question(question, context):
     elif user_input == "help" or user_input == "hellp" or user_input == "hellp me" or user_input == "help me":
         answer= "I can help you navigate to different pages on our website. Just tell me which page you'd like to visit, or type 'menu' to see a list of options."
     elif user_input == "menu":
-        answer= "Here are some options:\nhome,\nmap,\ncategory\n,shop\n,login,\nregister,\nlogout"
+        answer= "Here are some options:\nhome\ncategory\n,store\n,login,\nregister,\nlogout,\ncart,\norders,\nmyprofile,\norders"
     else:
 
         payload = {

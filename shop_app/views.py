@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
 
-from recommendation.models import SearchHistory
 from variations.models import Color, Brand
 from .forms import ReviewForm
 from .models import Category, Product_Display, Info
@@ -24,24 +23,6 @@ def Home(request,category_slug=None):
     products = None
     current_user=request.user
 
-    if current_user.is_authenticated:
-        search_history = SearchHistory.objects.filter(user=request.user)
-
-        # Extract the keywords used in the search history
-        keywords = [search.query for search in search_history]
-
-        # Find other users who have searched for similar keywords
-        similar_search_history = SearchHistory.objects.filter(query__in=keywords)
-
-        # Extract the distinct keywords from similar search history
-        similar_keywords = similar_search_history.values_list('query', flat=True).distinct()
-
-        # Retrieve the product recommendations based on the similar keywords
-        recommended_products = Product.objects.filter(Q(category__category_name__in=similar_keywords)).distinct()
-    else:
-        recommended_products=None
-
-
     if category_slug != None:
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(
@@ -61,7 +42,6 @@ def Home(request,category_slug=None):
     context = {
         'products': paged_products,
         'product_count': product_count,
-        'recommended_products': recommended_products,
 
     }
     return render(request, 'index.html', context)
