@@ -39,6 +39,8 @@ def checkout(request, total=0, quantity=0, cart_item=None):
 
     except ObjectDoesNotExist:
         pass
+    address = None
+
     customer=Address_Book.objects.filter(user=request.user,status=True)
     print(customer)
     razoramount = total * 100
