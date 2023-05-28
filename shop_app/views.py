@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
+from django.http import JsonResponse
 
 from variations.models import Color, Brand
 from .forms import ReviewForm
@@ -151,9 +152,6 @@ def search(request):
         'product_count': product_count,
     }
     return render(request, 'shop.html', context)
-from django.http import JsonResponse
-from django.db.models import Q
-
 def search_suggestions(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']

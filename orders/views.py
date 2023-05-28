@@ -15,7 +15,6 @@ from cart.views import _cart_id
 import razorpay
 
 from orders.models import Payment, OrderPlaced
-from shop_app.models import Product
 
 
 @login_required(login_url='login')
@@ -39,7 +38,7 @@ def checkout(request, total=0, quantity=0, cart_item=None):
 
     except ObjectDoesNotExist:
         pass
-    address = None
+    address = Address_Book.objects.get(user=request.user, status=True)
 
     customer=Address_Book.objects.filter(user=request.user,status=True)
     print(customer)

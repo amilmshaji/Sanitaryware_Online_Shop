@@ -27,7 +27,7 @@ def answer_question(question, context):
     elif user_input == "help" or user_input == "hellp" or user_input == "hellp me" or user_input == "help me":
         answer= "I can help you navigate to different pages on our website. Just tell me which page you'd like to visit, or type 'menu' to see a list of options."
     elif user_input == "menu":
-        answer= "Here are some options:\nhome\ncategory\n,store\n,login,\nregister,\nlogout,\ncart,\norders,\nmyprofile,\norders"
+        answer= f'Here are some options:\n1home\n2.category\n3.store\n4.login\n5.register\n6.logout\n7.cart\n8.orders\n9.myprofile'
     else:
 
         # payload = {
@@ -64,32 +64,19 @@ def answer_question(question, context):
 
 
     return answer
-
-
-
 from django.http import JsonResponse
-
 def chatbot(request):
     details = " "
     product_list = []
     for product in Product.objects.all():
         details += " " + str(product.product_name) + ","
-    #     details += " Rupees " + str(h_product.rent) + " for a month "
-    #     details += f" The location available  for advertisement given by {h_product.user.fname} is " + h_product.location + "," + h_product.city + "\n"
         product_list.append(details)
-
-
     if request.method == 'POST':
-
         question = request.POST['question']
-
         context = f'''
-        {details}
-        
-        
+        {details}  
         Sanitaryware Online Store platform is an online marketplace that specializes in selling sanitaryware
          products. '''
-
         answer = answer_question(question, context)
         print(answer)
         response_data = {'question': question, 'context': context, 'answer': safe(answer)}
